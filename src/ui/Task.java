@@ -1,7 +1,7 @@
 package ui;
 
 public class Task {
-    
+
     private String name;
     private String due;
     private boolean status;
@@ -44,6 +44,7 @@ public class Task {
         t1.changeStatus();
         t1.printStatus();
         t1.changeName("CPSC 210 HWK DONE");
+        t1.printName();
     }
 
 }
