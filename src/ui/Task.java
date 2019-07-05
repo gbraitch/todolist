@@ -1,7 +1,7 @@
 package ui;
 
 public class Task {
-
+    
     private String name;
     private String due;
     private boolean status;
@@ -13,29 +13,37 @@ public class Task {
         this.status = false;
     }
 
-    private String getName(){
-        return this.name;
+    private void printName(){
+        System.out.println("Task name: " + name);
     }
 
-    private String getDue() {
-        return this.due;
+    private void printDue() {
+        System.out.println("Task Due Date: " + due);
     }
 
-    private boolean getStatus(){
-        return this.status;
+    private void printStatus(){
+        if(status) System.out.println("Task Finished");
+        else System.out.println("Task Incomplete");
     }
 
-    private void finish(){
-        this.status = true;
+    private void changeStatus(){
+        this.status = !this.status;
+    }
+
+    private void changeName(String newName){
+        System.out.println("Task name changed from " + "'" + this.name + "' " + "to " +
+                "'" + newName + "'");
+        this.name = newName;
     }
 
     public static void main(String[] args) {
         Task t1 = new Task("Finish CPSC210 HWK", "Saturday");
-        System.out.println("Task name: " + t1.getName());
-        System.out.println("Task Due Date: " + t1.getDue());
-        System.out.println("Task Status: " + t1.getStatus());
-        t1.finish();
-        System.out.println("Task Status: " + t1.getStatus());
+        t1.printName();
+        t1.printDue();
+        t1.printStatus();
+        t1.changeStatus();
+        t1.printStatus();
+        t1.changeName("CPSC 210 HWK DONE");
     }
 
 }
