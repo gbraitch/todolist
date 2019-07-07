@@ -21,19 +21,21 @@ public class Todo {
         return due;
     }
 
-    public void printStatus(){
-        if(status) System.out.println("Task Finished");
-        else System.out.println("Task Incomplete");
+    public boolean getFinished(){
+        return status;
     }
 
-    public void changeStatus(){
-        this.status = !this.status;
+    public void changeStatus(int i){
+        this.status = (i==1);
     }
 
     public void changeName(String newName){
-        System.out.println("Todo name changed from " + "'" + this.name + "' " + "to " +
-                "'" + newName + "'");
         this.name = newName;
     }
+
+    public void changeDue(String newDue){
+        this.due = newDue;
+    }
+
 }
 
