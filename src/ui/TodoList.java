@@ -11,7 +11,8 @@ public class TodoList {
 
     public TodoList(){
         System.out.println("Welcome!");
-        while(true) {
+        boolean loop = true;
+        while(loop) {
             printMenu();
             String choice = scanner.nextLine();
             switch (choice) {
@@ -28,11 +29,14 @@ public class TodoList {
                     printTodoList();
                     scanner.nextLine();
                     break;
+                case "4":
+                    loop = false;
+                    break;
             }
         }
     }
 
-    public void editTodo(){
+    private void editTodo(){
         printTodoList();
         System.out.println("\nWhich Todo to edit?");
         String edit = scanner.nextLine();
@@ -44,25 +48,25 @@ public class TodoList {
             case "0":
                 System.out.println("Enter new name for todo");
                 String newName = scanner.nextLine();
-                temp.changeName(newName);
+                temp.setName(newName);
                 list.set(Integer.parseInt(edit), temp);
                 break;
             case "1":
                 System.out.println("Enter new due date for todo");
                 String newDue = scanner.nextLine();
-                temp.changeName(newDue);
+                temp.setName(newDue);
                 list.set(Integer.parseInt(edit), temp);
                 break;
             case "2":
                 System.out.println("Enter 1 to finish task or 0 for unfinished task");
                 String finish_status = scanner.nextLine();
-                temp.changeStatus(Integer.parseInt(finish_status));
+                temp.setStatus(Integer.parseInt(finish_status));
                 list.set(Integer.parseInt(edit), temp);
                 break;
         }
     }
 
-    public void addTodo(){
+    private void addTodo(){
         System.out.println("Choose a name for the todo!");
         String newTodoName = scanner.nextLine();
         System.out.println("Choose a due date for the todo!");
@@ -70,20 +74,20 @@ public class TodoList {
         list.add(new Todo (newTodoName, newTodoDue));
     }
 
-    public void deleteTodo(){
+    private void deleteTodo(){
         printTodoList();
         System.out.println("\nWhich Todo to remove?");
         String del = scanner.nextLine();
         list.remove(Integer.parseInt(del));
     }
 
-    public void printTodoList(){
+    private void printTodoList(){
         System.out.println();
         int i = 0;
         for (Todo td : list)
         {
             System.out.print("["+i+"]  ");
-            if(td.getFinished()){
+            if(td.getStatus()){
                 System.out.println(td.getName() + "   :   " + td.getDue() + "   " + CHECKMARK);
             }
             else{ System.out.println(td.getName() + "   :   " + td.getDue()); }
@@ -91,14 +95,15 @@ public class TodoList {
         }
     }
 
-    public void printMenu(){
+    private void printMenu(){
         System.out.println("\nEnter 0: Create new Todo");
         System.out.println("      1: Delete Todo");
         System.out.println("      2: Edit Todo");
         System.out.println("      3: View Todo List");
+        System.out.println("      4: Exit");
     }
 
-    public void printEditMenu(){
+    private void printEditMenu(){
         System.out.println("\n0: Change Name");
         System.out.println("1: Change Due Date");
         System.out.println("2: Change Completion Status");

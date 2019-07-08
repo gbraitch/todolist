@@ -21,19 +21,19 @@ public class Todo {
         return due;
     }
 
-    public boolean getFinished(){
+    public boolean getStatus(){
         return status;
     }
 
-    public void changeStatus(int i){
+    public void setStatus(int i){
         this.status = (i==1);
     }
 
-    public void changeName(String newName){
+    public void setName(String newName){
         this.name = newName;
     }
 
-    public void changeDue(String newDue){
+    public void setDue(String newDue){
         this.due = newDue;
     }
 
