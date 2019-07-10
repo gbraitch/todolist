@@ -1,4 +1,4 @@
-package ui;
+package model;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -84,14 +84,19 @@ public class TodoList {
     private void printTodoList(){
         System.out.println();
         int i = 0;
-        for (Todo td : list)
-        {
-            System.out.print("["+i+"]  ");
-            if(td.getStatus()){
-                System.out.println(td.getName() + "   :   " + td.getDue() + "   " + CHECKMARK);
+        if(list.isEmpty()){
+            System.out.println("Todo List is Empty");
+        }
+        else {
+            for (Todo td : list) {
+                System.out.print("[" + i + "]  ");
+                if (td.getStatus()) {
+                    System.out.println(td.getName() + "   :   " + td.getDue() + "   " + CHECKMARK);
+                } else {
+                    System.out.println(td.getName() + "   :   " + td.getDue());
+                }
+                i++;
             }
-            else{ System.out.println(td.getName() + "   :   " + td.getDue()); }
-            i++;
         }
     }
 
@@ -112,5 +117,4 @@ public class TodoList {
     public static void main(String[] args) {
             new TodoList();
         }
-    //}
 }
