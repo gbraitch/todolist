@@ -54,7 +54,7 @@ public class TodoList {
             case "1":
                 System.out.println("Enter new due date for todo");
                 String newDue = scanner.nextLine();
-                temp.setName(newDue);
+                temp.setDue(newDue);
                 list.set(Integer.parseInt(edit), temp);
                 break;
             case "2":
