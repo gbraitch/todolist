@@ -1,87 +1,38 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TodoList {
     private static String CHECKMARK = Character.toString((char)10003);
 
-    private Scanner scanner = new Scanner(System.in);
-    private ArrayList<Todo> list = new ArrayList<>();
+    private ArrayList<Todo> list;
 
     public TodoList(){
-        System.out.println("Welcome!");
-        boolean loop = true;
-        while(loop) {
-            printMenu();
-            String choice = scanner.nextLine();
-            switch (choice) {
-                case "0":
-                    addTodo();
-                    break;
-                case "1":
-                    deleteTodo();
-                    break;
-                case "2":
-                    editTodo();
-                    break;
-                case "3":
-                    printTodoList();
-                    scanner.nextLine();
-                    break;
-                case "4":
-                    loop = false;
-                    break;
-            }
-        }
+        list = new ArrayList<>();
     }
 
-    private void editTodo(){
-        printTodoList();
-        System.out.println("\nWhich Todo to edit?");
-        String edit = scanner.nextLine();
-        Todo temp = list.get(Integer.parseInt(edit));
-        System.out.println("\nWhat would you like to change?");
-        printEditMenu();
-        String editChoice = scanner.nextLine();
-        switch(editChoice){
-            case "0":
-                System.out.println("Enter new name for todo");
-                String newName = scanner.nextLine();
-                temp.setName(newName);
-                list.set(Integer.parseInt(edit), temp);
-                break;
-            case "1":
-                System.out.println("Enter new due date for todo");
-                String newDue = scanner.nextLine();
-                temp.setDue(newDue);
-                list.set(Integer.parseInt(edit), temp);
-                break;
-            case "2":
-                System.out.println("Enter 1 to finish task or 0 for unfinished task");
-                String finish_status = scanner.nextLine();
-                temp.setStatus(Integer.parseInt(finish_status));
-                list.set(Integer.parseInt(edit), temp);
-                break;
-        }
+    public void changeName(int edit, String newName){
+        Todo temp = list.get(edit);
+        temp.setName(newName);
+    }
+    public void changeDue(int edit, String newDue){
+        Todo temp = list.get(edit);
+        temp.setDue(newDue);
+    }
+    public void changeStatus(int edit, int status){
+        Todo temp = list.get(edit);
+        temp.setStatus(status);
     }
 
-    private void addTodo(){
-        System.out.println("Choose a name for the todo!");
-        String newTodoName = scanner.nextLine();
-        System.out.println("Choose a due date for the todo!");
-        String newTodoDue = scanner.nextLine();
+    public void addTodo(String newTodoName, String newTodoDue){
         list.add(new Todo (newTodoName, newTodoDue));
     }
 
-    private void deleteTodo(){
-        printTodoList();
-        System.out.println("\nWhich Todo to remove?");
-        String del = scanner.nextLine();
-        list.remove(Integer.parseInt(del));
+    public void deleteTodo(int del){
+        list.remove(del);
     }
 
-    private void printTodoList(){
+    public void printTodoList(){
         System.out.println();
         int i = 0;
         if(list.isEmpty()){
@@ -100,21 +51,15 @@ public class TodoList {
         }
     }
 
-    private void printMenu(){
-        System.out.println("\nEnter 0: Create new Todo");
-        System.out.println("      1: Delete Todo");
-        System.out.println("      2: Edit Todo");
-        System.out.println("      3: View Todo List");
-        System.out.println("      4: Exit");
+    public String getTodoName(int index){
+        return list.get(index).getName();
     }
 
-    private void printEditMenu(){
-        System.out.println("\n0: Change Name");
-        System.out.println("1: Change Due Date");
-        System.out.println("2: Change Completion Status");
+    public String getTodoDue(int index){
+        return list.get(index).getDue();
     }
 
-    public static void main(String[] args) {
-            new TodoList();
-        }
+    public boolean getTodoStatus(int index){
+        return list.get(index).getStatus();
+    }
 }
