@@ -62,4 +62,8 @@ public class TodoList {
     public boolean getTodoStatus(int index){
         return list.get(index).getStatus();
     }
+
+    public int size(){
+        return list.size();
+    }
 }
