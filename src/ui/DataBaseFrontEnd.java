@@ -13,4 +13,3 @@ class DataBaseFrontEnd {
                 "Sending to D/B: '" + response + "'");
     }
 }
-//</sscce>
