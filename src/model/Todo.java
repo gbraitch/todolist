@@ -13,6 +13,12 @@ public class Todo {
         this.status = false;
     }
 
+    public Todo(){
+        this.name = "";
+        this.due = "";
+        this.status = false;
+    }
+
     public String getName(){
         return name;
     }
