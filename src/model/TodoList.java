@@ -1,9 +1,16 @@
 package model;
 
+import util.Loadable;
+import util.Saveable;
+
+import java.io.IOException;
 import java.util.ArrayList;
+
 
 public class TodoList {
     private static String CHECKMARK = Character.toString((char)10003);
+    private static String inputFileName = "saveFile.txt";
+    private static String outputFileName= "saveFile.txt";
 
     private ArrayList<Todo> list;
 
@@ -66,4 +73,24 @@ public class TodoList {
     public int size(){
         return list.size();
     }
+
+    public void save() throws IOException {
+        Saveable s = new Saveable(outputFileName);
+        ArrayList<String> lines = new ArrayList<>();
+        for(Todo t : list) {
+            String name = t.getName();
+            String due = t.getDue();
+            boolean status = t.getStatus();
+            lines.add(name + " " + due + " " + status);
+        }
+        s.save(lines);
+        System.out.println("Save Successful!");
+    }
+
+    public void load() throws IOException {
+        Loadable l = new Loadable(outputFileName);
+        list = l.load();
+        System.out.println("Load Successful!");
+    }
 }
+

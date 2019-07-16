@@ -2,6 +2,7 @@ package ui;
 
 import model.TodoList;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,7 +15,9 @@ public class Main {
         System.out.println("      1: Delete Todo");
         System.out.println("      2: Edit Todo");
         System.out.println("      3: View Todo List");
-        System.out.println("      4: Exit");
+        System.out.println("      4: Save Todo List to save file");
+        System.out.println("      5: Load Todo List from save file");
+        System.out.println("      6: Exit");
     }
 
     private void printEditMenu() {
@@ -44,6 +47,20 @@ public class Main {
                     scanner.nextLine();
                     break;
                 case "4":
+                    try {
+                        t.save();
+                    } catch (IOException e) {
+                        System.out.println("Save Unsuccessful");
+                    }
+                    break;
+                case "5":
+                    try {
+                        t.load();
+                    } catch (IOException e) {
+                        System.out.println("Load Unsuccessful");
+                    }
+                    break;
+                case "6":
                     loop = false;
                     break;
             }

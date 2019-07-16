@@ -13,6 +13,12 @@ public class Todo {
         this.status = false;
     }
 
+    public Todo(String name, String due, boolean status){
+        this.name = name;
+        this.due = due;
+        this.status = status;
+    }
+
     public Todo(){
         this.name = "";
         this.due = "";

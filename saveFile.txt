@@ -1,0 +1,3 @@
+CPSC 210 WED false
+CPSC 121 HWK FRIDAY false
+CPSC 210 LOL false
