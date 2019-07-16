@@ -22,32 +22,27 @@ public class Loadable {
         List<String> lines = readAllLines(Paths.get(inputFileName));
         for(String line : lines){
             ArrayList<String> partsOfLine = splitOnSpace(line);
-            if(partsOfLine.size() > 3){
-                int size = partsOfLine.size();
-                String due = partsOfLine.get(size -2);
-                String status = partsOfLine.get(size-1);
-                partsOfLine.remove(size - 1);
-                partsOfLine.remove(size - 2);
-                String name = partsOfLine.get(0);
-                partsOfLine.remove(0);
-                for(String word : partsOfLine) {
-                    name += " " + word;
-                }
-                //t.add(MultiWordTodoName(partsOfLine));
-                t.add(new Todo(name, due, Boolean.parseBoolean(status)));
-            } else {
-                t.add(new Todo(partsOfLine.get(0), partsOfLine.get(1), Boolean.parseBoolean(partsOfLine.get(2))));
-            }
+            t.add(ConvertLineToTodo(partsOfLine));
         }
         return t;
     }
 
-    public static ArrayList<String> splitOnSpace(String line){
+    private Todo ConvertLineToTodo(List<String> partsOfLine) {
+        int size = partsOfLine.size();
+        String due = partsOfLine.get(size - 2);
+        String status = partsOfLine.get(size - 1);
+        partsOfLine.remove(size - 1);
+        partsOfLine.remove(size - 2);
+        String name = partsOfLine.get(0);
+        partsOfLine.remove(0);
+        for (String word : partsOfLine) {
+            name += " " + word;
+        }
+        return (new Todo(name, due, Boolean.parseBoolean(status)));
+    }
+
+    private static ArrayList<String> splitOnSpace(String line){
         String[] splits = line.split(" ");
         return new ArrayList<>(Arrays.asList(splits));
     }
-
-//    private Too MultiWordTodoName(ArrayList<String> partsOfLine){
-//
-//    }
 }

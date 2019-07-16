@@ -76,14 +76,7 @@ public class TodoList {
 
     public void save() throws IOException {
         Saveable s = new Saveable(outputFileName);
-        ArrayList<String> lines = new ArrayList<>();
-        for(Todo t : list) {
-            String name = t.getName();
-            String due = t.getDue();
-            boolean status = t.getStatus();
-            lines.add(name + " " + due + " " + status);
-        }
-        s.save(lines);
+        s.save(list);
         System.out.println("Save Successful!");
     }
 
