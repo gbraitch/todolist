@@ -23,7 +23,7 @@ public class SaveTodoList{
         writer.close();
     }
 
-    private ArrayList<String> ConvertTodoToString(ArrayList<Todo> list){
+    private ArrayList<String> ConvertTodoToString(List<Todo> list){
         ArrayList<String> lines = new ArrayList<>();
         for(Todo t : list) {
             String name = t.getName();

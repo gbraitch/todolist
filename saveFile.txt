@@ -1,1 +1,4 @@
-CPSC 210 Wednesday false
+CPSC 210 WED true
+CPSC 121 HWK TUES false
+clean room tonight true
+CPSC 221 assignment1 next thurs false

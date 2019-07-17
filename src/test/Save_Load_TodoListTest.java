@@ -1,5 +1,6 @@
 package test;
 
+import model.Loadable;
 import model.Todo;
 import model.TodoList;
 import org.junit.jupiter.api.BeforeEach;
@@ -81,5 +82,30 @@ public class Save_Load_TodoListTest {
         assertEquals(Loadlist.get(4).getName(), "FINISH LAUNDRY");
         assertEquals(Loadlist.get(4).getDue(), "MON");
         assertTrue(Loadlist.get(4).getStatus());
+    }
+
+    @Test
+    public void TestLoadableInterface(){
+        td = new TodoList();
+        td.addTodo("CPSC 210", "WED");
+        td.changeStatus(0,1);
+        try {
+            td.save();
+        } catch (IOException e) {
+            fail();
+        }
+        assertTrue(LoadableInput(td));
+        assertEquals(td.getTodoName(0), "CPSC 210");
+        assertEquals(td.getTodoDue(0), "WED");
+        assertTrue(td.getTodoStatus(0));
+    }
+
+    public boolean LoadableInput(Loadable l){
+        try {
+            l.load();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 }

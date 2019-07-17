@@ -10,7 +10,7 @@ import java.util.List;
 
 import static java.nio.file.Files.readAllLines;
 
-public class LoadTodoList {
+public class LoadTodoList{
     private String inputFileName;
 
     public LoadTodoList(String inputFileName){
