@@ -10,10 +10,10 @@ import java.util.List;
 
 import static java.nio.file.Files.readAllLines;
 
-public class Loadable {
+public class LoadTodoList {
     private String inputFileName;
 
-    public Loadable(String inputFileName){
+    public LoadTodoList(String inputFileName){
         this.inputFileName = inputFileName;
     }
 

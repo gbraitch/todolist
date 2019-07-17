@@ -1,13 +1,13 @@
 package model;
 
-import util.Loadable;
-import util.Saveable;
+import util.LoadTodoList;
+import util.SaveTodoList;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class TodoList {
+public class TodoList implements Saveable, Loadable {
     private static String CHECKMARK = Character.toString((char)10003);
     private static String inputFileName = "saveFile.txt";
     private static String outputFileName= "saveFile.txt";
@@ -75,13 +75,19 @@ public class TodoList {
     }
 
     public void save() throws IOException {
-        Saveable s = new Saveable(outputFileName);
+        SaveTodoList s = new SaveTodoList(outputFileName);
         s.save(list);
         System.out.println("Save Successful!");
     }
 
     public void load() throws IOException {
-        Loadable l = new Loadable(outputFileName);
+        LoadTodoList l = new LoadTodoList(inputFileName);
+        list = l.load();
+        System.out.println("Load Successful!");
+    }
+
+    public void load(String filename) throws IOException {
+        LoadTodoList l = new LoadTodoList(filename);
         list = l.load();
         System.out.println("Load Successful!");
     }

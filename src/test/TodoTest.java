@@ -36,4 +36,20 @@ public class TodoTest {
         t.setStatus(1);
         assertTrue(t.getStatus());
     }
+
+    @Test
+    public void testTodoSetAllParamConstructor(){
+        t = new Todo("HWK", "WED", true);
+        assertEquals(t.getName(), "HWK");
+        assertEquals(t.getDue(), "WED");
+        assertTrue(t.getStatus());
+    }
+
+    @Test
+    public void testTodoNoParamConstructor(){
+        t = new Todo();
+        assertEquals(t.getName(), "");
+        assertEquals(t.getDue(), "");
+        assertFalse(t.getStatus());
+    }
 }
