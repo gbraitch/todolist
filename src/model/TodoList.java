@@ -30,8 +30,12 @@ public class TodoList implements Saveable, Loadable {
         temp.setStatus(status);
     }
 
-    public void addTodo(String newTodoName, String newTodoDue){
-        list.add(new Todo (newTodoName, newTodoDue));
+    public void addRegTodo(String newTodoName, String newTodoDue){
+        list.add(new RegTodo(newTodoName, newTodoDue));
+    }
+
+    public void addSuperTodo(String newTodoName, String newTodoDue){
+        list.add(new SuperTodo(newTodoName, newTodoDue));
     }
 
     public void deleteTodo(int del){
@@ -52,6 +56,29 @@ public class TodoList implements Saveable, Loadable {
         }
     }
 
+    public void printSuperTodoSubList(int index){
+        System.out.println();
+        SuperTodo t = (SuperTodo)list.get(index);
+        t.printSubList();
+    }
+
+    public void addSuperTodoSub(int index, String name, String due){
+        SuperTodo t = (SuperTodo)list.get(index);
+        RegTodo temp = new RegTodo(name, due, false, "Sub");
+        t.addSubTodo(temp);
+    }
+
+    public void removeSuperTodoSub(int super_index, int sub_index){
+        SuperTodo t = (SuperTodo)list.get(super_index);
+        t.removeSubTodo(sub_index);
+    }
+
+    public void changeSuperTodoSubStatus(int super_index, int sub_index, int status){
+        SuperTodo t = (SuperTodo)list.get(super_index);
+        t.changeSubTodoStatus(sub_index, status);
+    }
+
+
     public String getTodoName(int index){
         return list.get(index).getName();
     }
@@ -63,6 +90,8 @@ public class TodoList implements Saveable, Loadable {
     public boolean getTodoStatus(int index){
         return list.get(index).getStatus();
     }
+
+    public String getTodoType(int index){ return list.get(index).getType(); }
 
     public int size(){
         return list.size();

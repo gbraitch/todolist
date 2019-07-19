@@ -1,5 +1,7 @@
 package util;
 
+import model.RegTodo;
+import model.SuperTodo;
 import model.Todo;
 
 import java.io.IOException;
@@ -18,27 +20,53 @@ public class LoadTodoList{
     }
 
     public ArrayList<Todo> load() throws IOException {
+        SuperTodo tempSuper = new SuperTodo("temp", "temp");
         ArrayList<Todo> t = new ArrayList<>();
         List<String> lines = readAllLines(Paths.get(inputFileName));
         for(String line : lines){
             ArrayList<String> partsOfLine = splitOnSpace(line);
-            t.add(ConvertLineToTodo(partsOfLine));
+            int size = partsOfLine.size();
+            if(partsOfLine.get(size - 1).equals("Super")){
+                tempSuper = (SuperTodo)ConvertLineToTodo(partsOfLine);
+                t.add(tempSuper);
+            }
+            else{
+                if(partsOfLine.get(size - 1).equals("Sub")){
+                    tempSuper.addSubTodo(ConvertLineToTodo(partsOfLine));
+                }
+                else {
+                    if(partsOfLine.get(size - 1).equals("Reg")) {
+                        t.add(ConvertLineToTodo(partsOfLine));
+                    }
+                }
+            }
         }
         return t;
     }
 
     private Todo ConvertLineToTodo(List<String> partsOfLine) {
         int size = partsOfLine.size();
-        String due = partsOfLine.get(size - 2);
-        String status = partsOfLine.get(size - 1);
+        String due = partsOfLine.get(size - 3);
+        String status = partsOfLine.get(size - 2);
+        String type = partsOfLine.get(size - 1);
         partsOfLine.remove(size - 1);
         partsOfLine.remove(size - 2);
+        partsOfLine.remove(size - 3);
         String name = partsOfLine.get(0);
         partsOfLine.remove(0);
         for (String word : partsOfLine) {
             name += " " + word;
         }
-        return (new Todo(name, due, Boolean.parseBoolean(status)));
+        if(type.equals("Super")){
+            return (new SuperTodo(name, due, Boolean.parseBoolean(status)));
+        }
+        if(type.equals("Reg")){
+            return (new RegTodo(name, due, Boolean.parseBoolean(status)));
+        }
+        if(type.equals("Sub")){
+            return (new RegTodo(name, due, Boolean.parseBoolean(status), "Sub"));
+        }
+        return new RegTodo(name,due);
     }
 
     private static ArrayList<String> splitOnSpace(String line){

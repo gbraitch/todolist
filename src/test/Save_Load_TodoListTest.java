@@ -1,6 +1,7 @@
 package test;
 
 import model.Loadable;
+import model.RegTodo;
 import model.Todo;
 import model.TodoList;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,9 +30,9 @@ public class Save_Load_TodoListTest {
     @Test
     public void SaveTodoListWith3Items() throws IOException {
         Savelist = new ArrayList<>();
-        Savelist.add(new Todo("CPSC 210", "WED"));
-        Savelist.add(new Todo("CPSC 221", "TUE"));
-        Savelist.add(new Todo("CPSC 213", "FRI"));
+        Savelist.add(new RegTodo("CPSC 210", "WED"));
+        Savelist.add(new RegTodo("CPSC 221", "TUE"));
+        Savelist.add(new RegTodo("CPSC 213", "FRI"));
 
         Savelist.get(0).setStatus(1);
         Savelist.get(2).setStatus(1);
@@ -87,7 +88,7 @@ public class Save_Load_TodoListTest {
     @Test
     public void TestLoadableInterface(){
         td = new TodoList();
-        td.addTodo("CPSC 210", "WED");
+        td.addRegTodo("CPSC 210", "WED");
         td.changeStatus(0,1);
         try {
             td.save();

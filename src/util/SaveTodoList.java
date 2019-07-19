@@ -1,6 +1,7 @@
 package util;
 
 
+import model.SuperTodo;
 import model.Todo;
 
 import java.io.IOException;
@@ -29,7 +30,15 @@ public class SaveTodoList{
             String name = t.getName();
             String due = t.getDue();
             boolean status = t.getStatus();
-            lines.add(name + " " + due + " " + status);
+            String type = t.getType();
+            if(type.equals("Super")){
+                lines.add(name + " " + due + " " + status + " " + type);
+                SuperTodo temp = (SuperTodo)t;
+                lines.addAll(((SuperTodo) t).ReturnListofSubTodos());
+            }
+            else {
+                lines.add(name + " " + due + " " + status + " " + type);
+            }
         }
         return lines;
     }

@@ -1,22 +1,16 @@
 package model;
 
-public class Todo {
+public abstract class Todo {
+    protected String name;
+    protected String due;
+    protected boolean status;
+    protected String type;
 
-    private String name;
-    private String due;
-    private boolean status;
-    private static String CHECKMARK = Character.toString((char)10003);
-
-    public Todo(String name, String due){
-        this.name = name;
-        this.due = due;
-        this.status = false;
-    }
-
-    public Todo(String name, String due, boolean status){
+    public Todo(String name, String due, boolean status, String type){
         this.name = name;
         this.due = due;
         this.status = status;
+        this.type = type;
     }
 
     public String getName(){
@@ -43,14 +37,7 @@ public class Todo {
         this.due = newDue;
     }
 
-    public void printTodo(int i){
-        System.out.print("[" + i + "]  ");
-        if (this.status) {
-            System.out.println(this.name + "   :   " + this.due + "   " + CHECKMARK);
-        } else {
-            System.out.println(this.name + "   :   " + this.due);
-        }
-    }
+    public String getType(){return this.type;}
 
+    public abstract void printTodo(int i);
 }
-

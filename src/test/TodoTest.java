@@ -1,5 +1,6 @@
 package test;
 
+import model.RegTodo;
 import model.Todo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ public class TodoTest {
 
     @BeforeEach
     public void init(){
-        t = new Todo("CPSC 210 HWK", "Wednesday");
+        t = new RegTodo("CPSC 210 HWK", "Wednesday");
     }
 
     @Test
@@ -39,7 +40,7 @@ public class TodoTest {
 
     @Test
     public void testTodoSetAllParamConstructor(){
-        t = new Todo("HWK", "WED", true);
+        t = new RegTodo("HWK", "WED", true);
         assertEquals(t.getName(), "HWK");
         assertEquals(t.getDue(), "WED");
         assertTrue(t.getStatus());
