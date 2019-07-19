@@ -6,14 +6,14 @@ public abstract class Todo {
     protected boolean status;
     protected String type;
 
-    public Todo(String name, String due, boolean status, String type){
+    public Todo(String name, String due, boolean status, String type) {
         this.name = name;
         this.due = due;
         this.status = status;
         this.type = type;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -21,23 +21,25 @@ public abstract class Todo {
         return due;
     }
 
-    public boolean getStatus(){
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(int i){
-        this.status = (i==1);
+    public void setStatus(int i) {
+        this.status = (i == 1);
     }
 
-    public void setName(String newName){
+    public void setName(String newName) {
         this.name = newName;
     }
 
-    public void setDue(String newDue){
+    public void setDue(String newDue) {
         this.due = newDue;
     }
 
-    public String getType(){return this.type;}
+    public String getType() {
+        return this.type;
+    }
 
     public abstract void printTodo(int i);
 }

@@ -9,58 +9,58 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TodoListTest {
-    TodoList t;
+    TodoList todo;
 
     @BeforeEach
     public void init() {
-        t = new TodoList();
-        t.addRegTodo("CPSC 210", "Wednesday");
+        todo = new TodoList();
+        todo.addRegTodo("CPSC 210", "Wednesday");
     }
 
     @Test
     public void testaddOneTodo() {
-        assertEquals(t.getTodoName(0), "CPSC 210");
-        assertEquals(t.getTodoDue(0), "Wednesday");
-        assertFalse(t.getTodoStatus(0));
+        assertEquals(todo.getTodoName(0), "CPSC 210");
+        assertEquals(todo.getTodoDue(0), "Wednesday");
+        assertFalse(todo.getTodoStatus(0));
     }
 
     @Test
     public void testaddTwoTodo() {
-        t.addRegTodo("CPSC 121", "Friday");
+        todo.addRegTodo("CPSC 121", "Friday");
 
-        assertEquals(t.getTodoName(0), "CPSC 210");
-        assertEquals(t.getTodoDue(0), "Wednesday");
-        assertFalse(t.getTodoStatus(0));
+        assertEquals(todo.getTodoName(0), "CPSC 210");
+        assertEquals(todo.getTodoDue(0), "Wednesday");
+        assertFalse(todo.getTodoStatus(0));
 
-        assertEquals(t.getTodoName(1), "CPSC 121");
-        assertEquals(t.getTodoDue(1), "Friday");
-        assertFalse(t.getTodoStatus(1));
+        assertEquals(todo.getTodoName(1), "CPSC 121");
+        assertEquals(todo.getTodoDue(1), "Friday");
+        assertFalse(todo.getTodoStatus(1));
     }
 
     @Test
     public void testDeleteTodo() {
-        t.addRegTodo("CPSC 121", "Friday");
-        t.deleteTodo(0);
-        assertEquals(t.size(), 1);
-        assertEquals(t.getTodoName(0), "CPSC 121");
-        assertEquals(t.getTodoDue(0), "Friday");
-        assertFalse(t.getTodoStatus(0));
+        todo.addRegTodo("CPSC 121", "Friday");
+        todo.deleteTodo(0);
+        assertEquals(todo.size(), 1);
+        assertEquals(todo.getTodoName(0), "CPSC 121");
+        assertEquals(todo.getTodoDue(0), "Friday");
+        assertFalse(todo.getTodoStatus(0));
     }
 
     @Test
     public void testEditTodo() {
-        t.changeName(0,"CPSC 210 Done");
-        t.changeStatus(0,1);
-        t.changeDue(0,"Friday");
-        assertEquals(t.getTodoName(0), "CPSC 210 Done");
-        assertEquals(t.getTodoDue(0), "Friday");
-        assertTrue(t.getTodoStatus(0));
+        todo.changeName(0,"CPSC 210 Done");
+        todo.changeStatus(0,1);
+        todo.changeDue(0,"Friday");
+        assertEquals(todo.getTodoName(0), "CPSC 210 Done");
+        assertEquals(todo.getTodoDue(0), "Friday");
+        assertTrue(todo.getTodoStatus(0));
     }
 
     @Test
-    public void testSave(){
+    public void testSave() {
         try {
-            t.save();
+            todo.save();
         } catch (IOException e) {
             fail();
         }
@@ -76,32 +76,35 @@ public class TodoListTest {
     }
 
     @Test
-    public void testLoad(){
+    public void testLoad() {
         try {
-            t.load("loadTest.txt");
+            todo.load("loadTest.txt");
         } catch (IOException e) {
             fail();
         }
 
-        assertEquals(t.getTodoName(0), "CPSC 210");
-        assertEquals(t.getTodoDue(0), "WED");
-        assertTrue(t.getTodoStatus(0));
+        assertEquals(todo.getTodoName(0), "CPSC 210");
+        assertEquals(todo.getTodoDue(0), "WED");
+        assertTrue(todo.getTodoStatus(0));
 
-        assertEquals(t.getTodoName(1), "CPSC 121 URGENT ");
-        assertEquals(t.getTodoDue(1), "FRI");
-        assertFalse(t.getTodoStatus(1));
+        assertEquals(todo.getTodoName(1),
+                "CPSC 121 URGENT ");
+        assertEquals(todo.getTodoDue(1), "FRI");
+        assertFalse(todo.getTodoStatus(1));
 
-        assertEquals(t.getTodoName(2), "CPSC310");
-        assertEquals(t.getTodoDue(2), "THURS");
-        assertTrue(t.getTodoStatus(2));
+        assertEquals(todo.getTodoName(2), "CPSC310");
+        assertEquals(todo.getTodoDue(2), "THURS");
+        assertTrue(todo.getTodoStatus(2));
 
-        assertEquals(t.getTodoName(3), "CPSC 221 ONLY TWO THINGS");
-        assertEquals(t.getTodoDue(3), "SAT");
-        assertFalse(t.getTodoStatus(3));
+        assertEquals(todo.getTodoName(3),
+                "CPSC 221 ONLY TWO THINGS");
+        assertEquals(todo.getTodoDue(3), "SAT");
+        assertFalse(todo.getTodoStatus(3));
 
-        assertEquals(t.getTodoName(4), "FINISH LAUNDRY");
-        assertEquals(t.getTodoDue(4), "MON");
-        assertTrue(t.getTodoStatus(4));
+        assertEquals(todo.getTodoName(4),
+                "FINISH LAUNDRY");
+        assertEquals(todo.getTodoDue(4), "MON");
+        assertTrue(todo.getTodoStatus(4));
 
     }
 }

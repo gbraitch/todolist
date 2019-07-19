@@ -9,46 +9,47 @@ import java.util.ArrayList;
 
 public class TodoList implements Saveable, Loadable {
     private static String inputFileName = "saveFile.txt";
-    private static String outputFileName= "saveFile.txt";
+    private static String outputFileName = "saveFile.txt";
 
     private ArrayList<Todo> list;
 
-    public TodoList(){
+    public TodoList() {
         list = new ArrayList<>();
     }
 
-    public void changeName(int edit, String newName){
+    public void changeName(int edit, String newName) {
         Todo temp = list.get(edit);
         temp.setName(newName);
     }
-    public void changeDue(int edit, String newDue){
+
+    public void changeDue(int edit, String newDue) {
         Todo temp = list.get(edit);
         temp.setDue(newDue);
     }
-    public void changeStatus(int edit, int status){
+
+    public void changeStatus(int edit, int status) {
         Todo temp = list.get(edit);
         temp.setStatus(status);
     }
 
-    public void addRegTodo(String newTodoName, String newTodoDue){
+    public void addRegTodo(String newTodoName, String newTodoDue) {
         list.add(new RegTodo(newTodoName, newTodoDue));
     }
 
-    public void addSuperTodo(String newTodoName, String newTodoDue){
+    public void addSuperTodo(String newTodoName, String newTodoDue) {
         list.add(new SuperTodo(newTodoName, newTodoDue));
     }
 
-    public void deleteTodo(int del){
+    public void deleteTodo(int del) {
         list.remove(del);
     }
 
-    public void printTodoList(){
+    public void printTodoList() {
         System.out.println();
         int i = 0;
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             System.out.println("Todo List is Empty");
-        }
-        else {
+        } else {
             for (Todo td : list) {
                 td.printTodo(i);
                 i++;
@@ -56,44 +57,46 @@ public class TodoList implements Saveable, Loadable {
         }
     }
 
-    public void printSuperTodoSubList(int index){
+    public void printSuperTodoSubList(int index) {
         System.out.println();
         SuperTodo t = (SuperTodo)list.get(index);
         t.printSubList();
     }
 
-    public void addSuperTodoSub(int index, String name, String due){
+    public void addSuperTodoSub(int index, String name, String due) {
         SuperTodo t = (SuperTodo)list.get(index);
         RegTodo temp = new RegTodo(name, due, false, "Sub");
         t.addSubTodo(temp);
     }
 
-    public void removeSuperTodoSub(int super_index, int sub_index){
-        SuperTodo t = (SuperTodo)list.get(super_index);
-        t.removeSubTodo(sub_index);
+    public void removeSuperTodoSub(int superIndex, int subIndex) {
+        SuperTodo t = (SuperTodo)list.get(superIndex);
+        t.removeSubTodo(subIndex);
     }
 
-    public void changeSuperTodoSubStatus(int super_index, int sub_index, int status){
-        SuperTodo t = (SuperTodo)list.get(super_index);
-        t.changeSubTodoStatus(sub_index, status);
+    public void changeSuperTodoSubStatus(int superIndex, int subIndex, int status) {
+        SuperTodo t = (SuperTodo)list.get(superIndex);
+        t.changeSubTodoStatus(subIndex, status);
     }
 
 
-    public String getTodoName(int index){
+    public String getTodoName(int index) {
         return list.get(index).getName();
     }
 
-    public String getTodoDue(int index){
+    public String getTodoDue(int index) {
         return list.get(index).getDue();
     }
 
-    public boolean getTodoStatus(int index){
+    public boolean getTodoStatus(int index) {
         return list.get(index).getStatus();
     }
 
-    public String getTodoType(int index){ return list.get(index).getType(); }
+    public String getTodoType(int index) {
+        return list.get(index).getType();
+    }
 
-    public int size(){
+    public int size() {
         return list.size();
     }
 
