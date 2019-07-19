@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 
 public class TodoList implements Saveable, Loadable {
-    private static String CHECKMARK = Character.toString((char)10003);
     private static String inputFileName = "saveFile.txt";
     private static String outputFileName= "saveFile.txt";
 
@@ -47,12 +46,7 @@ public class TodoList implements Saveable, Loadable {
         }
         else {
             for (Todo td : list) {
-                System.out.print("[" + i + "]  ");
-                if (td.getStatus()) {
-                    System.out.println(td.getName() + "   :   " + td.getDue() + "   " + CHECKMARK);
-                } else {
-                    System.out.println(td.getName() + "   :   " + td.getDue());
-                }
+                td.printTodo(i);
                 i++;
             }
         }

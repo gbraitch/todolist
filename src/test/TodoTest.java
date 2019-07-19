@@ -44,12 +44,4 @@ public class TodoTest {
         assertEquals(t.getDue(), "WED");
         assertTrue(t.getStatus());
     }
-
-    @Test
-    public void testTodoNoParamConstructor(){
-        t = new Todo();
-        assertEquals(t.getName(), "");
-        assertEquals(t.getDue(), "");
-        assertFalse(t.getStatus());
-    }
 }

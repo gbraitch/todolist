@@ -11,11 +11,11 @@ public class Main {
     private TodoList t;
 
     private void printMenu() {
-        System.out.println("\nEnter 0: Create new Todo");
-        System.out.println("      1: Delete Todo");
-        System.out.println("      2: Edit Todo");
-        System.out.println("      3: View Todo List");
-        System.out.println("      4: Save Todo List to save file");
+        System.out.print("\nEnter 0: Create new Todo");
+        System.out.println("                  1: Delete Todo");
+        System.out.print("      2: Edit Todo");
+        System.out.println("                        3: View Todo List");
+        System.out.print("      4: Save Todo List to save file");
         System.out.println("      5: Load Todo List from save file");
         System.out.println("      6: Exit");
     }

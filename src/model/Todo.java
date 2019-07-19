@@ -5,7 +5,7 @@ public class Todo {
     private String name;
     private String due;
     private boolean status;
-
+    private static String CHECKMARK = Character.toString((char)10003);
 
     public Todo(String name, String due){
         this.name = name;
@@ -17,12 +17,6 @@ public class Todo {
         this.name = name;
         this.due = due;
         this.status = status;
-    }
-
-    public Todo(){
-        this.name = "";
-        this.due = "";
-        this.status = false;
     }
 
     public String getName(){
@@ -47,6 +41,15 @@ public class Todo {
 
     public void setDue(String newDue){
         this.due = newDue;
+    }
+
+    public void printTodo(int i){
+        System.out.print("[" + i + "]  ");
+        if (this.status) {
+            System.out.println(this.name + "   :   " + this.due + "   " + CHECKMARK);
+        } else {
+            System.out.println(this.name + "   :   " + this.due);
+        }
     }
 
 }
