@@ -27,14 +27,14 @@ public class LoadTodoList {
             ArrayList<String> partsOfLine = splitOnSpace(line);
             int size = partsOfLine.size();
             if (partsOfLine.get(size - 1).equals("Super")) {
-                tempSuper = (SuperTodo)ConvertLineToTodo(partsOfLine);
+                tempSuper = (SuperTodo) convertLineToTodo(partsOfLine);
                 t.add(tempSuper);
             } else {
                 if (partsOfLine.get(size - 1).equals("Sub")) {
-                    tempSuper.addSubTodo(ConvertLineToTodo(partsOfLine));
+                    tempSuper.addSubTodo(convertLineToTodo(partsOfLine));
                 } else {
                     if (partsOfLine.get(size - 1).equals("Reg")) {
-                        t.add(ConvertLineToTodo(partsOfLine));
+                        t.add(convertLineToTodo(partsOfLine));
                     }
                 }
             }
@@ -42,7 +42,7 @@ public class LoadTodoList {
         return t;
     }
 
-    private Todo ConvertLineToTodo(List<String> partsOfLine) {
+    private Todo convertLineToTodo(List<String> partsOfLine) {
         int size = partsOfLine.size();
         String due = partsOfLine.get(size - 3);
         String status = partsOfLine.get(size - 2);

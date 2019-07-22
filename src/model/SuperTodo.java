@@ -3,37 +3,37 @@ package model;
 import java.util.ArrayList;
 
 public class SuperTodo extends Todo {
-    private ArrayList<Todo> SubList;
+    private ArrayList<Todo> subList;
 
     public SuperTodo(String name, String due) {
         super(name, due, false, "Super");
-        SubList = new ArrayList<>();
+        subList = new ArrayList<>();
     }
 
     public SuperTodo(String name, String due, boolean status) {
         super(name, due, status, "Super");
-        SubList = new ArrayList<>();
+        subList = new ArrayList<>();
     }
 
     public void addSubTodo(Todo t) {
-        SubList.add(t);
+        subList.add(t);
     }
 
     public void removeSubTodo(int i) {
-        if (i < 0 | i >= SubList.size()) {
+        if (i < 0 | i >= subList.size()) {
             //stub
         } else {
-            SubList.remove(i);
+            subList.remove(i);
         }
     }
 
     public void changeSubTodoStatus(int index, int status) {
-        SubList.get(index).setStatus(status);
+        subList.get(index).setStatus(status);
     }
 
-    public ArrayList<String> ReturnListofSubTodos() {
+    public ArrayList<String> returnListofSubTodos() {
         ArrayList<String> lines = new ArrayList<>();
-        for (Todo t : SubList) {
+        for (Todo t : subList) {
             String name = t.getName();
             String due = t.getDue();
             boolean status = t.getStatus();
@@ -45,19 +45,21 @@ public class SuperTodo extends Todo {
 
     @Override
     public void printTodo(int i) {
+        //System.out.print(ConsoleColors.GREEN_UNDERLINED);
         System.out.print("★[" + i + "]  ");
         if (this.status) {
             System.out.println(this.name + "   :   " + this.due + "   " + "☑");
         } else {
             System.out.println(this.name + "   :   " + this.due + "   " + "☐");
         }
+        //System.out.print(ConsoleColors.RESET);
         printSubList();
     }
 
     public void printSubList() {
         int j = 0;
-        for (Todo s : SubList) {
-            System.out.print("     ");
+        for (Todo s : subList) {
+            System.out.print("      ");
             s.printTodo(j);
             j++;
         }

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class TodoList implements Saveable, Loadable {
+public class TodoList {
     private static String inputFileName = "saveFile.txt";
     private static String outputFileName = "saveFile.txt";
 

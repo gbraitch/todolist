@@ -39,8 +39,13 @@ public class Main {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "0":
-                    addTodo();
-                    break;
+                    try {
+                        addTodo();
+                    } catch (InvalidChoiceException e) {
+                       System.out.println("Invalid Choice");
+                    } finally {
+                        break;
+                    }
                 case "1":
                     deleteTodo();
                     break;
@@ -165,33 +170,37 @@ public class Main {
         }
     }
 
-    public void addTodo() {
+    public void addTodo() throws InvalidChoiceException {
         System.out.println("Which type of todo: 0 for Regular Todo");
         System.out.println("                    1 for Super Todo");
         int choice = Integer.parseInt(scanner.nextLine());
-        if (choice == 0) {
-            System.out.println("Choose a name for the todo!");
-            String newTodoName = scanner.nextLine();
-            System.out.println("Choose a due date for the todo!");
-            String newTodoDue = scanner.nextLine();
-            todo.addRegTodo(newTodoName, newTodoDue);
-        } else {
-            if (choice == 1) {
+        String newTodoName;
+        String newTodoDue;
+        switch (choice) {
+            case 0:
                 System.out.println("Choose a name for the todo!");
-                String newTodoName = scanner.nextLine();
+                newTodoName = scanner.nextLine();
                 System.out.println("Choose a due date for the todo!");
-                String newTodoDue = scanner.nextLine();
+                newTodoDue = scanner.nextLine();
+                todo.addRegTodo(newTodoName, newTodoDue);
+                break;
+            case 1:
+                System.out.println("Choose a name for the todo!");
+                newTodoName = scanner.nextLine();
+                System.out.println("Choose a due date for the todo!");
+                newTodoDue = scanner.nextLine();
                 todo.addSuperTodo(newTodoName, newTodoDue);
-            }
+                break;
+            default:
+                throw new InvalidChoiceException();
         }
-
     }
 
     public void deleteTodo() {
         todo.printTodoList();
         System.out.println("\nWhich Todo to remove?");
-        String del = scanner.nextLine();
-        todo.deleteTodo(Integer.parseInt(del));
+        int del = Integer.parseInt(scanner.nextLine());
+        todo.deleteTodo(del);
     }
 
 

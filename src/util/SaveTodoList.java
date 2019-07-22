@@ -17,14 +17,14 @@ public class SaveTodoList {
     }
 
     public void save(ArrayList<Todo> list) {
-        List<String> lines = ConvertTodoToString(list);
+        List<String> lines = convertTodoToString(list);
         for (String line : lines) {
             writer.println(line);
         }
         writer.close();
     }
 
-    private ArrayList<String> ConvertTodoToString(List<Todo> list) {
+    private ArrayList<String> convertTodoToString(List<Todo> list) {
         ArrayList<String> lines = new ArrayList<>();
         for (Todo t : list) {
             String name = t.getName();
@@ -34,7 +34,7 @@ public class SaveTodoList {
             if (type.equals("Super")) {
                 lines.add(name + " " + due + " " + status + " " + type);
                 SuperTodo temp = (SuperTodo)t;
-                lines.addAll(((SuperTodo) t).ReturnListofSubTodos());
+                lines.addAll(((SuperTodo) t).returnListofSubTodos());
             } else {
                 lines.add(name + " " + due + " " + status + " " + type);
             }
