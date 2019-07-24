@@ -1,3 +1,1 @@
-CPSC 210 WED true
-CPSC 221 TUE false
-CPSC 213 FRI true
+CPSC 210 Wednesday false Reg

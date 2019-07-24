@@ -1,5 +1,7 @@
 package model;
 
+import model.exception.NegativeListIndexException;
+import model.exception.TooLargeListIndexException;
 import util.LoadTodoList;
 import util.SaveTodoList;
 
@@ -124,6 +126,12 @@ public class TodoList {
 
     public void save() throws IOException {
         SaveTodoList s = new SaveTodoList(outputFileName);
+        s.save(list);
+        System.out.println("Save Successful!");
+    }
+
+    public void save(String filename) throws IOException {
+        SaveTodoList s = new SaveTodoList(filename);
         s.save(list);
         System.out.println("Save Successful!");
     }

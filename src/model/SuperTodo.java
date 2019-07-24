@@ -1,5 +1,8 @@
 package model;
 
+import model.exception.NegativeListIndexException;
+import model.exception.TooLargeListIndexException;
+
 import java.util.ArrayList;
 
 public class SuperTodo extends Todo {

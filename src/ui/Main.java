@@ -1,9 +1,9 @@
 package ui;
 
-import model.NegativeListIndexException;
-import model.OutOfBoundListIndexException;
+import model.exception.NegativeListIndexException;
+import model.exception.OutOfBoundListIndexException;
 import model.TodoList;
-import model.TooLargeListIndexException;
+import model.exception.TooLargeListIndexException;
 
 import java.io.IOException;
 import java.util.Scanner;
