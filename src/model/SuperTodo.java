@@ -26,7 +26,7 @@ public class SuperTodo extends Todo {
         if (index < 0) {
             throw new NegativeListIndexException();
         }
-        if (index > subList.size()) {
+        if (index >= subList.size()) {
             throw new TooLargeListIndexException();
         }
         subList.remove(index);
@@ -37,7 +37,7 @@ public class SuperTodo extends Todo {
         if (index < 0) {
             throw new NegativeListIndexException();
         }
-        if (index > subList.size()) {
+        if (index >= subList.size()) {
             throw new TooLargeListIndexException();
         }
         subList.get(index).setStatus(status);

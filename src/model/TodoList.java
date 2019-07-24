@@ -46,7 +46,7 @@ public class TodoList {
         if (del < 0) {
             throw new NegativeListIndexException();
         } else {
-            if (del > size()) {
+            if (del >= size()) {
                 throw new TooLargeListIndexException();
             }
         }
@@ -119,7 +119,7 @@ public class TodoList {
         if (index < 0) {
             throw new NegativeListIndexException();
         }
-        if (index > size()) {
+        if (index >= size()) {
             throw new TooLargeListIndexException();
         }
     }

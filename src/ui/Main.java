@@ -243,7 +243,7 @@ public class Main {
         }
     }
 
-    public void deleteTodo() throws TooLargeListIndexException, NegativeListIndexException, NumberFormatException {
+    public void deleteTodo() throws TooLargeListIndexException, NegativeListIndexException {
         todo.printTodoList();
         if (todo.size() != 0) {
             System.out.println("\nWhich Todo to remove?");
