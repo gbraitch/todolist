@@ -1,5 +1,6 @@
 package ui;
 
+import model.exception.InvalidChoiceException;
 import model.exception.NegativeListIndexException;
 import model.exception.OutOfBoundListIndexException;
 import model.TodoList;
@@ -81,6 +82,8 @@ public class Main {
                         todo.save();
                     } catch (IOException e) {
                         System.out.println("Error. Save Unsuccessful");
+                    } finally {
+                        System.out.println("Returning to Menu");
                     }
                     break;
                 case "5":
@@ -88,6 +91,8 @@ public class Main {
                         todo.load();
                     } catch (IOException e) {
                         System.out.println("Error. Load Unsuccessful");
+                    } finally {
+                        System.out.println("Returning to Menu");
                     }
                     break;
                 case "6":
