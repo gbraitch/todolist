@@ -19,15 +19,24 @@ public class SuperTodo extends Todo {
         subList.add(t);
     }
 
-    public void removeSubTodo(int i) {
-        if (i < 0 | i >= subList.size()) {
-            //stub
-        } else {
-            subList.remove(i);
+    public void removeSubTodo(int index) throws NegativeListIndexException, TooLargeListIndexException {
+        if (index < 0) {
+            throw new NegativeListIndexException();
         }
+        if (index > subList.size()) {
+            throw new TooLargeListIndexException();
+        }
+        subList.remove(index);
     }
 
-    public void changeSubTodoStatus(int index, int status) {
+    public void changeSubTodoStatus(int index, int status)
+            throws NegativeListIndexException, TooLargeListIndexException {
+        if (index < 0) {
+            throw new NegativeListIndexException();
+        }
+        if (index > subList.size()) {
+            throw new TooLargeListIndexException();
+        }
         subList.get(index).setStatus(status);
     }
 

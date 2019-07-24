@@ -40,7 +40,14 @@ public class TodoList {
         list.add(new SuperTodo(newTodoName, newTodoDue));
     }
 
-    public void deleteTodo(int del) {
+    public void deleteTodo(int del) throws NegativeListIndexException, TooLargeListIndexException {
+        if (del < 0) {
+            throw new NegativeListIndexException();
+        } else {
+            if (del > size()) {
+                throw new TooLargeListIndexException();
+            }
+        }
         list.remove(del);
     }
 
@@ -69,35 +76,50 @@ public class TodoList {
         t.addSubTodo(temp);
     }
 
-    public void removeSuperTodoSub(int superIndex, int subIndex) {
+    public void removeSuperTodoSub(int superIndex, int subIndex) throws TooLargeListIndexException,
+            NegativeListIndexException {
         SuperTodo t = (SuperTodo)list.get(superIndex);
         t.removeSubTodo(subIndex);
     }
 
-    public void changeSuperTodoSubStatus(int superIndex, int subIndex, int status) {
+    public void changeSuperTodoSubStatus(int superIndex, int subIndex, int status) throws TooLargeListIndexException,
+            NegativeListIndexException {
         SuperTodo t = (SuperTodo)list.get(superIndex);
         t.changeSubTodoStatus(subIndex, status);
     }
 
 
-    public String getTodoName(int index) {
+    public String getTodoName(int index) throws TooLargeListIndexException, NegativeListIndexException {
+        checkIndex(index);
         return list.get(index).getName();
     }
 
-    public String getTodoDue(int index) {
+    public String getTodoDue(int index) throws TooLargeListIndexException, NegativeListIndexException {
+        checkIndex(index);
         return list.get(index).getDue();
     }
 
-    public boolean getTodoStatus(int index) {
+    public boolean getTodoStatus(int index) throws TooLargeListIndexException, NegativeListIndexException {
+        checkIndex(index);
         return list.get(index).getStatus();
     }
 
-    public String getTodoType(int index) {
+    public String getTodoType(int index) throws TooLargeListIndexException, NegativeListIndexException {
+        checkIndex(index);
         return list.get(index).getType();
     }
 
     public int size() {
         return list.size();
+    }
+
+    private void checkIndex(int index) throws TooLargeListIndexException, NegativeListIndexException {
+        if (index < 0) {
+            throw new NegativeListIndexException();
+        }
+        if (index > size()) {
+            throw new TooLargeListIndexException();
+        }
     }
 
     public void save() throws IOException {
