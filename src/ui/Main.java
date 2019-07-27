@@ -118,9 +118,8 @@ public class Main {
                     System.out.println("Error. Negative value");
                 } catch (OutOfBoundListIndexException e) {
                     System.out.println("Error. Invalid SubTodo choice.");
-                } finally {
-                    break;
                 }
+                break;
             case 4:
                 System.out.println("Choose a name for the todo!");
                 String newTodoName = scanner.nextLine();

@@ -1,0 +1,37 @@
+[
+  {
+    "userType": "RegTodo",
+    "name": "CPSC 210",
+    "due": "WED",
+    "status": true,
+    "type": "Reg"
+  },
+  {
+    "userType": "RegTodo",
+    "name": "CPSC 121 URGENT",
+    "due": "FRI",
+    "status": false,
+    "type": "Reg"
+  },
+  {
+    "userType": "RegTodo",
+    "name": "CPSC310",
+    "due": "THURS",
+    "status": true,
+    "type": "Reg"
+  },
+  {
+    "userType": "RegTodo",
+    "name": "CPSC 221 ONLY TWO THINGS",
+    "due": "SAT",
+    "status": false,
+    "type": "Reg"
+  },
+  {
+    "userType": "RegTodo",
+    "name": "FINISH LAUNDRY",
+    "due": "MON",
+    "status": true,
+    "type": "Reg"
+  }
+]

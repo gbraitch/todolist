@@ -5,8 +5,7 @@ import model.exception.NegativeListIndexException;
 import model.exception.TooLargeListIndexException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import util.LoadTodoList;
-import util.SaveTodoList;
+import util.SaveLoad;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +13,8 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SaveLoadTest {
-    SaveTodoList saveList;
-    LoadTodoList loadList;
+    SaveLoad saveList;
+    SaveLoad loadList;
     ArrayList<Todo> saveTodo;
     ArrayList<Todo> loadTodo;
     TodoList td;
@@ -36,11 +35,11 @@ public class SaveLoadTest {
         saveTodo.get(0).setStatus(1);
         saveTodo.get(2).setStatus(1);
 
-        saveList = new SaveTodoList("saveTest.txt");
-        saveList.save(saveTodo);
+        saveList = new SaveLoad();
+        saveList.write(saveTodo,"saveTest.JSON");
 
-        loadList = new LoadTodoList("saveTest.txt");
-        loadTodo = loadList.load();
+        loadList = new SaveLoad();
+        loadTodo = loadList.load("saveTest.JSON");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");
         assertEquals(loadTodo.get(0).getDue(), "WED");
@@ -55,20 +54,16 @@ public class SaveLoadTest {
 
     @Test
     public void loadTodoListWith5Items() {
-        loadList = new LoadTodoList("loadTest.txt");
+        loadList = new SaveLoad();
 
-        try {
-            loadTodo = loadList.load();
-        } catch (IOException e) {
-            fail();
-        }
+        loadTodo = loadList.load("loadTest.JSON");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");
         assertEquals(loadTodo.get(0).getDue(), "WED");
         assertTrue(loadTodo.get(0).getStatus());
 
         assertEquals(loadTodo.get(1).getName(),
-                "CPSC 121 URGENT ");
+                "CPSC 121 URGENT");
         assertEquals(loadTodo.get(1).getDue(), "FRI");
         assertFalse(loadTodo.get(1).getStatus());
 
@@ -93,7 +88,7 @@ public class SaveLoadTest {
         td.addRegTodo("CPSC 210", "WED");
         td.changeStatus(0,1);
         try {
-            td.save("saveTest.txt");
+            td.save("saveTest.JSON");
         } catch (IOException e) {
             fail();
         }
@@ -105,7 +100,7 @@ public class SaveLoadTest {
 
     public boolean loadableInput(TodoList l) {
         try {
-            l.load("saveTest.txt");
+            l.load("saveTest.JSON");
             return true;
         } catch (IOException e) {
             return false;

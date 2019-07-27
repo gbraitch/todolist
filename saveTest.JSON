@@ -1,0 +1,23 @@
+[
+  {
+    "userType": "RegTodo",
+    "name": "CPSC 210",
+    "due": "WED",
+    "status": true,
+    "type": "Reg"
+  },
+  {
+    "userType": "RegTodo",
+    "name": "CPSC 221",
+    "due": "TUE",
+    "status": false,
+    "type": "Reg"
+  },
+  {
+    "userType": "RegTodo",
+    "name": "CPSC 213",
+    "due": "FRI",
+    "status": true,
+    "type": "Reg"
+  }
+]

@@ -68,13 +68,13 @@ public class TodoListTest {
     @Test
     public void testSave() throws TooLargeListIndexException, NegativeListIndexException {
         try {
-            todo.save("saveTest.txt");
+            todo.save("saveTest.JSON");
         } catch (IOException e) {
             fail();
         }
         TodoList tt = new TodoList();
         try {
-            tt.load("saveTest.txt");
+            tt.load("saveTest.JSON");
         } catch (IOException e) {
             fail();
         }
@@ -86,7 +86,7 @@ public class TodoListTest {
     @Test
     public void testLoad() throws TooLargeListIndexException, NegativeListIndexException {
         try {
-            todo.load("loadTest.txt");
+            todo.load("loadTest.JSON");
         } catch (IOException e) {
             fail();
         }
@@ -96,7 +96,7 @@ public class TodoListTest {
         assertTrue(todo.getTodoStatus(0));
 
         assertEquals(todo.getTodoName(1),
-                "CPSC 121 URGENT ");
+                "CPSC 121 URGENT");
         assertEquals(todo.getTodoDue(1), "FRI");
         assertFalse(todo.getTodoStatus(1));
 

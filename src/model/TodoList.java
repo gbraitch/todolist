@@ -2,8 +2,7 @@ package model;
 
 import model.exception.NegativeListIndexException;
 import model.exception.TooLargeListIndexException;
-import util.LoadTodoList;
-import util.SaveTodoList;
+import util.SaveLoad;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,10 +12,13 @@ public class TodoList {
     private static String inputFileName = "saveFile.txt";
     private static String outputFileName = "saveFile.txt";
 
+    private SaveLoad saveLoad;
+
     private ArrayList<Todo> list;
 
     public TodoList() {
         list = new ArrayList<>();
+        saveLoad = new SaveLoad();
     }
 
     public void changeName(int edit, String newName) {
@@ -68,25 +70,25 @@ public class TodoList {
 
     public void printSuperTodoSubList(int index) {
         System.out.println();
-        SuperTodo t = (SuperTodo)list.get(index);
+        SuperTodo t = (SuperTodo) list.get(index);
         t.printSubList();
     }
 
     public void addSuperTodoSub(int index, String name, String due) {
-        SuperTodo t = (SuperTodo)list.get(index);
+        SuperTodo t = (SuperTodo) list.get(index);
         RegTodo temp = new RegTodo(name, due, false, "Sub");
         t.addSubTodo(temp);
     }
 
     public void removeSuperTodoSub(int superIndex, int subIndex) throws TooLargeListIndexException,
             NegativeListIndexException {
-        SuperTodo t = (SuperTodo)list.get(superIndex);
+        SuperTodo t = (SuperTodo) list.get(superIndex);
         t.removeSubTodo(subIndex);
     }
 
     public void changeSuperTodoSubStatus(int superIndex, int subIndex, int status) throws TooLargeListIndexException,
             NegativeListIndexException {
-        SuperTodo t = (SuperTodo)list.get(superIndex);
+        SuperTodo t = (SuperTodo) list.get(superIndex);
         t.changeSubTodoStatus(subIndex, status);
     }
 
@@ -125,27 +127,25 @@ public class TodoList {
     }
 
     public void save() throws IOException {
-        SaveTodoList s = new SaveTodoList(outputFileName);
-        s.save(list);
+        saveLoad.write(list);
         System.out.println("Save Successful!");
     }
 
-    public void save(String filename) throws IOException {
-        SaveTodoList s = new SaveTodoList(filename);
-        s.save(list);
+    public void save(String fileName) throws IOException {
+        saveLoad.write(list, fileName);
         System.out.println("Save Successful!");
     }
+
 
     public void load() throws IOException {
-        LoadTodoList l = new LoadTodoList(inputFileName);
-        list = l.load();
+        list = saveLoad.load();
         System.out.println("Load Successful!");
     }
 
-    public void load(String filename) throws IOException {
-        LoadTodoList l = new LoadTodoList(filename);
-        list = l.load();
+    public void load(String fileName) throws IOException {
+        list = saveLoad.load(fileName);
         System.out.println("Load Successful!");
     }
 }
+
 
