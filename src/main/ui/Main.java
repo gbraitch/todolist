@@ -110,101 +110,110 @@ public class Main {
         int edit;
         switch (choice) {
             case 3:
-                System.out.println("Which sub Todo to delete?");
-                edit = Integer.parseInt(scanner.nextLine());
-                try {
-                    todo.removeSuperTodoSub(index,edit);
-                } catch (NegativeListIndexException e) {
-                    System.out.println("Error. Negative value");
-                } catch (OutOfBoundListIndexException e) {
-                    System.out.println("Error. Invalid SubTodo choice.");
-                }
+                delSubTodo(index);
                 break;
             case 4:
-                System.out.println("Choose a name for the todo!");
-                String newTodoName = scanner.nextLine();
-                System.out.println("Choose a due date for the todo!");
-                String newTodoDue = scanner.nextLine();
-                todo.addSuperTodoSub(index, newTodoName, newTodoDue);
+                addSubTodo(index);
                 break;
             case 5:
-                System.out.println("Which sub Todo to change status?");
-                edit = Integer.parseInt(scanner.nextLine());
-                System.out.println("Enter 1 to finish task or 0 for unfinished task");
-                int finishStatus = Integer.parseInt(scanner.nextLine());
-                try {
-                    todo.changeSuperTodoSubStatus(index, edit, finishStatus);
-                } catch (NegativeListIndexException e) {
-                    System.out.println("Error. Negative value");
-                } catch (OutOfBoundListIndexException e) {
-                    System.out.println("Error. Invalid SubTodo choice.");
-                }
-
+                changeSubTodoStatus(index);
                 break;
-
             default:
                 throw new InvalidChoiceException();
+        }
+    }
+
+    private void delSubTodo(int index) {
+        System.out.println("Which sub Todo to delete?");
+        int edit = Integer.parseInt(scanner.nextLine());
+        try {
+            todo.removeSuperTodoSub(index,edit);
+        } catch (NegativeListIndexException e) {
+            System.out.println("Error. Negative value");
+        } catch (OutOfBoundListIndexException e) {
+            System.out.println("Error. Invalid SubTodo choice.");
+        }
+    }
+
+    private void addSubTodo(int index) {
+        System.out.println("Choose a name for the todo!");
+        String newTodoName = scanner.nextLine();
+        System.out.println("Choose a due date for the todo!");
+        String newTodoDue = scanner.nextLine();
+        todo.addSuperTodoSub(index, newTodoName, newTodoDue);
+    }
+
+    private void changeSubTodoStatus(int index) {
+        System.out.println("Which sub Todo to change status?");
+        int edit = Integer.parseInt(scanner.nextLine());
+        System.out.println("Enter 1 to finish task or 0 for unfinished task");
+        int finishStatus = Integer.parseInt(scanner.nextLine());
+        try {
+            todo.changeSuperTodoSubStatus(index, edit, finishStatus);
+        } catch (NegativeListIndexException e) {
+            System.out.println("Error. Negative value");
+        } catch (OutOfBoundListIndexException e) {
+            System.out.println("Error. Invalid SubTodo choice.");
         }
     }
 
     private void editSuperTodo(int edit) throws InvalidChoiceException {
-        printEditMenu("Super");
         String editChoice = scanner.nextLine();
-        switch (editChoice) {
-            case "0":
-                System.out.println("Enter new name for todo");
-                String newName = scanner.nextLine();
-                todo.changeName(edit, newName);
-                break;
-            case "1":
-                System.out.println("Enter new due date for todo");
-                String newDue = scanner.nextLine();
-                todo.changeDue(edit, newDue);
-                break;
-            case "2":
-                System.out.println("Enter 1 to finish task or 0 for unfinished task");
-                String finishStatus = scanner.nextLine();
-                todo.changeStatus(edit, Integer.parseInt(finishStatus));
-                break;
-            case "3":
-                editSubTodo(edit, 3);
-                break;
-            case "4":
-                editSubTodo(edit, 4);
-                break;
-            case "5":
-                editSubTodo(edit, 5);
-                break;
-            default:
-                throw new InvalidChoiceException();
+        if (editChoice.equals("3") || editChoice.equals("4") || editChoice.equals("5")) {
+            editSubTodo(edit, Integer.parseInt(editChoice));
+        } else {
+            switch (editChoice) {
+                case "0":
+                    changeRegTodoName(edit);
+                    break;
+                case "1":
+                    changeRegTodoDue(edit);
+                    break;
+                case "2":
+                    changeRegTodoStatus(edit);
+                    break;
+                default:
+                    throw new InvalidChoiceException();
+            }
         }
     }
 
     private void editRegTodo(int edit) throws InvalidChoiceException {
-        printEditMenu("Reg");
         String editChoice = scanner.nextLine();
         switch (editChoice) {
             case "0":
-                System.out.println("Enter new name for todo");
-                String newName = scanner.nextLine();
-                todo.changeName(edit, newName);
+                changeRegTodoName(edit);
                 break;
             case "1":
-                System.out.println("Enter new due date for todo");
-                String newDue = scanner.nextLine();
-                todo.changeDue(edit, newDue);
+                changeRegTodoDue(edit);
                 break;
             case "2":
-                System.out.println("Enter 1 to finish task or 0 for unfinished task");
-                String finishStatus = scanner.nextLine();
-                todo.changeStatus(edit, Integer.parseInt(finishStatus));
+                changeRegTodoStatus(edit);
                 break;
             default:
                 throw new InvalidChoiceException();
         }
     }
 
-    public void editTodo() throws InvalidChoiceException, NumberFormatException, TooLargeListIndexException,
+    private void changeRegTodoName(int edit) {
+        System.out.println("Enter new name for todo");
+        String newName = scanner.nextLine();
+        todo.changeName(edit, newName);
+    }
+
+    private void changeRegTodoDue(int edit) {
+        System.out.println("Enter new due date for todo");
+        String newDue = scanner.nextLine();
+        todo.changeDue(edit, newDue);
+    }
+
+    private void changeRegTodoStatus(int edit) {
+        System.out.println("Enter 1 to finish task or 0 for unfinished task");
+        String finishStatus = scanner.nextLine();
+        todo.changeStatus(edit, Integer.parseInt(finishStatus));
+    }
+
+    private void editTodo() throws InvalidChoiceException, NumberFormatException, TooLargeListIndexException,
             NegativeListIndexException {
         todo.printTodoList();
         System.out.println("\nWhich Todo to edit?");
@@ -212,9 +221,11 @@ public class Main {
         System.out.println("\nWhat would you like to change?");
         switch (todo.getTodoType(edit)) {
             case "Super":
+                printEditMenu("Super");
                 editSuperTodo(edit);
                 break;
             case "Reg":
+                printEditMenu("Reg");
                 editRegTodo(edit);
                 break;
             default:
@@ -222,33 +233,43 @@ public class Main {
         }
     }
 
-    public void addTodo() throws InvalidChoiceException {
+    private void addTodo() throws InvalidChoiceException {
         System.out.println("Which type of todo: 0 for Regular Todo");
         System.out.println("                    1 for Super Todo");
         int choice = Integer.parseInt(scanner.nextLine());
-        String newTodoName;
-        String newTodoDue;
         switch (choice) {
             case 0:
-                System.out.println("Choose a name for the todo!");
-                newTodoName = scanner.nextLine();
-                System.out.println("Choose a due date for the todo!");
-                newTodoDue = scanner.nextLine();
-                todo.addRegTodo(newTodoName, newTodoDue);
+                addRegTodo();
                 break;
             case 1:
-                System.out.println("Choose a name for the todo!");
-                newTodoName = scanner.nextLine();
-                System.out.println("Choose a due date for the todo!");
-                newTodoDue = scanner.nextLine();
-                todo.addSuperTodo(newTodoName, newTodoDue);
+                addSuperTodo();
                 break;
             default:
                 throw new InvalidChoiceException();
         }
     }
 
-    public void deleteTodo() throws TooLargeListIndexException, NegativeListIndexException {
+    private void addRegTodo() {
+        String newTodoName;
+        String newTodoDue;
+        System.out.println("Choose a name for the todo!");
+        newTodoName = scanner.nextLine();
+        System.out.println("Choose a due date for the todo!");
+        newTodoDue = scanner.nextLine();
+        todo.addRegTodo(newTodoName, newTodoDue);
+    }
+
+    private void addSuperTodo() {
+        String newTodoName;
+        String newTodoDue;
+        System.out.println("Choose a name for the todo!");
+        newTodoName = scanner.nextLine();
+        System.out.println("Choose a due date for the todo!");
+        newTodoDue = scanner.nextLine();
+        todo.addSuperTodo(newTodoName, newTodoDue);
+    }
+
+    private void deleteTodo() throws TooLargeListIndexException, NegativeListIndexException {
         todo.printTodoList();
         if (todo.size() != 0) {
             System.out.println("\nWhich Todo to remove?");
@@ -259,6 +280,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-        new Main();
+        Main m = new Main();
     }
 }
