@@ -1,11 +1,11 @@
-package main.util;
+package util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import main.model.RegTodo;
-import main.model.SuperTodo;
-import main.model.Todo;
+import model.RegTodo;
+import model.SuperTodo;
+import model.Todo;
 
 import java.io.FileReader;
 import java.io.FileWriter;

@@ -1,10 +1,10 @@
-package main.ui;
+package ui;
 
-import main.model.exception.InvalidChoiceException;
-import main.model.exception.NegativeListIndexException;
-import main.model.exception.OutOfBoundListIndexException;
-import main.model.TodoList;
-import main.model.exception.TooLargeListIndexException;
+import model.exception.InvalidChoiceException;
+import model.exception.NegativeListIndexException;
+import model.exception.OutOfBoundListIndexException;
+import model.TodoList;
+import model.exception.TooLargeListIndexException;
 
 import java.io.IOException;
 import java.util.Scanner;

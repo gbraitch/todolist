@@ -1,4 +1,4 @@
-package main.model.exception;
+package model.exception;
 
 public class TooLargeListIndexException extends OutOfBoundListIndexException {
 }

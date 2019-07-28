@@ -1,8 +1,8 @@
-package main.model;
+package model;
 
-import main.model.exception.NegativeListIndexException;
-import main.model.exception.TooLargeListIndexException;
-import main.util.SaveLoad;
+import model.exception.NegativeListIndexException;
+import model.exception.TooLargeListIndexException;
+import util.SaveLoad;
 
 import java.io.IOException;
 import java.util.ArrayList;

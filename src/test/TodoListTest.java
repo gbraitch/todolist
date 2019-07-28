@@ -1,10 +1,8 @@
-package test;
-
-import main.model.SuperTodo;
-import main.model.TodoList;
-import main.model.exception.NegativeListIndexException;
-import main.model.exception.OutOfBoundListIndexException;
-import main.model.exception.TooLargeListIndexException;
+import model.SuperTodo;
+import model.TodoList;
+import model.exception.NegativeListIndexException;
+import model.exception.OutOfBoundListIndexException;
+import model.exception.TooLargeListIndexException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -83,7 +81,7 @@ public class TodoListTest {
         testaddSuperTodoandSubTodo2(t1);
     }
 
-    @Test
+
     public void testaddSuperTodoandSubTodo2(SuperTodo t1) {
         assertEquals(t1.getName(), "SuperTodo1");
         assertEquals(t1.getDue(), "Wed");
@@ -159,7 +157,7 @@ public class TodoListTest {
         todo.printTodoList();
     }
 
-    @Test
+    //@Test
     public void testLoad2(TodoList todo) throws OutOfBoundListIndexException {
         assertEquals(todo.getTodoName(3),
                 "CPSC 221 ONLY TWO THINGS");
