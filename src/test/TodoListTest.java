@@ -80,6 +80,11 @@ public class TodoListTest {
         } catch (OutOfBoundListIndexException e) {
             fail();
         }
+        testaddSuperTodoandSubTodo2(t1);
+    }
+
+    @Test
+    public void testaddSuperTodoandSubTodo2(SuperTodo t1) {
         assertEquals(t1.getName(), "SuperTodo1");
         assertEquals(t1.getDue(), "Wed");
         assertFalse(t1.getStatus());
@@ -129,7 +134,7 @@ public class TodoListTest {
     }
 
     @Test
-    public void testLoad() throws TooLargeListIndexException, NegativeListIndexException {
+    public void testLoad() throws OutOfBoundListIndexException {
         try {
             todo.load("loadTest.JSON");
         } catch (IOException e) {
@@ -149,6 +154,13 @@ public class TodoListTest {
         assertEquals(todo.getTodoDue(2), "THURS");
         assertTrue(todo.getTodoStatus(2));
 
+        testLoad2(todo);
+
+        todo.printTodoList();
+    }
+
+    @Test
+    public void testLoad2(TodoList todo) throws OutOfBoundListIndexException {
         assertEquals(todo.getTodoName(3),
                 "CPSC 221 ONLY TWO THINGS");
         assertEquals(todo.getTodoDue(3), "SAT");
@@ -158,8 +170,5 @@ public class TodoListTest {
                 "FINISH LAUNDRY");
         assertEquals(todo.getTodoDue(4), "MON");
         assertTrue(todo.getTodoStatus(4));
-
-        todo.printTodoList();
-
     }
 }

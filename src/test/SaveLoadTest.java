@@ -22,6 +22,7 @@ public class SaveLoadTest {
     @BeforeEach
     public void init() {
         loadTodo = new ArrayList<>();
+        loadList = new SaveLoad();
     }
 
 
@@ -38,7 +39,6 @@ public class SaveLoadTest {
         saveList = new SaveLoad();
         saveList.write(saveTodo,"saveTest.JSON");
 
-        loadList = new SaveLoad();
         loadTodo = loadList.load("saveTest.JSON");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");
@@ -54,16 +54,13 @@ public class SaveLoadTest {
 
     @Test
     public void loadTodoListWith5Items() {
-        loadList = new SaveLoad();
-
         loadTodo = loadList.load("loadTest.JSON");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");
         assertEquals(loadTodo.get(0).getDue(), "WED");
         assertTrue(loadTodo.get(0).getStatus());
 
-        assertEquals(loadTodo.get(1).getName(),
-                "CPSC 121 URGENT");
+        assertEquals(loadTodo.get(1).getName(), "CPSC 121 URGENT");
         assertEquals(loadTodo.get(1).getDue(), "FRI");
         assertFalse(loadTodo.get(1).getStatus());
 
@@ -76,8 +73,7 @@ public class SaveLoadTest {
         assertEquals(loadTodo.get(3).getDue(), "SAT");
         assertFalse(loadTodo.get(3).getStatus());
 
-        assertEquals(loadTodo.get(4).getName(),
-                "FINISH LAUNDRY");
+        assertEquals(loadTodo.get(4).getName(), "FINISH LAUNDRY");
         assertEquals(loadTodo.get(4).getDue(), "MON");
         assertTrue(loadTodo.get(4).getStatus());
     }
