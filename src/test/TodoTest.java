@@ -1,7 +1,7 @@
 package test;
 
-import model.RegTodo;
-import model.Todo;
+import main.model.RegTodo;
+import main.model.Todo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

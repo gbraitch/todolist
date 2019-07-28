@@ -18,7 +18,7 @@
  * on 2019-07-22.
  */
 
-package util;
+package main.util;
 
 import com.google.gson.*;
 import com.google.gson.internal.Streams;

@@ -1,16 +1,15 @@
-package model;
+package main.model;
 
-import model.exception.NegativeListIndexException;
-import model.exception.TooLargeListIndexException;
-import util.SaveLoad;
+import main.model.exception.NegativeListIndexException;
+import main.model.exception.TooLargeListIndexException;
+import main.util.SaveLoad;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class TodoList {
-    private static String inputFileName = "saveFile.txt";
-    private static String outputFileName = "saveFile.txt";
+    private static String FILE_PATH = "save.json";
 
     private SaveLoad saveLoad;
 
@@ -113,6 +112,11 @@ public class TodoList {
         return list.get(index).getType();
     }
 
+    public SuperTodo getSuperTodo(int index) throws TooLargeListIndexException, NegativeListIndexException {
+        checkIndex(index);
+        return (SuperTodo)list.get(index);
+    }
+
     public int size() {
         return list.size();
     }
@@ -126,24 +130,27 @@ public class TodoList {
         }
     }
 
-    public void save() throws IOException {
-        saveLoad.write(list);
-        System.out.println("Save Successful!");
-    }
-
     public void save(String fileName) throws IOException {
-        saveLoad.write(list, fileName);
+        String arg;
+        if (fileName == null) {
+            arg = FILE_PATH;
+        } else {
+            arg = fileName;
+        }
+        saveLoad.write(list, arg);
         System.out.println("Save Successful!");
     }
 
-
-    public void load() throws IOException {
-        list = saveLoad.load();
-        System.out.println("Load Successful!");
-    }
 
     public void load(String fileName) throws IOException {
-        list = saveLoad.load(fileName);
+        String arg;
+        if (fileName == null) {
+            arg = FILE_PATH;
+        } else {
+            arg = fileName;
+        }
+
+        list = saveLoad.load(arg);
         System.out.println("Load Successful!");
     }
 }

@@ -1,4 +1,4 @@
-package util;
+package main.util;
 
 public class ConsoleColors {
     // Reset

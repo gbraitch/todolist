@@ -1,11 +1,11 @@
 package test;
 
-import model.*;
-import model.exception.NegativeListIndexException;
-import model.exception.TooLargeListIndexException;
+import main.model.*;
+import main.model.exception.NegativeListIndexException;
+import main.model.exception.TooLargeListIndexException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import util.SaveLoad;
+import main.util.SaveLoad;
 
 import java.io.IOException;
 import java.util.ArrayList;

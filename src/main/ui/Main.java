@@ -1,10 +1,10 @@
-package ui;
+package main.ui;
 
-import model.exception.InvalidChoiceException;
-import model.exception.NegativeListIndexException;
-import model.exception.OutOfBoundListIndexException;
-import model.TodoList;
-import model.exception.TooLargeListIndexException;
+import main.model.exception.InvalidChoiceException;
+import main.model.exception.NegativeListIndexException;
+import main.model.exception.OutOfBoundListIndexException;
+import main.model.TodoList;
+import main.model.exception.TooLargeListIndexException;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -79,7 +79,7 @@ public class Main {
                     break;
                 case "4":
                     try {
-                        todo.save();
+                        todo.save(null);
                     } catch (IOException e) {
                         System.out.println("Error. Save Unsuccessful");
                     } finally {
@@ -88,7 +88,7 @@ public class Main {
                     break;
                 case "5":
                     try {
-                        todo.load();
+                        todo.load(null);
                     } catch (IOException e) {
                         System.out.println("Error. Load Unsuccessful");
                     } finally {
@@ -138,9 +138,10 @@ public class Main {
                     System.out.println("Error. Negative value");
                 } catch (OutOfBoundListIndexException e) {
                     System.out.println("Error. Invalid SubTodo choice.");
-                } finally {
-                    break;
                 }
+
+                break;
+
             default:
                 throw new InvalidChoiceException();
         }

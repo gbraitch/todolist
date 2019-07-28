@@ -1,11 +1,11 @@
-package util;
+package main.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import model.RegTodo;
-import model.SuperTodo;
-import model.Todo;
+import main.model.RegTodo;
+import main.model.SuperTodo;
+import main.model.Todo;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,9 +16,6 @@ import java.util.List;
 
 
 public class SaveLoad {
-
-    private List<Todo> books = new ArrayList<>();
-    private static String FILE_PATH = "save.json";
     private Gson gson;
 
     public SaveLoad() {
@@ -40,16 +37,8 @@ public class SaveLoad {
         return gsonBuilder.create();
     }
 
-    public void write(List<Todo> list, String... fileName) {
-        String outputFileName;
-
-        if (fileName.length > 0) {
-            outputFileName = fileName[0];
-        } else {
-            outputFileName = FILE_PATH;
-        }
-
-        try (FileWriter jsonWriter = new FileWriter(outputFileName)) {
+    public void write(List<Todo> list, String fileName) {
+        try (FileWriter jsonWriter = new FileWriter(fileName)) {
             String json = gson.toJson(list.toArray(), Todo[].class);
             jsonWriter.write(json);
 
@@ -58,17 +47,10 @@ public class SaveLoad {
         }
     }
 
-    public ArrayList<Todo> load(String... fileName) {
+    public ArrayList<Todo> load(String fileName) {
         ArrayList<Todo> todos = new ArrayList<>();
-        String inputFileName;
 
-        if (fileName.length > 0) {
-            inputFileName = fileName[0];
-        } else {
-            inputFileName = FILE_PATH;
-        }
-
-        try (FileReader r = new FileReader(inputFileName))  {
+        try (FileReader r = new FileReader(fileName))  {
             JsonReader jsonReader = new JsonReader(r);
 
             Todo[] todoArray = gson.fromJson(jsonReader, Todo[].class);

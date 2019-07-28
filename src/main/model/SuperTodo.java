@@ -1,7 +1,7 @@
-package model;
+package main.model;
 
-import model.exception.NegativeListIndexException;
-import model.exception.TooLargeListIndexException;
+import main.model.exception.NegativeListIndexException;
+import main.model.exception.TooLargeListIndexException;
 
 import java.util.ArrayList;
 
@@ -41,6 +41,10 @@ public class SuperTodo extends Todo {
             throw new TooLargeListIndexException();
         }
         subList.get(index).setStatus(status);
+    }
+
+    public ArrayList<Todo> getSubList() {
+        return subList;
     }
 
     public ArrayList<String> returnListofSubTodos() {
