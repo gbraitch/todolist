@@ -1,60 +1,76 @@
 [
   {
-    "userType": "RegTodo",
-    "name": "CPSC 121 HWK",
-    "due": "LAST WED",
-    "status": false,
-    "type": "Reg"
+    "type": "model.RegTodo",
+    "data": {
+      "name": "CPSC 121 HWK",
+      "due": "LAST WED",
+      "status": true,
+      "type": "Reg"
+    }
   },
   {
-    "userType": "SuperTodo",
-    "subList": [
-      {
-        "userType": "RegTodo",
-        "name": "ADD ABSTRACT CLASSES",
-        "due": "TODAY",
-        "status": true,
-        "type": "Sub"
-      },
-      {
-        "userType": "RegTodo",
-        "name": "ADD EXCEPTIONS",
-        "due": "WED",
-        "status": false,
-        "type": "Sub"
-      },
-      {
-        "userType": "RegTodo",
-        "name": "ADD GUI",
-        "due": "NEXT_FRIDAY",
-        "status": false,
-        "type": "Sub"
-      },
-      {
-        "userType": "RegTodo",
-        "name": "USE JSON FOR SAVE/LOAD FUNCTIONS",
-        "due": "SUN",
-        "status": true,
-        "type": "Sub"
-      }
-    ],
-    "name": "CPSC 210 PROJECT ",
-    "due": "AUG8 ",
-    "status": false,
-    "type": "Super"
+    "type": "model.SuperTodo",
+    "data": {
+      "subList": [
+        {
+          "type": "model.RegTodo",
+          "data": {
+            "name": "ADD ABSTRACT CLASSES",
+            "due": "TODAY",
+            "status": true,
+            "type": "Sub"
+          }
+        },
+        {
+          "type": "model.RegTodo",
+          "data": {
+            "name": "ADD EXCEPTIONS",
+            "due": "WED",
+            "status": false,
+            "type": "Sub"
+          }
+        },
+        {
+          "type": "model.RegTodo",
+          "data": {
+            "name": "ADD GUI",
+            "due": "NEXT_FRIDAY",
+            "status": false,
+            "type": "Sub"
+          }
+        },
+        {
+          "type": "model.RegTodo",
+          "data": {
+            "name": "USE JSON FOR SAVE/LOAD FUNCTIONS",
+            "due": "SUN",
+            "status": true,
+            "type": "Sub"
+          }
+        }
+      ],
+      "name": "model.CPSC 210 PROJECT ",
+      "due": "AUG8 ",
+      "status": false,
+      "type": "Super"
+    }
   },
   {
-    "userType": "RegTodo",
-    "name": "REGISTER FOR CLASSES",
-    "due": "SATURDAY",
-    "status": false,
-    "type": "Reg"
+    "type": "model.RegTodo",
+    "data": {
+      "name": "REGISTER FOR CLASSES",
+      "due": "SATURDAY",
+      "status": false,
+      "type": "Reg"
+    }
   },
   {
-    "userType": "RegTodo",
-    "name": "CPSC 210 MIDTERM",
-    "due": "WED",
-    "status": true,
-    "type": "Reg"
+    "type": "model.RegTodo",
+    "data": {
+      "name": "CPSC 210 MIDTERM",
+      "due": "WED",
+      "status": true,
+      "type": "Reg"
+    }
   }
 ]

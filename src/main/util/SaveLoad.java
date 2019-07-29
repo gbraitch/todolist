@@ -3,8 +3,6 @@ package util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
-import model.RegTodo;
-import model.SuperTodo;
 import model.Todo;
 
 import java.io.FileReader;
@@ -25,14 +23,7 @@ public class SaveLoad {
     // Helper method to create a Gson instance that serializes abstract classes.
     private static Gson setupGson() {
         GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
-
-        RuntimeTypeAdapterFactory<Todo> myAdapterFactory
-                = RuntimeTypeAdapterFactory.of(Todo.class, "userType");
-
-        myAdapterFactory.registerSubtype(RegTodo.class, "RegTodo");
-        myAdapterFactory.registerSubtype(SuperTodo.class, "SuperTodo");
-
-        gsonBuilder.registerTypeAdapterFactory(myAdapterFactory);
+        gsonBuilder.registerTypeAdapter(Todo.class, new InterfaceAdapter<Todo>());
 
         return gsonBuilder.create();
     }

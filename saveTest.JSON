@@ -1,9 +1,11 @@
 [
   {
-    "userType": "RegTodo",
-    "name": "CPSC 210",
-    "due": "Wednesday",
-    "status": false,
-    "type": "Reg"
+    "type": "model.RegTodo",
+    "data": {
+      "name": "CPSC 210",
+      "due": "Wednesday",
+      "status": false,
+      "type": "Reg"
+    }
   }
 ]

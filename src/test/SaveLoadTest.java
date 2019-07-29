@@ -1,9 +1,11 @@
-import model.*;
+import model.RegTodo;
+import model.Todo;
+import model.TodoList;
 import model.exception.NegativeListIndexException;
 import model.exception.TooLargeListIndexException;
-import util.SaveLoad;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import util.SaveLoad;
 
 import java.io.IOException;
 import java.util.ArrayList;
