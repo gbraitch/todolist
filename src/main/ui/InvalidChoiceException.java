@@ -1,4 +1,4 @@
-package model.exception;
+package ui;
 
 public class InvalidChoiceException extends Exception {
 }

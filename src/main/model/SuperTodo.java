@@ -23,23 +23,13 @@ public class SuperTodo extends Todo {
     }
 
     public void removeSubTodo(int index) throws NegativeListIndexException, TooLargeListIndexException {
-        if (index < 0) {
-            throw new NegativeListIndexException();
-        }
-        if (index >= subList.size()) {
-            throw new TooLargeListIndexException();
-        }
+        checkIndex(index);
         subList.remove(index);
     }
 
     public void changeSubTodoStatus(int index, int status)
             throws NegativeListIndexException, TooLargeListIndexException {
-        if (index < 0) {
-            throw new NegativeListIndexException();
-        }
-        if (index >= subList.size()) {
-            throw new TooLargeListIndexException();
-        }
+        checkIndex(index);
         subList.get(index).setStatus(status);
     }
 
@@ -47,16 +37,13 @@ public class SuperTodo extends Todo {
         return subList;
     }
 
-    public ArrayList<String> returnListofSubTodos() {
-        ArrayList<String> lines = new ArrayList<>();
-        for (Todo t : subList) {
-            String name = t.getName();
-            String due = t.getDue();
-            boolean status = t.getStatus();
-            String type = t.getType();
-            lines.add(name + " " + due + " " + status + " " + type);
+    private void checkIndex(int index) throws NegativeListIndexException, TooLargeListIndexException {
+        if (index < 0) {
+            throw new NegativeListIndexException();
         }
-        return lines;
+        if (index >= subList.size()) {
+            throw new TooLargeListIndexException();
+        }
     }
 
     @Override

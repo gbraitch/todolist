@@ -114,18 +114,13 @@ public class TodoListTest {
     }
 
     @Test
-    public void testSave() throws TooLargeListIndexException, NegativeListIndexException {
-        try {
-            todo.save("saveTest.JSON");
-        } catch (IOException e) {
-            fail();
-        }
+    public void testSave() throws TooLargeListIndexException, NegativeListIndexException, IOException {
+        todo.save("saveTest.JSON");
+
         TodoList tt = new TodoList();
-        try {
-            tt.load("saveTest.JSON");
-        } catch (IOException e) {
-            fail();
-        }
+
+        tt.load("saveTest.JSON");
+
         assertEquals(tt.getTodoName(0), "CPSC 210");
         assertEquals(tt.getTodoDue(0), "Wednesday");
         assertFalse(tt.getTodoStatus(0));
@@ -133,11 +128,7 @@ public class TodoListTest {
 
     @Test
     public void testLoad() throws OutOfBoundListIndexException {
-        try {
-            todo.load("loadTest.JSON");
-        } catch (IOException e) {
-            fail();
-        }
+        todo.load("loadTest.JSON");
 
         assertEquals(todo.getTodoName(0), "CPSC 210");
         assertEquals(todo.getTodoDue(0), "WED");
@@ -157,7 +148,6 @@ public class TodoListTest {
         todo.printTodoList();
     }
 
-    //@Test
     public void testLoad2(TodoList todo) throws OutOfBoundListIndexException {
         assertEquals(todo.getTodoName(3),
                 "CPSC 221 ONLY TWO THINGS");
@@ -168,5 +158,37 @@ public class TodoListTest {
                 "FINISH LAUNDRY");
         assertEquals(todo.getTodoDue(4), "MON");
         assertTrue(todo.getTodoStatus(4));
+    }
+
+    @Test
+    public void testCheckIndex() {
+        try {
+            todo.deleteTodo(-2);
+        } catch (NegativeListIndexException e) {
+            // continue as normal
+        } catch (TooLargeListIndexException e) {
+            fail();
+        }
+        try {
+            todo.deleteTodo(5);
+            fail();
+        } catch (NegativeListIndexException e) {
+            fail();
+        } catch (TooLargeListIndexException e) {
+            // continue as normal
+        }
+        try {
+            todo.deleteTodo(0);
+        } catch (Exception e) {
+            fail();
+        }
+        todo.printTodoList();
+    }
+
+    @Test
+    public void testSaveLoadWithDefaultFilePath() {
+        TodoList todoOriginal = new TodoList();
+        todoOriginal.load(null);
+        todoOriginal.save(null);
     }
 }

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import model.Todo;
+import ui.InterfaceAdapter;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -32,9 +33,9 @@ public class SaveLoad {
         try (FileWriter jsonWriter = new FileWriter(fileName)) {
             String json = gson.toJson(list.toArray(), Todo[].class);
             jsonWriter.write(json);
-
+            System.out.println("Write operation SUCCESS");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Write operation FAIL");
         }
     }
 
@@ -46,9 +47,9 @@ public class SaveLoad {
 
             Todo[] todoArray = gson.fromJson(jsonReader, Todo[].class);
             todos.addAll(Arrays.asList(todoArray));
-
+            System.out.println("Read operation SUCCESS");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Read operation FAIL");
         }
 
         return todos;

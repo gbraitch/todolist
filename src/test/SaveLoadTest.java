@@ -27,7 +27,7 @@ public class SaveLoadTest {
 
 
     @Test
-    public void saveTodoListWith3Items() throws IOException {
+    public void saveTodoListWith3Items() {
         saveTodo = new ArrayList<>();
         saveTodo.add(new RegTodo("CPSC 210", "WED"));
         saveTodo.add(new RegTodo("CPSC 221", "TUE"));
@@ -37,9 +37,8 @@ public class SaveLoadTest {
         saveTodo.get(2).setStatus(1);
 
         saveList = new SaveLoad();
-        saveList.write(saveTodo,"saveTest.JSON");
-
-        loadTodo = loadList.load("saveTest.JSON");
+        saveList.write(saveTodo,"saveTest.json");
+        loadTodo = loadList.load("saveTest.json");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");
         assertEquals(loadTodo.get(0).getDue(), "WED");
@@ -53,7 +52,8 @@ public class SaveLoadTest {
     }
 
     @Test
-    public void loadTodoListWith5Items() {
+    public void loadTodoListWith5Items() throws IOException {
+
         loadTodo = loadList.load("loadTest.JSON");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");
@@ -83,23 +83,20 @@ public class SaveLoadTest {
         td = new TodoList();
         td.addRegTodo("CPSC 210", "WED");
         td.changeStatus(0,1);
-        try {
-            td.save("saveTest.JSON");
-        } catch (IOException e) {
-            fail();
-        }
-        assertTrue(loadableInput(td));
+        td.save("saveTest.JSON");
+        td.load("saveTest.JSON");
         assertEquals(td.getTodoName(0), "CPSC 210");
         assertEquals(td.getTodoDue(0), "WED");
         assertTrue(td.getTodoStatus(0));
     }
 
-    public boolean loadableInput(TodoList l) {
-        try {
-            l.load("saveTest.JSON");
-            return true;
-        } catch (IOException e) {
-            return false;
-        }
+    @Test
+    public void testInvalidLoadFile() {
+        td = new TodoList();
+        td.addRegTodo("RegTodoName", "Wed");
+        td.save("out");
+        TodoList td2 = new TodoList();
+        td2.load("out");
+        assertEquals(td2.size(),0);
     }
 }

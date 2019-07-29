@@ -4,7 +4,6 @@ import model.exception.NegativeListIndexException;
 import model.exception.TooLargeListIndexException;
 import util.SaveLoad;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -44,13 +43,7 @@ public class TodoList {
     }
 
     public void deleteTodo(int del) throws NegativeListIndexException, TooLargeListIndexException {
-        if (del < 0) {
-            throw new NegativeListIndexException();
-        } else {
-            if (del >= size()) {
-                throw new TooLargeListIndexException();
-            }
-        }
+        checkIndex(del);
         list.remove(del);
     }
 
@@ -130,7 +123,7 @@ public class TodoList {
         }
     }
 
-    public void save(String fileName) throws IOException {
+    public void save(String fileName) {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;
@@ -138,20 +131,17 @@ public class TodoList {
             arg = fileName;
         }
         saveLoad.write(list, arg);
-        System.out.println("Save Successful!");
     }
 
 
-    public void load(String fileName) throws IOException {
+    public void load(String fileName) {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;
         } else {
             arg = fileName;
         }
-
         list = saveLoad.load(arg);
-        System.out.println("Load Successful!");
     }
 }
 

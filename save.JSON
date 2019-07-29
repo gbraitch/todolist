@@ -60,7 +60,7 @@
     "data": {
       "name": "REGISTER FOR CLASSES",
       "due": "SATURDAY",
-      "status": false,
+      "status": true,
       "type": "Reg"
     }
   },

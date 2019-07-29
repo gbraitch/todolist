@@ -1,12 +1,10 @@
 package ui;
 
-import model.exception.InvalidChoiceException;
 import model.exception.NegativeListIndexException;
 import model.exception.OutOfBoundListIndexException;
 import model.TodoList;
 import model.exception.TooLargeListIndexException;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -78,22 +76,10 @@ public class Main {
                     scanner.nextLine();
                     break;
                 case "4":
-                    try {
-                        todo.save(null);
-                    } catch (IOException e) {
-                        System.out.println("Error. Save Unsuccessful");
-                    } finally {
-                        System.out.println("Returning to Menu");
-                    }
+                    todo.save(null);
                     break;
                 case "5":
-                    try {
-                        todo.load(null);
-                    } catch (IOException e) {
-                        System.out.println("Error. Load Unsuccessful");
-                    } finally {
-                        System.out.println("Returning to Menu");
-                    }
+                    todo.load(null);
                     break;
                 case "6":
                     loop = false;
