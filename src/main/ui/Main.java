@@ -106,13 +106,13 @@ public class Main {
                 todo.printTodoList();
                 break;
             case "1":
-                todo.printSuperTodos();
+                todo.printOnlySuperTodos();
                 break;
             case "2":
-                todo.printSubTodos();
+                todo.printOnlySubTodos();
                 break;
             case "3":
-                todo.printRegTodos();
+                todo.printOnlyRegTodos();
                 break;
             default:
                 throw new InvalidChoiceException();

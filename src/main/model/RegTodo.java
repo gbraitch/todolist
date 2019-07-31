@@ -10,20 +10,14 @@ public class RegTodo extends Todo {
         super(name, due, status, "Reg");
     }
 
-    public RegTodo(String name, String due, boolean status, String type) {
-        super(name, due, status, type);
-    }
-
     @Override
     public void printTodo(int i) {
-        //System.out.print(ConsoleColors.CYAN);
         System.out.print("☆[" + i + "]  ");
         if (this.status) {
             System.out.println(this.name + "   :   " + this.due + "   " + "☑");
         } else {
             System.out.println(this.name + "   :   " + this.due + "   " + "☐");
         }
-        //System.out.print(ConsoleColors.RESET);
     }
 
 }

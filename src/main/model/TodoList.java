@@ -74,21 +74,20 @@ public class TodoList {
         printList(this.list);
     }
 
-    public void printSubTodos() {
+    public void printOnlySubTodos() {
         ArrayList<Todo> list = map.get("Sub");
         printList(list);
     }
 
-    public void printSuperTodos() {
+    public void printOnlySuperTodos() {
         ArrayList<Todo> list = map.get("Super");
         printList(list);
     }
 
-    public void printRegTodos() {
+    public void printOnlyRegTodos() {
         ArrayList<Todo> list = map.get("Reg");
         printList(list);
     }
-
 
     public void printSuperTodoSubList(int index) {
         System.out.println();
@@ -114,7 +113,6 @@ public class TodoList {
         SuperTodo t = (SuperTodo) list.get(superIndex);
         t.changeSubTodoStatus(subIndex, status);
     }
-
 
     public String getTodoName(int index) throws TooLargeListIndexException, NegativeListIndexException {
         checkIndex(index);
@@ -167,7 +165,6 @@ public class TodoList {
         saveLoad.write(list, arg);
     }
 
-
     public void load(String fileName) {
         String arg;
         if (fileName == null) {
@@ -179,7 +176,21 @@ public class TodoList {
             arg = fileName;
         }
         list = saveLoad.load(arg);
+        loadSubTodoProperties();
     }
+
+    private void loadSubTodoProperties() {
+        for (Todo t : list) {
+            if (t.getType().equals("Super")) {
+                SuperTodo temp = (SuperTodo)t;
+                for (Todo t2 : temp.getSubList()) {
+                    SubTodo st = (SubTodo)t2;
+                    st.addSuper(temp);
+                }
+            }
+        }
+    }
+
 }
 
 

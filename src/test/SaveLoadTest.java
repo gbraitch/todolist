@@ -96,7 +96,7 @@ public class SaveLoadTest {
         td.addRegTodo("RegTodoName", "Wed");
         td.save("out");
         TodoList td2 = new TodoList();
-        td2.load("out");
+        td2.load("out2");
         assertEquals(td2.size(),0);
     }
 }
