@@ -50,7 +50,7 @@ public abstract class Todo {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Todo)) {
             return false;
         }
         Todo todo = (Todo) o;

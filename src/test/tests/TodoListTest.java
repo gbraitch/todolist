@@ -1,3 +1,5 @@
+package tests;
+
 import model.SuperTodo;
 import model.TodoList;
 import model.exception.NegativeListIndexException;
@@ -72,7 +74,7 @@ public class TodoListTest {
         } catch (OutOfBoundListIndexException e) {
             fail();
         }
-        SuperTodo t1 = new SuperTodo("test", "test");
+        SuperTodo t1 = new SuperTodo("tests", "tests");
         try {
             t1 = todo.getSuperTodo(1);
         } catch (OutOfBoundListIndexException e) {
@@ -102,7 +104,7 @@ public class TodoListTest {
         } catch (OutOfBoundListIndexException e) {
             fail();
         }
-        SuperTodo t1 = new SuperTodo("test", "test");
+        SuperTodo t1 = new SuperTodo("tests", "tests");
         try {
             t1 = todo.getSuperTodo(1);
         } catch (OutOfBoundListIndexException e) {

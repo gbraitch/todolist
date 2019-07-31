@@ -1,8 +1,8 @@
 package ui;
 
+import model.TodoList;
 import model.exception.NegativeListIndexException;
 import model.exception.OutOfBoundListIndexException;
-import model.TodoList;
 import model.exception.TooLargeListIndexException;
 
 import java.util.Scanner;
@@ -291,7 +291,6 @@ public class Main {
             todo.deleteTodo(del);
         }
     }
-
 
     public static void main(String[] args) {
         Main m = new Main();

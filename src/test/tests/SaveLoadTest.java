@@ -1,3 +1,5 @@
+package tests;
+
 import model.RegTodo;
 import model.Todo;
 import model.TodoList;

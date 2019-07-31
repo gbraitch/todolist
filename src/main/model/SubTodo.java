@@ -12,7 +12,7 @@ public class SubTodo extends Todo {
     }
 
     public void addSuper(SuperTodo st) {
-        if(!st.equals(head)) {
+        if (!st.equals(head)) {
             head = st;
             st.addSubTodo(this);
         }

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class TodoList {
     private static String FILE_PATH = "save.json";
 
