@@ -1,0 +1,11 @@
+[
+  {
+    "type": "model.RegTodo",
+    "data": {
+      "name": "CPSC 210",
+      "due": "Wednesday",
+      "status": false,
+      "type": "Reg"
+    }
+  }
+]

@@ -68,7 +68,7 @@ public class TodoList {
 
     public void addSuperTodoSub(int index, String name, String due) {
         SuperTodo t = (SuperTodo) list.get(index);
-        RegTodo temp = new RegTodo(name, due, false, "Sub");
+        SubTodo temp = new SubTodo(name, due, false);
         t.addSubTodo(temp);
     }
 

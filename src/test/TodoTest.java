@@ -1,4 +1,5 @@
 import model.RegTodo;
+import model.SubTodo;
 import model.SuperTodo;
 import model.Todo;
 import model.exception.NegativeListIndexException;
@@ -53,7 +54,7 @@ public class TodoTest {
     @Test
     public void testSuperTodo() {
         SuperTodo st = new SuperTodo("SuperTodo", "Never", true);
-        st.addSubTodo(new RegTodo("SubTodo1", "Always"));
+        st.addSubTodo(new SubTodo("SubTodo1", "Always"));
         st.printTodo(100);
         assertTrue(st.getStatus());
         assertEquals(st.getName(), "SuperTodo");

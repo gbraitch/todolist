@@ -18,8 +18,11 @@ public class SuperTodo extends Todo {
         subList = new ArrayList<>();
     }
 
-    public void addSubTodo(Todo t) {
-        subList.add(t);
+    public void addSubTodo(SubTodo t) {
+        if (!subList.contains(t)) {
+            subList.add(t);
+            t.addSuper(this);
+        }
     }
 
     public void removeSubTodo(int index) throws NegativeListIndexException, TooLargeListIndexException {
@@ -48,14 +51,12 @@ public class SuperTodo extends Todo {
 
     @Override
     public void printTodo(int i) {
-        //System.out.print(ConsoleColors.GREEN_UNDERLINED);
         System.out.print("★[" + i + "]  ");
         if (this.status) {
             System.out.println(this.name + "   :   " + this.due + "   " + "☑");
         } else {
             System.out.println(this.name + "   :   " + this.due + "   " + "☐");
         }
-        //System.out.print(ConsoleColors.RESET);
         printSubList();
     }
 
