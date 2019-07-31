@@ -72,7 +72,15 @@ public class Main {
                     }
                     break;
                 case "3":
-                    todo.printTodoList();
+                    System.out.println("0 : View All TodoList Items");
+                    System.out.println("1 : View All SuperTodo Items");
+                    System.out.println("2 : View All SubTodo Items");
+                    System.out.println("3 : View All RegTodo Items");
+                    try {
+                        print();
+                    } catch (InvalidChoiceException e) {
+                        System.out.println("Error. Invalid Menu Choice");
+                    }
                     scanner.nextLine();
                     break;
                 case "4":
@@ -88,6 +96,26 @@ public class Main {
                     System.out.println("Error. Invalid Menu Choice");
                     break;
             }
+        }
+    }
+
+    private void print() throws InvalidChoiceException {
+        String printChoice = scanner.nextLine();
+        switch (printChoice) {
+            case "0":
+                todo.printTodoList();
+                break;
+            case "1":
+                todo.printSuperTodos();
+                break;
+            case "2":
+                todo.printSubTodos();
+                break;
+            case "3":
+                todo.printRegTodos();
+                break;
+            default:
+                throw new InvalidChoiceException();
         }
     }
 

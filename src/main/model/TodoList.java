@@ -5,6 +5,8 @@ import model.exception.TooLargeListIndexException;
 import util.SaveLoad;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class TodoList {
@@ -13,10 +15,14 @@ public class TodoList {
     private SaveLoad saveLoad;
 
     private ArrayList<Todo> list;
+    private Map<String, ArrayList<Todo>> map = new HashMap<>();
 
     public TodoList() {
         list = new ArrayList<>();
         saveLoad = new SaveLoad();
+        map.put("Super", new ArrayList<Todo>());
+        map.put("Sub", new ArrayList<Todo>());
+        map.put("Reg", new ArrayList<Todo>());
     }
 
     public void changeName(int edit, String newName) {
@@ -35,11 +41,15 @@ public class TodoList {
     }
 
     public void addRegTodo(String newTodoName, String newTodoDue) {
-        list.add(new RegTodo(newTodoName, newTodoDue));
+        RegTodo temp = new RegTodo(newTodoName, newTodoDue);
+        list.add(temp);
+        map.get("Reg").add(temp);
     }
 
     public void addSuperTodo(String newTodoName, String newTodoDue) {
-        list.add(new SuperTodo(newTodoName, newTodoDue));
+        SuperTodo temp = new SuperTodo(newTodoName, newTodoDue);
+        list.add(temp);
+        map.get("Super").add(temp);
     }
 
     public void deleteTodo(int del) throws NegativeListIndexException, TooLargeListIndexException {
@@ -47,11 +57,10 @@ public class TodoList {
         list.remove(del);
     }
 
-    public void printTodoList() {
-        System.out.println();
+    private void printList(ArrayList<Todo> list) {
         int i = 0;
         if (list.isEmpty()) {
-            System.out.println("Todo List is Empty");
+            System.out.println("List is Empty");
         } else {
             for (Todo td : list) {
                 td.printTodo(i);
@@ -59,6 +68,27 @@ public class TodoList {
             }
         }
     }
+
+    public void printTodoList() {
+        System.out.println();
+        printList(this.list);
+    }
+
+    public void printSubTodos() {
+        ArrayList<Todo> list = map.get("Sub");
+        printList(list);
+    }
+
+    public void printSuperTodos() {
+        ArrayList<Todo> list = map.get("Super");
+        printList(list);
+    }
+
+    public void printRegTodos() {
+        ArrayList<Todo> list = map.get("Reg");
+        printList(list);
+    }
+
 
     public void printSuperTodoSubList(int index) {
         System.out.println();
@@ -70,6 +100,7 @@ public class TodoList {
         SuperTodo t = (SuperTodo) list.get(index);
         SubTodo temp = new SubTodo(name, due, false);
         t.addSubTodo(temp);
+        map.get("Sub").add(temp);
     }
 
     public void removeSuperTodoSub(int superIndex, int subIndex) throws TooLargeListIndexException,
@@ -127,6 +158,9 @@ public class TodoList {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;
+            saveLoad.write(map.get("Reg"), "saveHashMapReg.json");
+            saveLoad.write(map.get("Super"), "saveHashMapSup.json");
+            saveLoad.write(map.get("Sub"), "saveHashMapSub.json");
         } else {
             arg = fileName;
         }
@@ -138,6 +172,9 @@ public class TodoList {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;
+            map.put("Reg",saveLoad.load("saveHashMapReg.json"));
+            map.put("Super",saveLoad.load("saveHashMapSup.json"));
+            map.put("Sub",saveLoad.load("saveHashMapSub.json"));
         } else {
             arg = fileName;
         }

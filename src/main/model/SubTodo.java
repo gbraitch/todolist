@@ -12,7 +12,7 @@ public class SubTodo extends Todo {
     }
 
     public void addSuper(SuperTodo st) {
-        if (head != st) {
+        if (!head.equals(st)) {
             head = st;
             st.addSubTodo(this);
         }
@@ -20,8 +20,8 @@ public class SubTodo extends Todo {
 
     @Override
     public void setStatus(int i) {
-        int j = 0;
         super.setStatus(i);
+        int j = 0;
         for (Todo t : head.getSubList()) {
             if (t.getStatus()) {
                 j++;

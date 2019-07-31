@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public abstract class Todo {
     protected String name;
     protected String due;
@@ -42,4 +44,22 @@ public abstract class Todo {
     }
 
     public abstract void printTodo(int i);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Todo todo = (Todo) o;
+        return status == todo.status && name.equals(todo.name)
+                && due.equals(todo.due) && type.equals(todo.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, due, status, type);
+    }
 }

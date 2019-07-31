@@ -1,14 +1,5 @@
 [
   {
-    "type": "model.RegTodo",
-    "data": {
-      "name": "CPSC 121 HWK",
-      "due": "LAST WED",
-      "status": true,
-      "type": "Reg"
-    }
-  },
-  {
     "type": "model.SuperTodo",
     "data": {
       "subList": [
@@ -35,24 +26,6 @@
       "due": "AUG8",
       "status": true,
       "type": "Super"
-    }
-  },
-  {
-    "type": "model.RegTodo",
-    "data": {
-      "name": "REGISTER FOR CLASSES",
-      "due": "SAT",
-      "status": true,
-      "type": "Reg"
-    }
-  },
-  {
-    "type": "model.RegTodo",
-    "data": {
-      "name": "CPSC 210 MIDTERM",
-      "due": "WED",
-      "status": true,
-      "type": "Reg"
     }
   },
   {

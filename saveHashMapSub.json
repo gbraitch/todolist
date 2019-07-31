@@ -1,0 +1,38 @@
+[
+  {
+    "type": "model.SubTodo",
+    "data": {
+      "name": "ADD HASHMAP",
+      "due": "WED",
+      "status": false,
+      "type": "Sub"
+    }
+  },
+  {
+    "type": "model.SubTodo",
+    "data": {
+      "name": "ADD GUI",
+      "due": "NEXT FRIDAY",
+      "status": false,
+      "type": "Sub"
+    }
+  },
+  {
+    "type": "model.SubTodo",
+    "data": {
+      "name": "FIRST HALF OF COURSE",
+      "due": "AUG 12",
+      "status": false,
+      "type": "Sub"
+    }
+  },
+  {
+    "type": "model.SubTodo",
+    "data": {
+      "name": "SECOND HALF OF COURSE",
+      "due": "AUG 14",
+      "status": false,
+      "type": "Sub"
+    }
+  }
+]
