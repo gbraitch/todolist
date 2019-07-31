@@ -69,6 +69,10 @@ public class TodoTest {
         } catch (TooLargeListIndexException e) {
             fail();
         }
+        testSuperTodo2(st);
+    }
+
+    private void testSuperTodo2(SuperTodo st) {
         try {
             st.removeSubTodo(2);
             fail();

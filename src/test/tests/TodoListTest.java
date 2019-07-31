@@ -160,6 +160,7 @@ public class TodoListTest {
                 "FINISH LAUNDRY");
         assertEquals(todo.getTodoDue(4), "MON");
         assertTrue(todo.getTodoStatus(4));
+        todo.printTodoList();
     }
 
     @Test
@@ -184,7 +185,6 @@ public class TodoListTest {
         } catch (Exception e) {
             fail();
         }
-        todo.printTodoList();
     }
 
     @Test
