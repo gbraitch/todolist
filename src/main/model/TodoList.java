@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class TodoList {
     private static String FILE_PATH = "save.json";
 
@@ -56,19 +57,7 @@ public class TodoList {
         list.remove(del);
     }
 
-    private void printList(ArrayList<Todo> list) {
-        int i = 0;
-        if (list.isEmpty()) {
-            System.out.println("List is Empty");
-        } else {
-            for (Todo td : list) {
-                td.printTodo(i);
-                i++;
-            }
-        }
-    }
-
-    public void printTodoList() {
+    public void printAllTodo() {
         System.out.println();
         printList(this.list);
     }
@@ -86,6 +75,18 @@ public class TodoList {
     public void printOnlyRegTodos() {
         ArrayList<Todo> list = map.get("Reg");
         printList(list);
+    }
+
+    private void printList(ArrayList<Todo> list) {
+        int i = 0;
+        if (list.isEmpty()) {
+            System.out.println("List is Empty");
+        } else {
+            for (Todo td : list) {
+                td.printTodo(i);
+                i++;
+            }
+        }
     }
 
     public void printSuperTodoSubList(int index) {
@@ -112,6 +113,7 @@ public class TodoList {
         SuperTodo t = (SuperTodo) list.get(superIndex);
         t.changeSubTodoStatus(subIndex, status);
     }
+
 
     public String getTodoName(int index) throws TooLargeListIndexException, NegativeListIndexException {
         checkIndex(index);
@@ -155,13 +157,13 @@ public class TodoList {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;
-            saveLoad.write(map.get("Reg"), "saveHashMapReg.json");
-            saveLoad.write(map.get("Super"), "saveHashMapSup.json");
-            saveLoad.write(map.get("Sub"), "saveHashMapSub.json");
+            saveLoad.save(map.get("Reg"), "saveHashMapReg.json");
+            saveLoad.save(map.get("Super"), "saveHashMapSup.json");
+            saveLoad.save(map.get("Sub"), "saveHashMapSub.json");
         } else {
             arg = fileName;
         }
-        saveLoad.write(list, arg);
+        saveLoad.save(list, arg);
     }
 
     public void load(String fileName) {

@@ -18,6 +18,10 @@ public class SuperTodo extends Todo {
         subList = new ArrayList<>();
     }
 
+    public ArrayList<Todo> getSubList() {
+        return subList;
+    }
+
     public void addSubTodo(SubTodo t) {
         if (!subList.contains(t)) {
             subList.add(t);
@@ -36,17 +40,14 @@ public class SuperTodo extends Todo {
         subList.get(index).setStatus(status);
     }
 
-    public ArrayList<Todo> getSubList() {
-        return subList;
-    }
-
-    private void checkIndex(int index) throws NegativeListIndexException, TooLargeListIndexException {
-        if (index < 0) {
-            throw new NegativeListIndexException();
+    public int completedSubTodos() {
+        int j = 0;
+        for (Todo t : subList) {
+            if (t.getStatus()) {
+                j++;
+            }
         }
-        if (index >= subList.size()) {
-            throw new TooLargeListIndexException();
-        }
+        return j;
     }
 
     @Override
@@ -63,9 +64,17 @@ public class SuperTodo extends Todo {
     public void printSubList() {
         int j = 0;
         for (Todo s : subList) {
-            System.out.print("      ");
             s.printTodo(j);
             j++;
+        }
+    }
+
+    private void checkIndex(int index) throws NegativeListIndexException, TooLargeListIndexException {
+        if (index < 0) {
+            throw new NegativeListIndexException();
+        }
+        if (index >= subList.size()) {
+            throw new TooLargeListIndexException();
         }
     }
 }

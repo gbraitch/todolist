@@ -1,5 +1,3 @@
-package tests;
-
 import model.SuperTodo;
 import model.TodoList;
 import model.exception.NegativeListIndexException;
@@ -74,7 +72,7 @@ public class TodoListTest {
         } catch (OutOfBoundListIndexException e) {
             fail();
         }
-        SuperTodo t1 = new SuperTodo("tests", "tests");
+        SuperTodo t1 = new SuperTodo("test", "test");
         try {
             t1 = todo.getSuperTodo(1);
         } catch (OutOfBoundListIndexException e) {
@@ -104,7 +102,7 @@ public class TodoListTest {
         } catch (OutOfBoundListIndexException e) {
             fail();
         }
-        SuperTodo t1 = new SuperTodo("tests", "tests");
+        SuperTodo t1 = new SuperTodo("test", "test");
         try {
             t1 = todo.getSuperTodo(1);
         } catch (OutOfBoundListIndexException e) {
@@ -147,7 +145,7 @@ public class TodoListTest {
 
         testLoad2(todo);
 
-        todo.printTodoList();
+        todo.printAllTodo();
     }
 
     public void testLoad2(TodoList todo) throws OutOfBoundListIndexException {
@@ -160,7 +158,7 @@ public class TodoListTest {
                 "FINISH LAUNDRY");
         assertEquals(todo.getTodoDue(4), "MON");
         assertTrue(todo.getTodoStatus(4));
-        todo.printTodoList();
+        todo.printAllTodo();
     }
 
     @Test
@@ -192,5 +190,13 @@ public class TodoListTest {
         TodoList todoOriginal = new TodoList();
         todoOriginal.load(null);
         todoOriginal.save(null);
+    }
+
+    @Test
+    public void testPrints() {
+        todo.printAllTodo();
+        todo.printOnlyRegTodos();
+        todo.printOnlySubTodos();
+        todo.printOnlySuperTodos();
     }
 }

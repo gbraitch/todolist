@@ -1,5 +1,3 @@
-package tests;
-
 import model.RegTodo;
 import model.Todo;
 import model.TodoList;
@@ -39,7 +37,7 @@ public class SaveLoadTest {
         saveTodo.get(2).setStatus(1);
 
         saveList = new SaveLoad();
-        saveList.write(saveTodo,"saveTest.json");
+        saveList.save(saveTodo,"saveTest.json");
         loadTodo = loadList.load("saveTest.json");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");

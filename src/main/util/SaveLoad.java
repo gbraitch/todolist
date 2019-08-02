@@ -28,7 +28,7 @@ public class SaveLoad {
         return gsonBuilder.create();
     }
 
-    public void write(List<Todo> list, String fileName) {
+    public void save(List<Todo> list, String fileName) {
         try (FileWriter jsonWriter = new FileWriter(fileName)) {
             String json = gson.toJson(list.toArray(), Todo[].class);
             jsonWriter.write(json);
@@ -43,7 +43,6 @@ public class SaveLoad {
 
         try (FileReader r = new FileReader(fileName))  {
             JsonReader jsonReader = new JsonReader(r);
-
             Todo[] todoArray = gson.fromJson(jsonReader, Todo[].class);
             todos.addAll(Arrays.asList(todoArray));
             System.out.println("Read operation SUCCESS");

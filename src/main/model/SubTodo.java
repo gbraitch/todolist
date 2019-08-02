@@ -21,18 +21,13 @@ public class SubTodo extends Todo {
     @Override
     public void setStatus(int i) {
         super.setStatus(i);
-        int j = 0;
-        for (Todo t : head.getSubList()) {
-            if (t.getStatus()) {
-                j++;
-            }
-        }
-        System.out.println(j + " out of " + head.getSubList().size() + " sub todos are completed");
+        System.out.println(head.completedSubTodos() + " out of " + head.getSubList().size()
+                + " sub todos are completed");
     }
 
     @Override
     public void printTodo(int i) {
-        System.out.print("☆[" + i + "]  ");
+        System.out.print("       ☆[" + i + "]  ");
         if (this.status) {
             System.out.println(this.name + "   :   " + this.due + "   " + "☑");
         } else {
