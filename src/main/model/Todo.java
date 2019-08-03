@@ -62,4 +62,18 @@ public abstract class Todo {
     public int hashCode() {
         return Objects.hash(name, due, status, type);
     }
+
+    @Override
+    public String toString() {
+        String[] dateArray = due.toString().split("-");
+        String status;
+        if (this.status) {
+            status = "Finished";
+        } else {
+            status = "Incomplete";
+        }
+
+        return name + " -- " + dateArray[2] + "/" + dateArray[1] + "/"
+                + dateArray[0] + " -- " + status;
+    }
 }

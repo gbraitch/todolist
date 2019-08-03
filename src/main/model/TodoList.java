@@ -13,7 +13,6 @@ public class TodoList {
     private static String FILE_PATH = "save.json";
 
     private SaveLoad saveLoad;
-
     private ArrayList<Todo> list;
     private Map<String, ArrayList<Todo>> map = new HashMap<>();
 
