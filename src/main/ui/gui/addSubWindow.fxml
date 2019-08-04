@@ -4,19 +4,18 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.EditSuperController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.AddSubTodoController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane layoutY="-4.0" prefHeight="400.0" prefWidth="600.0">
          <children>
-            <JFXTextField fx:id="descriptionText" focusColor="#ff6659" layoutX="47.0" layoutY="107.0" prefHeight="43.0" prefWidth="501.0" />
-            <JFXDatePicker fx:id="datePicker" defaultColor="#ff6659" layoutX="47.0" layoutY="179.0" prefHeight="27.0" prefWidth="246.0" />
-            <JFXButton fx:id="saveButton" layoutX="51.0" layoutY="314.0" onAction="#saveChanges" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #424242;" text="Save" textFill="WHITE">
+            <JFXTextField fx:id="descriptionText" focusColor="#ff6659" layoutX="50.0" layoutY="157.0" prefHeight="43.0" prefWidth="501.0" promptText="Write the description of your new sub to-do task here ..." />
+            <JFXDatePicker fx:id="datePicker" defaultColor="#ff6659" layoutX="47.0" layoutY="229.0" prefHeight="27.0" prefWidth="246.0" promptText="Choose date ..." />
+            <JFXButton fx:id="addTodo" layoutX="51.0" layoutY="314.0" onAction="#addNewTodo" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #424242;" text="Add" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -29,21 +28,20 @@
             <BorderPane prefHeight="18.0" prefWidth="600.0" style="-fx-background-color: #9a0007;" />
             <AnchorPane layoutY="18.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #d32f2f;">
                <children>
-                  <Label layoutX="14.0" layoutY="7.0" text="Edit Super Todo" textFill="WHITE">
+                  <Label layoutX="14.0" layoutY="7.0" text="Add new SubTodo" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <JFXSpinner layoutX="542.0" layoutY="3.0" prefHeight="43.0" prefWidth="44.0" />
+                  <JFXSpinner layoutX="535.0" layoutY="2.0" prefHeight="43.0" prefWidth="44.0" />
                </children>
             </AnchorPane>
             <Label fx:id="errorLabel" layoutX="47.0" layoutY="278.0" prefHeight="17.0" prefWidth="479.0" />
-            <JFXToggleButton fx:id="statusSlider" layoutX="47.0" layoutY="220.0" text="Finished?" />
-            <JFXButton fx:id="addSubTodo" layoutX="373.0" layoutY="206.0" onAction="#addNewSubTodo" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #424242;" text="Add SubTodo" textFill="WHITE">
+            <Label fx:id="superTodoName" layoutX="135.0" layoutY="99.0" prefHeight="17.0" prefWidth="332.0" textAlignment="CENTER">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
-            </JFXButton>
+            </Label>
          </children>
       </AnchorPane>
    </children>

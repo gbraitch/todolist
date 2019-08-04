@@ -59,28 +59,36 @@ public class Controller implements Observer {
 
     @FXML
     void deleteTodo(ActionEvent event) {
-        Todo temp = todoList.getSelectionModel().getSelectedItem();
-        if (!temp.getType().equals("Sub")) {
-            todos.removeTodo(temp);
-            todoList.getSelectionModel().clearSelection();
+        if (todoList.getSelectionModel().isEmpty()) {
+            printError("Error. Must select Todo to delete");
         } else {
-            SubTodo st = (SubTodo) temp;
-            todos.removeSuperTodoSub(st);
+            Todo temp = todoList.getSelectionModel().getSelectedItem();
+            if (!temp.getType().equals("Sub")) {
+                todos.removeTodo(temp);
+                todoList.getSelectionModel().clearSelection();
+            } else {
+                SubTodo st = (SubTodo) temp;
+                todos.removeSuperTodoSub(st);
+            }
+            todoList.getSelectionModel().clearSelection();
         }
-        todoList.getSelectionModel().clearSelection();
     }
 
     @FXML
     void setStatus(ActionEvent event) {
-        Todo temp = todoList.getSelectionModel().getSelectedItem();
-        if (temp.getStatus()) {
-            temp.setStatus(false);
+        if (todoList.getSelectionModel().isEmpty()) {
+            printError("Error. Must select Todo to change status");
         } else {
-            temp.setStatus(true);
+            Todo temp = todoList.getSelectionModel().getSelectedItem();
+            if (temp.getStatus()) {
+                temp.setStatus(false);
+            } else {
+                temp.setStatus(true);
+            }
+            todoList.refresh();
+            todoList.getSelectionModel().clearSelection();
+            calculateprogress();
         }
-        todoList.refresh();
-        todoList.getSelectionModel().clearSelection();
-        calculateprogress();
     }
 
     @FXML
@@ -103,7 +111,7 @@ public class Controller implements Observer {
 
     @FXML
     void showEditItemDialog(ActionEvent event) {
-        if(todoList.getSelectionModel().isEmpty()) {
+        if (todoList.getSelectionModel().isEmpty()) {
             printError("Error. Must select Todo to edit");
         } else {
             if (!todoList.getSelectionModel().getSelectedItem().getType().equals("Super")) {
@@ -159,7 +167,10 @@ public class Controller implements Observer {
 
     @FXML
     void initialize() {
-        todos = new TodoList(this);
+    }
+
+    public void init(TodoList todos) {
+        this.todos = todos;
         todos.load(null);
         calculateprogress();
     }

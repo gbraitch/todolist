@@ -88,10 +88,8 @@ public class TodoList extends Observable {
         t.printSubList();
     }
 
-    public void addSuperTodoSub(int index, String name, String due) {
-        SuperTodo t = (SuperTodo) list.get(index);
-        SubTodo temp = new SubTodo(name, due, false);
-        t.addSubTodo(temp);
+    public void addSuperTodoSub(SuperTodo st, String name, String due) {
+        st.addSubTodo(new SubTodo(name, due));
         setChanged();
         notifyObservers(list);
     }
@@ -179,9 +177,6 @@ public class TodoList extends Observable {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;
-            saveLoad.save(map.get("Reg"), "saveHashMapReg.json");
-            saveLoad.save(map.get("Super"), "saveHashMapSup.json");
-            saveLoad.save(map.get("Sub"), "saveHashMapSub.json");
         } else {
             arg = fileName;
         }

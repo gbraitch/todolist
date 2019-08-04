@@ -17,7 +17,7 @@
           "data": {
             "name": "ADD HASHMAP",
             "due": "08-16-2019",
-            "status": false,
+            "status": true,
             "type": "Sub"
           }
         },
@@ -33,7 +33,7 @@
       ],
       "name": "CPSC 210 PROJECT",
       "due": "08-16-2019",
-      "status": true,
+      "status": false,
       "type": "Super"
     }
   },
