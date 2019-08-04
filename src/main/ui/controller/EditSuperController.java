@@ -1,21 +1,26 @@
 package ui.controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.Todo;
 import model.TodoList;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class AddTodoController {
+public class EditSuperController {
+
+    private TodoList todos;
+    private Todo todo;
 
     @FXML
     private ResourceBundle resources;
@@ -30,10 +35,7 @@ public class AddTodoController {
     private JFXDatePicker datePicker;
 
     @FXML
-    private JFXCheckBox superTodoCheckBox;
-
-    @FXML
-    private JFXButton addTodo;
+    private JFXButton saveButton;
 
     @FXML
     private JFXButton cancelButton;
@@ -41,17 +43,30 @@ public class AddTodoController {
     @FXML
     private Label errorLabel;
 
-    private TodoList todos;
+    @FXML
+    private JFXToggleButton statusSlider;
 
     @FXML
-    void addNewTodo(ActionEvent event) {
+    private JFXButton addSubTodo;
+
+    @FXML
+    void addNewSubTodo(ActionEvent event) {
+
+    }
+
+    @FXML
+    void exitWindow(ActionEvent event) {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void saveChanges(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         if (addTaskValidate()) {
-            if (!superTodoCheckBox.isSelected()) {
-                enterNewTodo();
-            } else {
-                enterNewSuperTodo();
-            }
+            todo.setStatus(statusSlider.isSelected());
+            todo.setName(descriptionText.getText());
+            todo.setDue(datePicker.getValue().toString());
             stage.close();
         }
     }
@@ -68,34 +83,26 @@ public class AddTodoController {
         return true;
     }
 
-    private void enterNewSuperTodo() {
-        todos.addSuperTodo(descriptionText.getText(), datePicker.getValue().toString());
+    public void setTodoList(TodoList todos, Todo todo) {
+        this.todos = todos;
+        this.todo = todo;
+        datePicker.setValue(LOCAL_DATE(todo.getDue()));
+        descriptionText.setText(todo.getName());
+        statusSlider.setSelected(todo.getStatus());
     }
-
-    private void enterNewTodo() {
-        todos.addRegTodo(descriptionText.getText(), datePicker.getValue().toString());
-    }
-
 
     private void printError(String text) {
         errorLabel.setText(text);
         errorLabel.setTextFill(Color.RED);
     }
 
-    public void setTodoList(TodoList todos) {
-        this.todos = todos;
-    }
-
-    @FXML
-    void exitWindow(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
-    }
-
     @FXML
     void initialize() {
-        datePicker.setValue(LocalDate.now());
     }
 
+    public LocalDate LOCAL_DATE (String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+        LocalDate localDate = LocalDate.parse(dateString, formatter);
+        return localDate;
+    }
 }
-

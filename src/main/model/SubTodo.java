@@ -18,8 +18,12 @@ public class SubTodo extends Todo {
         }
     }
 
+    public SuperTodo getHead() {
+        return head;
+    }
+
     @Override
-    public void setStatus(int i) {
+    public void setStatus(boolean i) {
         super.setStatus(i);
         System.out.println(head.completedSubTodos() + " out of " + head.getSubList().size()
                 + " sub todos are completed");
@@ -33,5 +37,10 @@ public class SubTodo extends Todo {
         } else {
             System.out.println(this.name + "   :   " + this.due + "   " + "☐");
         }
+    }
+
+    @Override
+    public String toString() {
+       return "     " + super.toString();
     }
 }

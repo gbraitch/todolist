@@ -11,8 +11,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("gui/TodoGUI.fxml"));
-        primaryStage.setTitle("TodoList");
-        primaryStage.setScene(new Scene(root, 600, 700));
+        primaryStage.setTitle("To-Do List Application");
+        primaryStage.setScene(new Scene(root, 428, 700));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

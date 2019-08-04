@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.Controller">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="437.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.Controller">
    <children>
-      <AnchorPane layoutY="70.0" prefHeight="631.0" prefWidth="600.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutY="86.0" prefHeight="616.0" prefWidth="435.0" style="-fx-background-color: #d32f2f;">
          <children>
-            <AnchorPane layoutX="13.0" layoutY="16.0" prefHeight="600.0" prefWidth="574.0" style="-fx-background-color: #ffffff;">
+            <AnchorPane prefHeight="616.0" prefWidth="437.0" style="-fx-background-color: #d32f2f;">
                <children>
-                  <JFXButton fx:id="addTodo" layoutX="503.0" layoutY="68.0" onAction="#addNewTodo" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #424242;" text="Add" textFill="WHITE">
+                  <JFXButton fx:id="delete" layoutX="228.0" layoutY="144.0" onAction="#deleteTodo" prefHeight="39.0" prefWidth="97.0" style="-fx-background-color: #ff6659;" text="Delete" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="changeStatus" layoutX="334.0" layoutY="144.0" onAction="#setStatus" prefHeight="39.0" prefWidth="97.0" style="-fx-background-color: #ff6659;" text="Finish" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXListView fx:id="todoList" layoutX="6.0" layoutY="192.0" prefHeight="424.0" prefWidth="425.0" />
+                  <JFXButton layoutX="14.0" layoutY="144.0" onAction="#showNewItemDialog" prefHeight="39.0" prefWidth="97.0" style="-fx-background-color: #ff6659;" text="Add" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font></JFXButton>
+                  <JFXProgressBar fx:id="progressBar" layoutX="6.0" layoutY="602.0" prefHeight="13.0" prefWidth="425.0" progress="0.0" />
+                  <JFXButton layoutX="122.0" layoutY="144.0" onAction="#showEditItemDialog" prefHeight="39.0" prefWidth="97.0" style="-fx-background-color: #ff6659;" text="Edit" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXButton>
+                  <Label fx:id="errorLabel" layoutX="12.0" layoutY="117.0" prefHeight="17.0" prefWidth="414.0">
                      <font>
                         <Font size="14.0" />
                      </font>
-                  </JFXButton>
-                  <JFXButton fx:id="delete" layoutX="14.0" layoutY="98.0" onAction="#deleteTodo" style="-fx-background-color: #424242;" text="Delete" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="changeStatus" layoutX="99.0" layoutY="98.0" onAction="#setStatus" prefHeight="13.0" prefWidth="127.0" style="-fx-background-color: #424242;" text="Change Status" textFill="WHITE">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXTextField fx:id="descriptionText" focusColor="#ff6659" layoutX="14.0" layoutY="23.0" prefHeight="25.0" prefWidth="297.0" promptText="Write the description of your new to-do task here ..." />
-                  <JFXDatePicker fx:id="datePicker" defaultColor="#ff6659" layoutX="389.0" layoutY="23.0" promptText="Choose date ..." />
-                  <Label fx:id="errorLabel" layoutX="14.0" layoutY="59.0" prefHeight="17.0" prefWidth="297.0" />
-                  <JFXListView fx:id="todoList" layoutX="14.0" layoutY="146.0" prefHeight="428.0" prefWidth="544.0" />
-                  <JFXCheckBox fx:id="superTodoCheckBox" layoutX="398.0" layoutY="74.0" text="SuperTodo" />
-                  <JFXButton fx:id="addSubTodo" layoutX="255.0" layoutY="98.0" style="-fx-background-color: #424242;" text="Add SubTodo" textFill="WHITE" visible="false">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton layoutX="285.0" layoutY="92.0" onAction="#showNewItemDialog" style="-fx-background-color: #424242;" text="+" textFill="WHITE" />
+                  </Label>
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Label layoutX="14.0" layoutY="28.0" text="Todo" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <AnchorPane layoutY="-1.0" prefHeight="25.0" prefWidth="600.0" style="-fx-background-color: #9a0007;" />
+      <AnchorPane layoutX="-10.0" layoutY="-3.0" prefHeight="63.0" prefWidth="448.0" style="-fx-background-color: #9a0007;">
+         <children>
+            <Label layoutX="22.0" layoutY="10.0" prefHeight="43.0" prefWidth="163.0" text="TodoList" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="36.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

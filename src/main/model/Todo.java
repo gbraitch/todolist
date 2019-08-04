@@ -27,8 +27,8 @@ public abstract class Todo {
         return status;
     }
 
-    public void setStatus(int i) {
-        this.status = (i == 1);
+    public void setStatus(boolean i) {
+        this.status = i;
     }
 
     public void setName(String newName) {
@@ -73,7 +73,8 @@ public abstract class Todo {
             status = "Incomplete";
         }
 
-        return name + " -- " + dateArray[2] + "/" + dateArray[1] + "/"
-                + dateArray[0] + " -- " + status;
+//        return name + " -- " + dateArray[2] + "/" + dateArray[1] + "/"
+//                + dateArray[0] + " -- " + status;
+        return name + " " + due + " " + status;
     }
 }

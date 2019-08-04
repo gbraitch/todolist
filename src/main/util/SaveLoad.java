@@ -3,14 +3,14 @@ package util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Todo;
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 
 public class SaveLoad {
@@ -28,7 +28,7 @@ public class SaveLoad {
         return gsonBuilder.create();
     }
 
-    public void save(List<Todo> list, String fileName) {
+    public void save(ObservableList<Todo> list, String fileName) {
         try (FileWriter jsonWriter = new FileWriter(fileName)) {
             String json = gson.toJson(list.toArray(), Todo[].class);
             jsonWriter.write(json);
@@ -38,8 +38,8 @@ public class SaveLoad {
         }
     }
 
-    public ArrayList<Todo> load(String fileName) {
-        ArrayList<Todo> todos = new ArrayList<>();
+    public ObservableList<Todo> load(String fileName) {
+        ObservableList<Todo> todos = FXCollections.observableArrayList();
 
         try (FileReader r = new FileReader(fileName))  {
             JsonReader jsonReader = new JsonReader(r);

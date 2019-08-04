@@ -1,59 +1,68 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.exception.NegativeListIndexException;
 import model.exception.TooLargeListIndexException;
+import ui.controller.Controller;
 import util.SaveLoad;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 
 
-public class TodoList {
+public class TodoList extends Observable {
     private static String FILE_PATH = "save.json";
 
     private SaveLoad saveLoad;
-    private ArrayList<Todo> list;
-    private Map<String, ArrayList<Todo>> map = new HashMap<>();
+    private ObservableList<Todo> list = FXCollections.observableArrayList();
+    private Map<String, ObservableList<Todo>> map = new HashMap<>();
 
-    public TodoList() {
-        list = new ArrayList<>();
+    public TodoList(Controller c) {
         saveLoad = new SaveLoad();
-        map.put("Super", new ArrayList<Todo>());
-        map.put("Sub", new ArrayList<Todo>());
-        map.put("Reg", new ArrayList<Todo>());
+        addObserver(c);
     }
 
     public void changeName(int edit, String newName) {
         Todo temp = list.get(edit);
         temp.setName(newName);
+        setChanged();
+        notifyObservers(list);
     }
 
     public void changeDue(int edit, String newDue) {
         Todo temp = list.get(edit);
         temp.setDue(newDue);
+        setChanged();
+        notifyObservers(list);
     }
 
-    public void changeStatus(int edit, int status) {
+    public void changeStatus(int edit, boolean status) {
         Todo temp = list.get(edit);
         temp.setStatus(status);
+        setChanged();
+        notifyObservers(list);
     }
 
     public void addRegTodo(String newTodoName, String newTodoDue) {
         RegTodo temp = new RegTodo(newTodoName, newTodoDue);
         list.add(temp);
-        map.get("Reg").add(temp);
+        setChanged();
+        notifyObservers(list);
     }
 
     public void addSuperTodo(String newTodoName, String newTodoDue) {
         SuperTodo temp = new SuperTodo(newTodoName, newTodoDue);
         list.add(temp);
-        map.get("Super").add(temp);
+        setChanged();
+        notifyObservers(list);
     }
 
-    public void deleteTodo(int del) throws NegativeListIndexException, TooLargeListIndexException {
-        checkIndex(del);
-        list.remove(del);
+    public void removeTodo(Todo t) {
+        list.remove(t);
+        setChanged();
+        notifyObservers(list);
     }
 
     public void printAllTodo() {
@@ -61,22 +70,7 @@ public class TodoList {
         printList(this.list);
     }
 
-    public void printOnlySubTodos() {
-        ArrayList<Todo> list = map.get("Sub");
-        printList(list);
-    }
-
-    public void printOnlySuperTodos() {
-        ArrayList<Todo> list = map.get("Super");
-        printList(list);
-    }
-
-    public void printOnlyRegTodos() {
-        ArrayList<Todo> list = map.get("Reg");
-        printList(list);
-    }
-
-    private void printList(ArrayList<Todo> list) {
+    private void printList(ObservableList<Todo> list) {
         int i = 0;
         if (list.isEmpty()) {
             System.out.println("List is Empty");
@@ -98,19 +92,22 @@ public class TodoList {
         SuperTodo t = (SuperTodo) list.get(index);
         SubTodo temp = new SubTodo(name, due, false);
         t.addSubTodo(temp);
-        map.get("Sub").add(temp);
+        setChanged();
+        notifyObservers(list);
     }
 
-    public void removeSuperTodoSub(int superIndex, int subIndex) throws TooLargeListIndexException,
-            NegativeListIndexException {
-        SuperTodo t = (SuperTodo) list.get(superIndex);
-        t.removeSubTodo(subIndex);
+    public void removeSuperTodoSub(SubTodo st) {
+        st.getHead().removeSubTodo(st);
+        setChanged();
+        notifyObservers(list);
     }
 
-    public void changeSuperTodoSubStatus(int superIndex, int subIndex, int status) throws TooLargeListIndexException,
+    public void changeSuperTodoSubStatus(int superIndex, int subIndex, boolean status) throws TooLargeListIndexException,
             NegativeListIndexException {
         SuperTodo t = (SuperTodo) list.get(superIndex);
         t.changeSubTodoStatus(subIndex, status);
+        setChanged();
+        notifyObservers(list);
     }
 
 
@@ -152,6 +149,32 @@ public class TodoList {
         }
     }
 
+    public double getCompleted() {
+        double i = 0;
+        for (Todo t : list) {
+            if (t.getStatus()) {
+                i++;
+            }
+            if (t.getType().equals("Super")) {
+                SuperTodo temp = (SuperTodo)t;
+                i += temp.completedSubTodos();
+            }
+        }
+        return i;
+    }
+
+    public double getTotalTodos() {
+        double i = 0;
+        for (Todo t : list) {
+            if (t.getType().equals("Super")) {
+                SuperTodo temp = (SuperTodo)t;
+                i += temp.getSubList().size();
+            }
+            i++;
+        }
+        return i;
+    }
+
     public void save(String fileName) {
         String arg;
         if (fileName == null) {
@@ -169,14 +192,13 @@ public class TodoList {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;
-            map.put("Reg",saveLoad.load("saveHashMapReg.json"));
-            map.put("Super",saveLoad.load("saveHashMapSup.json"));
-            map.put("Sub",saveLoad.load("saveHashMapSub.json"));
         } else {
             arg = fileName;
         }
         list = saveLoad.load(arg);
         loadSubTodoProperties();
+        setChanged();
+        notifyObservers(list);
     }
 
     private void loadSubTodoProperties() {

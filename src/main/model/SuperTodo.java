@@ -29,12 +29,11 @@ public class SuperTodo extends Todo {
         }
     }
 
-    public void removeSubTodo(int index) throws NegativeListIndexException, TooLargeListIndexException {
-        checkIndex(index);
-        subList.remove(index);
+    public void removeSubTodo(SubTodo st) {
+        subList.remove(st);
     }
 
-    public void changeSubTodoStatus(int index, int status)
+    public void changeSubTodoStatus(int index, boolean status)
             throws NegativeListIndexException, TooLargeListIndexException {
         checkIndex(index);
         subList.get(index).setStatus(status);
@@ -80,7 +79,6 @@ public class SuperTodo extends Todo {
 
     @Override
     public String toString() {
-        String temp = super.toString();
-        return temp + "\n" + subList;
+        return "★" + super.toString();
     }
 }
