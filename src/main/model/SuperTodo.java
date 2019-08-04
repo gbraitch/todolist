@@ -77,4 +77,10 @@ public class SuperTodo extends Todo {
             throw new TooLargeListIndexException();
         }
     }
+
+    @Override
+    public String toString() {
+        String temp = super.toString();
+        return temp + "\n" + subList;
+    }
 }

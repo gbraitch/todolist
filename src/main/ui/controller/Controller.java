@@ -1,18 +1,18 @@
 package ui.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import model.RegTodo;
-import model.Todo;
-import model.TodoList;
+import javafx.stage.Stage;
+import model.*;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -22,6 +22,9 @@ public class Controller {
 
     @FXML
     private ResourceBundle resources;
+
+    @FXML
+    private AnchorPane mainAnchorPane;
 
     @FXML
     private URL location;
@@ -39,6 +42,9 @@ public class Controller {
     private JFXButton changeStatus;
 
     @FXML
+    private JFXButton addSubTodo;
+
+    @FXML
     private JFXTextField descriptionText;
 
     @FXML
@@ -47,13 +53,20 @@ public class Controller {
     @FXML
     private JFXListView<Todo> todoList;
 
+    @FXML
+    private JFXCheckBox superTodoCheckBox;
+
     private ObservableList<Todo> list = FXCollections.observableArrayList();
     private TodoList todo;
 
     @FXML
     void addNewTodo(ActionEvent event) {
         if (addTaskValidate()) {
-            enterNewTodo();
+            if (!superTodoCheckBox.isSelected()) {
+                enterNewTodo();
+            } else {
+                enterNewSuperTodo();
+            }
         }
     }
 
@@ -76,6 +89,40 @@ public class Controller {
         todoList.getSelectionModel().clearSelection();
     }
 
+    @FXML
+    void showNewItemDialog(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/ui/gui/addTodoWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            AddTodoController controller = fxmlLoader.getController();
+            controller.setList(list);
+            stage.initOwner(mainAnchorPane.getScene().getWindow());
+            stage.setTitle("Add New Todo Item");
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+        } catch (Exception e) {
+            System.out.println("Error loading new window");
+            e.printStackTrace();
+        }
+        todoList.setItems(list);
+        System.out.println("finished");
+    }
+
+
+    private void enterNewSuperTodo() {
+        SuperTodo temp = new SuperTodo(descriptionText.getText(), datePicker.getValue().toString());
+        temp.addSubTodo(new SubTodo("test", datePicker.getValue().toString()));
+        temp.addSubTodo(new SubTodo("test2", datePicker.getValue().toString()));
+        list.add(temp);
+
+        todoList.setItems(list);
+        descriptionText.setText("");
+        errorLabel.setText("");
+
+        datePicker.setValue(LocalDate.now());
+    }
+
     private void enterNewTodo() {
         list.add(new RegTodo(descriptionText.getText(), datePicker.getValue().toString()));
         todoList.setItems(list);
@@ -95,12 +142,6 @@ public class Controller {
                 printError("Error. Cannot create todo with due date in past");
                 return false;
             }
-
-        // Check for duplicate tasks
-//        if (isDuplicate()) {
-//            printError("Cannot create duplicate tasks");
-//            return false;
-//        }
         return true;
     }
 
@@ -114,6 +155,5 @@ public class Controller {
 
     @FXML
     void initialize() {
-
     }
 }
