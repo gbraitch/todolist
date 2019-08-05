@@ -16,7 +16,7 @@
           "type": "model.SubTodo",
           "data": {
             "name": "ADD HASHMAP",
-            "due": "08-16-2019",
+            "due": "2019-08-16",
             "status": true,
             "type": "Sub"
           }
@@ -25,14 +25,14 @@
           "type": "model.SubTodo",
           "data": {
             "name": "ADD GUI",
-            "due": "08-16-2019",
+            "due": "2019-08-16",
             "status": true,
             "type": "Sub"
           }
         }
       ],
       "name": "CPSC 210 PROJECT",
-      "due": "08-16-2019",
+      "due": "2019-08-16",
       "status": true,
       "type": "Super"
     }
@@ -41,7 +41,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "REGISTER FOR CLASSES",
-      "due": "08-16-2019",
+      "due": "2019-08-16",
       "status": true,
       "type": "Reg"
     }
@@ -50,7 +50,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "CPSC 210 MIDTERM",
-      "due": "08-16-2019",
+      "due": "2019-08-16",
       "status": true,
       "type": "Reg"
     }
@@ -63,7 +63,7 @@
           "type": "model.SubTodo",
           "data": {
             "name": "FIRST HALF OF COURSE",
-            "due": "08-16-2019",
+            "due": "2019-08-16",
             "status": false,
             "type": "Sub"
           }
@@ -72,14 +72,14 @@
           "type": "model.SubTodo",
           "data": {
             "name": "SECOND HALF OF COURSE",
-            "due": "08-16-2019",
+            "due": "2019-08-16",
             "status": false,
             "type": "Sub"
           }
         }
       ],
       "name": "CPSC 210 FINAL",
-      "due": "08-16-2019",
+      "due": "2019-08-16",
       "status": false,
       "type": "Super"
     }

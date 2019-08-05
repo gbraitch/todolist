@@ -3,7 +3,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "CPSC 210",
-      "due": "WED",
+      "due": "08-16-2019",
       "status": true,
       "type": "Reg"
     }
@@ -12,7 +12,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "CPSC 121 URGENT",
-      "due": "FRI",
+      "due": "08-16-2019",
       "status": false,
       "type": "Reg"
     }
@@ -21,7 +21,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "CPSC310",
-      "due": "THURS",
+      "due": "08-16-2019",
       "status": true,
       "type": "Reg"
     }
@@ -30,7 +30,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "CPSC 221 ONLY TWO THINGS",
-      "due": "SAT",
+      "due": "08-16-2019",
       "status": false,
       "type": "Reg"
     }
@@ -39,7 +39,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "FINISH LAUNDRY",
-      "due": "MON",
+      "due": "08-16-2019",
       "status": true,
       "type": "Reg"
     }

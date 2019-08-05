@@ -39,13 +39,14 @@ public class Weather {
                 br.close();
             }
         }
-        JSONObject parsedJSON = new JSONObject(sb.toString());
 
-        JSONObject weatherObj = (JSONObject)parsedJSON.getJSONArray("weather").get(0);
+        JSONObject parsedJson = new JSONObject(sb.toString());
+
+        JSONObject weatherObj = (JSONObject)parsedJson.getJSONArray("weather").get(0);
         description = weatherObj.getString("description");
         description = description.toUpperCase();
 
-        JSONObject mainObj = parsedJSON.getJSONObject("main");
+        JSONObject mainObj = parsedJson.getJSONObject("main");
         currentTemp = round((mainObj.getDouble("temp") / 10),1);
         minTemp = round((mainObj.getDouble("temp_min") / 10),1);
         maxTemp = round((mainObj.getDouble("temp_max") / 10),1);

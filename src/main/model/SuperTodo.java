@@ -49,25 +49,6 @@ public class SuperTodo extends Todo {
         return j;
     }
 
-    @Override
-    public void printTodo(int i) {
-        System.out.print("★[" + i + "]  ");
-        if (this.status) {
-            System.out.println(this.name + "   :   " + this.due + "   " + "☑");
-        } else {
-            System.out.println(this.name + "   :   " + this.due + "   " + "☐");
-        }
-        printSubList();
-    }
-
-    public void printSubList() {
-        int j = 0;
-        for (Todo s : subList) {
-            s.printTodo(j);
-            j++;
-        }
-    }
-
     private void checkIndex(int index) throws NegativeListIndexException, TooLargeListIndexException {
         if (index < 0) {
             throw new NegativeListIndexException();

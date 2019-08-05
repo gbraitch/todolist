@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.SuperTodo;
 import model.TodoList;
 
 import java.net.URL;
@@ -69,7 +70,8 @@ public class AddTodoController {
     }
 
     private void enterNewSuperTodo() {
-        todos.addSuperTodo(descriptionText.getText(), datePicker.getValue().toString());
+        SuperTodo temp = new SuperTodo(descriptionText.getText(), datePicker.getValue().toString());
+        todos.addSuperTodo(temp);
     }
 
     private void enterNewTodo() {

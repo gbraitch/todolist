@@ -43,8 +43,6 @@ public abstract class Todo {
         return this.type;
     }
 
-    public abstract void printTodo(int i);
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -73,8 +71,7 @@ public abstract class Todo {
             status = "Incomplete";
         }
 
-//        return name + " -- " + dateArray[2] + "/" + dateArray[1] + "/"
-//                + dateArray[0] + " -- " + status;
-        return name + " " + due + " " + status;
+        return name + " -- " + dateArray[2] + "/" + dateArray[1] + "/"
+                + dateArray[0] + " -- " + status;
     }
 }

@@ -3,6 +3,7 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.exception.NegativeListIndexException;
+import model.exception.OutOfBoundListIndexException;
 import model.exception.TooLargeListIndexException;
 import ui.controller.Controller;
 import util.SaveLoad;
@@ -22,6 +23,10 @@ public class TodoList extends Observable {
     public TodoList(Controller c) {
         saveLoad = new SaveLoad();
         addObserver(c);
+    }
+
+    public TodoList() {
+        saveLoad = new SaveLoad();
     }
 
     public void changeName(int edit, String newName) {
@@ -52,41 +57,22 @@ public class TodoList extends Observable {
         notifyObservers(list);
     }
 
-    public void addSuperTodo(String newTodoName, String newTodoDue) {
-        SuperTodo temp = new SuperTodo(newTodoName, newTodoDue);
+    public void addSuperTodo(SuperTodo temp) {
         list.add(temp);
         setChanged();
         notifyObservers(list);
     }
 
-    public void removeTodo(Todo t) {
-        list.remove(t);
-        setChanged();
-        notifyObservers(list);
-    }
-
-    public void printAllTodo() {
-        System.out.println();
-        printList(this.list);
-    }
-
-    private void printList(ObservableList<Todo> list) {
-        int i = 0;
-        if (list.isEmpty()) {
-            System.out.println("List is Empty");
+    public void removeTodo(Todo t) throws OutOfBoundListIndexException {
+        if (list.remove(t)) {
+            setChanged();
+            notifyObservers(list);
         } else {
-            for (Todo td : list) {
-                td.printTodo(i);
-                i++;
-            }
+            throw new OutOfBoundListIndexException();
         }
+
     }
 
-    public void printSuperTodoSubList(int index) {
-        System.out.println();
-        SuperTodo t = (SuperTodo) list.get(index);
-        t.printSubList();
-    }
 
     public void addSuperTodoSub(SuperTodo st, String name, String due) {
         st.addSubTodo(new SubTodo(name, due));
@@ -100,8 +86,8 @@ public class TodoList extends Observable {
         notifyObservers(list);
     }
 
-    public void changeSuperTodoSubStatus(int superIndex, int subIndex, boolean status) throws TooLargeListIndexException,
-            NegativeListIndexException {
+    public void changeSuperTodoSubStatus(int superIndex, int subIndex, boolean status)
+            throws TooLargeListIndexException, NegativeListIndexException {
         SuperTodo t = (SuperTodo) list.get(superIndex);
         t.changeSubTodoStatus(subIndex, status);
         setChanged();

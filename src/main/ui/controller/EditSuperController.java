@@ -106,7 +106,7 @@ public class EditSuperController {
     public void setTodoList(TodoList todos, Todo todo) {
         this.todos = todos;
         this.todo = todo;
-        datePicker.setValue(LOCAL_DATE(todo.getDue()));
+        datePicker.setValue(local_date(todo.getDue()));
         descriptionText.setText(todo.getName());
         statusSlider.setSelected(todo.getStatus());
     }
@@ -120,7 +120,7 @@ public class EditSuperController {
     void initialize() {
     }
 
-    public LocalDate LOCAL_DATE (String dateString) {
+    public LocalDate local_date(String dateString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         return localDate;

@@ -16,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.*;
+import model.exception.OutOfBoundListIndexException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -73,7 +74,11 @@ public class Controller implements Observer {
         } else {
             Todo temp = todoList.getSelectionModel().getSelectedItem();
             if (!temp.getType().equals("Sub")) {
-                todos.removeTodo(temp);
+                try {
+                    todos.removeTodo(temp);
+                } catch (OutOfBoundListIndexException e) {
+                    System.out.println("Error deleting todo");
+                }
                 todoList.getSelectionModel().clearSelection();
             } else {
                 SubTodo st = (SubTodo) temp;
@@ -124,38 +129,46 @@ public class Controller implements Observer {
             printError("Error. Must select Todo to edit");
         } else {
             if (!todoList.getSelectionModel().getSelectedItem().getType().equals("Super")) {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/editWindow.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    EditTodoController controller = fxmlLoader.getController();
-                    controller.setTodoList(todos, todoList.getSelectionModel().getSelectedItem());
-                    stage.initOwner(mainAnchorPane.getScene().getWindow());
-                    stage.setTitle("Edit Todo Item");
-                    stage.setScene(new Scene(root1));
-                    stage.showAndWait();
-                } catch (Exception e) {
-                    System.out.println("Error loading new window");
-                    e.printStackTrace();
-                }
+                openEditWindow();
             } else {
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/gui/editSuperWindow.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    Stage stage = new Stage();
-                    EditSuperController controller = fxmlLoader.getController();
-                    controller.setTodoList(todos, todoList.getSelectionModel().getSelectedItem());
-                    stage.initOwner(mainAnchorPane.getScene().getWindow());
-                    stage.setTitle("Edit Super Todo Item");
-                    stage.setScene(new Scene(root1));
-                    stage.showAndWait();
-                } catch (Exception e) {
-                    System.out.println("Error loading new window");
-                    e.printStackTrace();
-                }
+                openEditSuperWindow();
             }
             todoList.getSelectionModel().clearSelection();
             todoList.refresh();
+        }
+    }
+
+    private void openEditWindow() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/editWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            EditTodoController controller = fxmlLoader.getController();
+            controller.setTodoList(todos, todoList.getSelectionModel().getSelectedItem());
+            stage.initOwner(mainAnchorPane.getScene().getWindow());
+            stage.setTitle("Edit Todo Item");
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+        } catch (Exception e) {
+            System.out.println("Error loading new window");
+            e.printStackTrace();
+        }
+    }
+
+    private void openEditSuperWindow() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/gui/editSuperWindow.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            EditSuperController controller = fxmlLoader.getController();
+            controller.setTodoList(todos, todoList.getSelectionModel().getSelectedItem());
+            stage.initOwner(mainAnchorPane.getScene().getWindow());
+            stage.setTitle("Edit Super Todo Item");
+            stage.setScene(new Scene(root1));
+            stage.showAndWait();
+        } catch (Exception e) {
+            System.out.println("Error loading new window");
+            e.printStackTrace();
         }
     }
 
@@ -185,9 +198,9 @@ public class Controller implements Observer {
         calculateprogress();
         weather = new Weather();
         currentDate.setText(LocalDate.now().toString());
-        currentTemp.setText(Double.toString(weather.getCurrentTemp()) + "°C");
-        maxTemp.setText(Double.toString(weather.getMaxTemp()) + " °C");
-        minTemp.setText(Double.toString(weather.getMinTemp()) + " °C");
+        currentTemp.setText(weather.getCurrentTemp() + "°C");
+        maxTemp.setText(weather.getMaxTemp() + " °C");
+        minTemp.setText(weather.getMinTemp() + " °C");
         weatherDescription.setText(weather.getDescription());
     }
 

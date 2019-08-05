@@ -3,7 +3,7 @@
     "type": "model.RegTodo",
     "data": {
       "name": "CPSC 210",
-      "due": "Wednesday",
+      "due": "08-15-2019",
       "status": false,
       "type": "Reg"
     }
