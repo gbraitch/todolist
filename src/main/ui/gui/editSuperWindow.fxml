@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDatePicker?>
-<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
@@ -34,7 +33,6 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <JFXSpinner layoutX="542.0" layoutY="3.0" prefHeight="43.0" prefWidth="44.0" />
                </children>
             </AnchorPane>
             <Label fx:id="errorLabel" layoutX="47.0" layoutY="278.0" prefHeight="17.0" prefWidth="479.0" />

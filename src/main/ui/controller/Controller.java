@@ -1,6 +1,5 @@
 package ui.controller;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.animation.FadeTransition;
@@ -16,12 +15,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.SubTodo;
-import model.SuperTodo;
-import model.Todo;
-import model.TodoList;
+import model.*;
 
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -38,12 +36,6 @@ public class Controller implements Observer {
     private AnchorPane mainAnchorPane;
 
     @FXML
-    private JFXButton delete;
-
-    @FXML
-    private JFXButton changeStatus;
-
-    @FXML
     private JFXListView<Todo> todoList;
 
     @FXML
@@ -52,9 +44,26 @@ public class Controller implements Observer {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private Label currentTemp;
+
+    @FXML
+    private Label weatherDescription;
+
+    @FXML
+    private Label minTemp;
+
+    @FXML
+    private Label maxTemp;
+
+    @FXML
+    private Label currentDate;
+
+
 
     private ObservableList<Todo> list = FXCollections.observableArrayList();
     private TodoList todos;
+    private Weather weather;
 
 
     @FXML
@@ -167,12 +176,19 @@ public class Controller implements Observer {
 
     @FXML
     void initialize() {
+
     }
 
-    public void init(TodoList todos) {
+    public void init(TodoList todos) throws IOException {
         this.todos = todos;
         todos.load(null);
         calculateprogress();
+        weather = new Weather();
+        currentDate.setText(LocalDate.now().toString());
+        currentTemp.setText(Double.toString(weather.getCurrentTemp()) + "°C");
+        maxTemp.setText(Double.toString(weather.getMaxTemp()) + " °C");
+        minTemp.setText(Double.toString(weather.getMinTemp()) + " °C");
+        weatherDescription.setText(weather.getDescription());
     }
 
     @Override

@@ -16,7 +16,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/TodoGUI.fxml"));
         Parent root = (Parent) fxmlLoader.load();
         primaryStage.setTitle("To-Do List Application");
-        primaryStage.setScene(new Scene(root, 428, 700));
+        primaryStage.setScene(new Scene(root, 428, 735));
         primaryStage.setResizable(false);
 
         Controller controller = fxmlLoader.getController();
