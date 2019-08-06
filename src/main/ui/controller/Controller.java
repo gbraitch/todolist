@@ -27,6 +27,10 @@ import java.util.ResourceBundle;
 
 public class Controller implements Observer {
 
+    private ObservableList<Todo> list = FXCollections.observableArrayList();
+    private TodoList todoList;
+    private Weather weather;
+
     @FXML
     private ResourceBundle resources;
 
@@ -37,7 +41,7 @@ public class Controller implements Observer {
     private AnchorPane mainAnchorPane;
 
     @FXML
-    private JFXListView<Todo> todoList;
+    private JFXListView<Todo> listOfTodos;
 
     @FXML
     private JFXProgressBar progressBar;
@@ -60,48 +64,41 @@ public class Controller implements Observer {
     @FXML
     private Label currentDate;
 
-
-
-    private ObservableList<Todo> list = FXCollections.observableArrayList();
-    private TodoList todos;
-    private Weather weather;
-
-
     @FXML
     void deleteTodo(ActionEvent event) {
-        if (todoList.getSelectionModel().isEmpty()) {
+        if (listOfTodos.getSelectionModel().isEmpty()) {
             printError("Error. Must select Todo to delete");
         } else {
-            Todo temp = todoList.getSelectionModel().getSelectedItem();
+            Todo temp = listOfTodos.getSelectionModel().getSelectedItem();
             if (!temp.getType().equals("Sub")) {
                 try {
-                    todos.removeTodo(temp);
+                    todoList.removeTodo(temp);
                 } catch (OutOfBoundListIndexException e) {
                     System.out.println("Error deleting todo");
                 }
-                todoList.getSelectionModel().clearSelection();
+                listOfTodos.getSelectionModel().clearSelection();
             } else {
                 SubTodo st = (SubTodo) temp;
-                todos.removeSuperTodoSub(st);
+                todoList.removeSuperTodoSub(st);
             }
-            todoList.getSelectionModel().clearSelection();
+            listOfTodos.getSelectionModel().clearSelection();
         }
     }
 
     @FXML
     void setStatus(ActionEvent event) {
-        if (todoList.getSelectionModel().isEmpty()) {
-            printError("Error. Must select Todo to change status");
+        if (listOfTodos.getSelectionModel().isEmpty()) {
+            printError("Error. Must select Todo to change status of");
         } else {
-            Todo temp = todoList.getSelectionModel().getSelectedItem();
+            Todo temp = listOfTodos.getSelectionModel().getSelectedItem();
             if (temp.getStatus()) {
                 temp.setStatus(false);
             } else {
                 temp.setStatus(true);
             }
-            todoList.refresh();
-            todoList.getSelectionModel().clearSelection();
-            calculateprogress();
+            listOfTodos.getSelectionModel().clearSelection();
+            listOfTodos.refresh();
+            calculateProgress();
         }
     }
 
@@ -112,7 +109,7 @@ public class Controller implements Observer {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             AddTodoController controller = fxmlLoader.getController();
-            controller.setTodoList(todos);
+            controller.setTodoList(todoList);
             stage.initOwner(mainAnchorPane.getScene().getWindow());
             stage.setTitle("Add New Todo Item");
             stage.setScene(new Scene(root1));
@@ -125,16 +122,15 @@ public class Controller implements Observer {
 
     @FXML
     void showEditItemDialog(ActionEvent event) {
-        if (todoList.getSelectionModel().isEmpty()) {
+        if (listOfTodos.getSelectionModel().isEmpty()) {
             printError("Error. Must select Todo to edit");
         } else {
-            if (!todoList.getSelectionModel().getSelectedItem().getType().equals("Super")) {
+            if (!listOfTodos.getSelectionModel().getSelectedItem().getType().equals("Super")) {
                 openEditWindow();
             } else {
                 openEditSuperWindow();
             }
-            todoList.getSelectionModel().clearSelection();
-            todoList.refresh();
+            listOfTodos.getSelectionModel().clearSelection();
         }
     }
 
@@ -144,7 +140,7 @@ public class Controller implements Observer {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             EditTodoController controller = fxmlLoader.getController();
-            controller.setTodoList(todos, todoList.getSelectionModel().getSelectedItem());
+            controller.setTodoList(todoList, listOfTodos.getSelectionModel().getSelectedItem());
             stage.initOwner(mainAnchorPane.getScene().getWindow());
             stage.setTitle("Edit Todo Item");
             stage.setScene(new Scene(root1));
@@ -161,7 +157,7 @@ public class Controller implements Observer {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             EditSuperController controller = fxmlLoader.getController();
-            controller.setTodoList(todos, todoList.getSelectionModel().getSelectedItem());
+            controller.setTodoList(todoList, listOfTodos.getSelectionModel().getSelectedItem());
             stage.initOwner(mainAnchorPane.getScene().getWindow());
             stage.setTitle("Edit Super Todo Item");
             stage.setScene(new Scene(root1));
@@ -181,21 +177,32 @@ public class Controller implements Observer {
         ft.play();
     }
 
-    private void calculateprogress() {
-        double value = todos.getCompleted() / todos.getTotalTodos();
-        progressBar.setProgress(value);
-        System.out.println(value);
+    private void calculateProgress() {
+        double progress = todoList.getCompleted() / todoList.getTotalTodos();
+        progressBar.setProgress(progress);
     }
 
     @FXML
     void initialize() {
-
     }
 
     public void init(TodoList todos) throws IOException {
-        this.todos = todos;
+        this.todoList = todos;
+        // Load previous data
         todos.load(null);
-        calculateprogress();
+        // Initialize progress bar
+        calculateProgress();
+        // Initialize weather info
+        refreshWeather();
+    }
+
+    @FXML
+    void refreshWeather(ActionEvent event) throws IOException {
+        refreshWeather();
+        System.out.println("Weather Refreshed!");
+    }
+
+    private void refreshWeather() throws IOException {
         weather = new Weather();
         currentDate.setText(LocalDate.now().toString());
         currentTemp.setText(weather.getCurrentTemp() + "°C");
@@ -206,14 +213,13 @@ public class Controller implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        ObservableList<Todo> temp = (ObservableList<Todo>) arg;
-        transferList(temp);
-        todoList.setItems(this.list);
+        transferList();
+        listOfTodos.setItems(this.list);
     }
 
-    public void transferList(ObservableList<Todo> temp) {
+    public void transferList() {
         this.list.clear();
-        for (Todo t : temp) {
+        for (Todo t : todoList) {
             this.list.add(t);
             if (t.getType().equals("Super")) {
                 SuperTodo tempSuper = (SuperTodo) t;
@@ -223,4 +229,5 @@ public class Controller implements Observer {
             }
         }
     }
+
 }

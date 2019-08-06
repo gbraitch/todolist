@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.SubTodo;
 import model.SuperTodo;
 import model.Todo;
 import model.TodoList;
@@ -42,12 +43,12 @@ public class AddSubTodoController {
     @FXML
     private Label superTodoName;
 
-    private SuperTodo head;
-    private TodoList todos;
+    private SuperTodo superTodo;
+    private TodoList todoList;
 
     @FXML
     void addNewTodo(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        Stage stage = (Stage) addTodo.getScene().getWindow();
         if (addTaskValidate()) {
             enterNewSubTodo();
             stage.close();
@@ -67,7 +68,8 @@ public class AddSubTodoController {
     }
 
     private void enterNewSubTodo() {
-        todos.addSuperTodoSub(head, descriptionText.getText(), datePicker.getValue().toString());
+        SubTodo newSub = new SubTodo(descriptionText.getText(), datePicker.getValue().toString());
+        todoList.addSuperTodoSub(superTodo, newSub);
     }
 
     private void printError(String text) {
@@ -81,10 +83,10 @@ public class AddSubTodoController {
         stage.close();
     }
 
-    public void setTodoList(TodoList todos, Todo head) {
-        this.head = (SuperTodo)head;
-        this.todos = todos;
-        superTodoName.setText(head.getName());
+    public void setTodoList(TodoList todoList, Todo superTodo) {
+        this.superTodo = (SuperTodo)superTodo;
+        this.todoList = todoList;
+        superTodoName.setText(superTodo.getName());
     }
 
 

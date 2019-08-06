@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import model.RegTodo;
 import model.SuperTodo;
 import model.TodoList;
 
@@ -46,7 +47,7 @@ public class AddTodoController {
 
     @FXML
     void addNewTodo(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        Stage stage = (Stage) addTodo.getScene().getWindow();
         if (addTaskValidate()) {
             if (!superTodoCheckBox.isSelected()) {
                 enterNewTodo();
@@ -70,12 +71,13 @@ public class AddTodoController {
     }
 
     private void enterNewSuperTodo() {
-        SuperTodo temp = new SuperTodo(descriptionText.getText(), datePicker.getValue().toString());
-        todos.addSuperTodo(temp);
+        SuperTodo newSuper = new SuperTodo(descriptionText.getText(), datePicker.getValue().toString());
+        todos.addSuperTodo(newSuper);
     }
 
     private void enterNewTodo() {
-        todos.addRegTodo(descriptionText.getText(), datePicker.getValue().toString());
+        RegTodo newReg = new RegTodo(descriptionText.getText(), datePicker.getValue().toString());
+        todos.addRegTodo(newReg);
     }
 
 

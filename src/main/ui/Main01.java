@@ -109,7 +109,7 @@
 //
 //    private void deleteTodo() throws TooLargeListIndexException, NegativeListIndexException {
 //        todo.printAllTodo();
-//        if (todo.size() != 0) {
+//        if (todo.getSize() != 0) {
 //            System.out.println("\nWhich Todo to remove?");
 //            int del = Integer.parseInt(scanner.nextLine());
 //            //todo.deleteTodo(del);

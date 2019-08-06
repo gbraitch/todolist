@@ -19,7 +19,7 @@ public class TodoListTest {
     @BeforeEach
     public void init() {
         todo = new TodoList();
-        todo.addRegTodo("CPSC 210", "08-15-2019");
+        todo.addRegTodo(new RegTodo("CPSC 210", "08-15-2019"));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class TodoListTest {
 
     @Test
     public void testaddTwoRegTodo() throws TooLargeListIndexException, NegativeListIndexException {
-        todo.addRegTodo("CPSC 121", "08-15-2019");
+        todo.addRegTodo(new RegTodo("CPSC 121", "08-15-2019"));
 
         assertEquals(todo.getTodoName(0), "CPSC 210");
         assertEquals(todo.getTodoDue(0), "08-15-2019");
@@ -56,13 +56,13 @@ public class TodoListTest {
 
     @Test
     public void testDeleteRegTodo() throws TooLargeListIndexException, NegativeListIndexException {
-        todo.addRegTodo("CPSC 121", "08-15-2019");
+        todo.addRegTodo(new RegTodo("CPSC 121", "08-15-2019"));
         try {
             todo.removeTodo(new RegTodo("CPSC 121", "08-15-2019"));
         } catch (OutOfBoundListIndexException e) {
             fail();
         }
-        assertEquals(todo.size(), 1);
+        assertEquals(todo.getSize(), 1);
         assertEquals(todo.getTodoName(0), "CPSC 210");
         assertEquals(todo.getTodoDue(0), "08-15-2019");
         assertFalse(todo.getTodoStatus(0));
@@ -94,7 +94,7 @@ public class TodoListTest {
         } catch (OutOfBoundListIndexException e) {
             //
         }
-        todo.addSuperTodoSub(temp,"SubTodo1", "Fri");
+        todo.addSuperTodoSub(temp, new SubTodo("SubTodo1", "Fri"));
         try {
             todo.changeSuperTodoSubStatus(1,0,true);
         } catch (OutOfBoundListIndexException e) {
@@ -123,7 +123,7 @@ public class TodoListTest {
     public void testEditSuperTodo() throws TooLargeListIndexException, NegativeListIndexException {
         SuperTodo st = new SuperTodo("SuperTodo1", "Wed");
         todo.addSuperTodo(st);
-        todo.addSuperTodoSub(st,"SubTodo1", "Fri");
+        todo.addSuperTodoSub(st,new SubTodo("SubTodo1", "Fri"));
         SubTodo temp2 = (SubTodo) st.getSubList().get(0);
         todo.removeSuperTodoSub(temp2);
         st.setStatus(true);

@@ -17,7 +17,7 @@
             <AnchorPane prefHeight="616.0" prefWidth="437.0" style="-fx-background-color: #d32f2f;">
                <children>
                   <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#9a0007" height="194.0" layoutX="6.0" layoutY="-26.0" stroke="#9a0007" strokeType="INSIDE" width="425.0" />
-                  <JFXListView fx:id="todoList" layoutX="6.0" layoutY="184.0" prefHeight="467.0" prefWidth="425.0">
+                  <JFXListView fx:id="listOfTodos" layoutX="6.0" layoutY="184.0" prefHeight="467.0" prefWidth="425.0">
                      <contextMenu>
                         <ContextMenu>
                           <items>
@@ -41,6 +41,13 @@
                      <font>
                         <Font size="36.0" />
                      </font>
+                     <contextMenu>
+                        <ContextMenu onAction="#refreshWeather">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Refresh" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu>
                   </Label>
                   <Label fx:id="weatherDescription" layoutX="34.0" layoutY="71.0" prefHeight="17.0" prefWidth="97.0" textFill="WHITE">
                      <font>

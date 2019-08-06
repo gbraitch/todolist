@@ -4,7 +4,7 @@
     "data": {
       "name": "CPSC 121 HWK",
       "due": "2019-08-16",
-      "status": true,
+      "status": false,
       "type": "Reg"
     }
   },

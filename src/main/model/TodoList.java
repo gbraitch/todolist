@@ -9,11 +9,12 @@ import ui.controller.Controller;
 import util.SaveLoad;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Observable;
 
 
-public class TodoList extends Observable {
+public class TodoList extends Observable implements Iterable<Todo> {
     private static String FILE_PATH = "save.json";
 
     private SaveLoad saveLoad;
@@ -27,6 +28,14 @@ public class TodoList extends Observable {
 
     public TodoList() {
         saveLoad = new SaveLoad();
+    }
+
+    public int getIndex(Todo t) throws OutOfBoundListIndexException {
+        if (list.contains(t)) {
+           return list.indexOf(t);
+        } else {
+            throw new OutOfBoundListIndexException();
+        }
     }
 
     public void changeName(int edit, String newName) {
@@ -50,9 +59,8 @@ public class TodoList extends Observable {
         notifyObservers(list);
     }
 
-    public void addRegTodo(String newTodoName, String newTodoDue) {
-        RegTodo temp = new RegTodo(newTodoName, newTodoDue);
-        list.add(temp);
+    public void addRegTodo(RegTodo rt) {
+        list.add(rt);
         setChanged();
         notifyObservers(list);
     }
@@ -70,12 +78,10 @@ public class TodoList extends Observable {
         } else {
             throw new OutOfBoundListIndexException();
         }
-
     }
 
-
-    public void addSuperTodoSub(SuperTodo st, String name, String due) {
-        st.addSubTodo(new SubTodo(name, due));
+    public void addSuperTodoSub(SuperTodo sup, SubTodo sub) {
+        sup.addSubTodo(sub);
         setChanged();
         notifyObservers(list);
     }
@@ -93,7 +99,6 @@ public class TodoList extends Observable {
         setChanged();
         notifyObservers(list);
     }
-
 
     public String getTodoName(int index) throws TooLargeListIndexException, NegativeListIndexException {
         checkIndex(index);
@@ -120,7 +125,7 @@ public class TodoList extends Observable {
         return (SuperTodo)list.get(index);
     }
 
-    public int size() {
+    public int getSize() {
         return list.size();
     }
 
@@ -128,7 +133,7 @@ public class TodoList extends Observable {
         if (index < 0) {
             throw new NegativeListIndexException();
         }
-        if (index >= size()) {
+        if (index >= getSize()) {
             throw new TooLargeListIndexException();
         }
     }
@@ -194,6 +199,10 @@ public class TodoList extends Observable {
         }
     }
 
+    @Override
+    public Iterator<Todo> iterator() {
+        return list.iterator();
+    }
 }
 
 

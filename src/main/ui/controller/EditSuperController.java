@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Todo;
 import model.TodoList;
+import model.exception.OutOfBoundListIndexException;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -23,8 +24,8 @@ import java.util.ResourceBundle;
 
 public class EditSuperController {
 
-    private TodoList todos;
-    private Todo todo;
+    private TodoList todoList;
+    private Todo superTodo;
 
     @FXML
     private ResourceBundle resources;
@@ -63,7 +64,7 @@ public class EditSuperController {
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             AddSubTodoController controller = fxmlLoader.getController();
-            controller.setTodoList(todos, todo);
+            controller.setTodoList(todoList, superTodo);
             stage.initOwner(mainAnchorPane.getScene().getWindow());
             stage.setTitle("Add SubTodo");
             stage.setScene(new Scene(root1));
@@ -84,31 +85,38 @@ public class EditSuperController {
     void saveChanges(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         if (addTaskValidate()) {
-            todo.setStatus(statusSlider.isSelected());
-            todo.setName(descriptionText.getText());
-            todo.setDue(datePicker.getValue().toString());
-            stage.close();
+            try {
+                int index = todoList.getIndex(superTodo);
+                todoList.changeName(index, descriptionText.getText());
+                todoList.changeDue(index, datePicker.getValue().toString());
+                todoList.changeStatus(index, statusSlider.isSelected());
+            } catch (OutOfBoundListIndexException e) {
+                System.out.println("Error editing SuperTodo");
+            } finally {
+                stage.close();
+            }
+
         }
     }
 
     private boolean addTaskValidate() {
         if (descriptionText.getText().equals("")) {
-            printError("Error. Cannot create nameless todo");
+            printError("Error. Cannot create nameless superTodo");
             return false;
         } else
             if (datePicker.getValue().isBefore(LocalDate.now())) {
-                printError("Error. Cannot create todo with due date in past");
+                printError("Error. Cannot create superTodo with due date in past");
                 return false;
             }
         return true;
     }
 
-    public void setTodoList(TodoList todos, Todo todo) {
-        this.todos = todos;
-        this.todo = todo;
-        datePicker.setValue(local_date(todo.getDue()));
-        descriptionText.setText(todo.getName());
-        statusSlider.setSelected(todo.getStatus());
+    public void setTodoList(TodoList todoList, Todo superTodo) {
+        this.todoList = todoList;
+        this.superTodo = superTodo;
+        datePicker.setValue(local_date(this.superTodo.getDue()));
+        descriptionText.setText(this.superTodo.getName());
+        statusSlider.setSelected(this.superTodo.getStatus());
     }
 
     private void printError(String text) {

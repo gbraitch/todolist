@@ -20,9 +20,8 @@ public class Weather {
 
         try {
             String apikey = "0413388699f7c8d38d735643cdaa8dc3";
-            String vancouverWeatherQuery = "http://api.openweathermap.org/data/2.5/weather?q=Vancouver,ca&APPID=";
+            String vancouverWeatherQuery = "http://api.openweathermap.org/data/2.5/weather?q=Vancouver,ca&units=metric&APPID=";
             String theURL = vancouverWeatherQuery + apikey;
-            System.out.println(theURL);
             URL url = new URL(theURL);
             br = new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -47,9 +46,9 @@ public class Weather {
         description = description.toUpperCase();
 
         JSONObject mainObj = parsedJson.getJSONObject("main");
-        currentTemp = round((mainObj.getDouble("temp") / 10),1);
-        minTemp = round((mainObj.getDouble("temp_min") / 10),1);
-        maxTemp = round((mainObj.getDouble("temp_max") / 10),1);
+        currentTemp = round((mainObj.getDouble("temp")),1);
+        minTemp = round((mainObj.getDouble("temp_min")),1);
+        maxTemp = round((mainObj.getDouble("temp_max")),1);
     }
 
     private static double round(double value, int precision) {

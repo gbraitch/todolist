@@ -82,7 +82,7 @@ public class SaveLoadTest {
     @Test
     public void testLoadableInterface() throws TooLargeListIndexException, NegativeListIndexException {
         td = new TodoList();
-        td.addRegTodo("CPSC 210", "08-16-2019");
+        td.addRegTodo(new RegTodo("CPSC 210", "08-16-2019"));
         td.changeStatus(0,true);
         td.save("saveTest.JSON");
         td.load("saveTest.JSON");
@@ -94,10 +94,10 @@ public class SaveLoadTest {
     @Test
     public void testInvalidLoadFile() {
         td = new TodoList();
-        td.addRegTodo("RegTodoName", "08-16-2019");
+        td.addRegTodo(new RegTodo("RegTodoName", "08-16-2019"));
         td.save("out");
         TodoList td2 = new TodoList();
         td2.load("out2");
-        assertEquals(td2.size(),0);
+        assertEquals(td2.getSize(),0);
     }
 }
