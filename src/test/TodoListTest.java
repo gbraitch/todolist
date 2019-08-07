@@ -52,6 +52,18 @@ public class TodoListTest {
         assertEquals(todo.getTodoName(1), "CPSC 121");
         assertEquals(todo.getTodoDue(1), "08-15-2019");
         assertFalse(todo.getTodoStatus(1));
+
+        try {
+            todo.getIndex(new RegTodo("CPSC 210", "08-15-2019"));
+        } catch (OutOfBoundListIndexException e) {
+            fail();
+        }
+        try {
+            todo.getIndex(new RegTodo("CPSC", "08-15-2019"));
+            fail();
+        } catch (OutOfBoundListIndexException e) {
+            //pass
+        }
     }
 
     @Test
@@ -148,6 +160,7 @@ public class TodoListTest {
         todo.save("saveTest.JSON");
 
         TodoList tt = new TodoList();
+        tt.iterator();
 
         tt.load("saveTest.JSON");
 

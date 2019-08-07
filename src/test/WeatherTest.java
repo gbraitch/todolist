@@ -19,5 +19,6 @@ public class WeatherTest {
         weather.getDescription();
         weather.getMaxTemp();
         weather.getMinTemp();
+        weather.getMainDescription();
     }
 }

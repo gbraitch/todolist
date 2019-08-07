@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -63,6 +65,10 @@ public class Controller implements Observer {
 
     @FXML
     private Label currentDate;
+
+    @FXML
+    private ImageView imageViewer;
+
 
     @FXML
     void deleteTodo(ActionEvent event) {
@@ -193,22 +199,33 @@ public class Controller implements Observer {
         // Initialize progress bar
         calculateProgress();
         // Initialize weather info
-        refreshWeather();
+        initWeather();
     }
 
-    @FXML
-    void refreshWeather(ActionEvent event) throws IOException {
-        refreshWeather();
-        System.out.println("Weather Refreshed!");
-    }
-
-    private void refreshWeather() throws IOException {
+    private void initWeather() throws IOException {
         weather = new Weather();
+
         currentDate.setText(LocalDate.now().toString());
         currentTemp.setText(weather.getCurrentTemp() + "°C");
-        maxTemp.setText(weather.getMaxTemp() + " °C");
-        minTemp.setText(weather.getMinTemp() + " °C");
+        maxTemp.setText("Max: " + weather.getMaxTemp() + " °C");
+        minTemp.setText("Min: " + weather.getMinTemp() + " °C");
         weatherDescription.setText(weather.getDescription());
+        imageViewer.setImage(chooseWeatherImage(weather.getMainDescription()));
+    }
+
+    private Image chooseWeatherImage(String description) {
+        String img;
+        switch (description) {
+            case "Clear":
+                img = "sunny.png";
+                break;
+            case "Cloudy":
+                img = "cloudy.png";
+                break;
+            default:
+                img = "partly_cloudy.png";
+        }
+        return new Image("/ui/assets/" + img);
     }
 
     @Override

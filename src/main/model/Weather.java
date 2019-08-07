@@ -11,7 +11,9 @@ public class Weather {
     private double currentTemp;
     private double maxTemp;
     private double minTemp;
+    private String mainDescription;
     private String description;
+    private JSONObject parsedJson;
 
     public Weather() throws IOException {
 
@@ -20,8 +22,8 @@ public class Weather {
 
         try {
             String apikey = "0413388699f7c8d38d735643cdaa8dc3";
-            String vancouverWeatherQuery = "http://api.openweathermap.org/data/2.5/weather?q=Vancouver,ca&units=metric&APPID=";
-            String theURL = vancouverWeatherQuery + apikey;
+            String cityWeatherQuery = "http://api.openweathermap.org/data/2.5/weather?q=Vancouver,ca&units=metric&APPID=";
+            String theURL = cityWeatherQuery + apikey;
             URL url = new URL(theURL);
             br = new BufferedReader(new InputStreamReader(url.openStream()));
 
@@ -33,27 +35,37 @@ public class Weather {
                 sb.append(line);
                 sb.append(System.lineSeparator());
             }
+
         } finally {
             if (br != null) {
                 br.close();
             }
         }
 
-        JSONObject parsedJson = new JSONObject(sb.toString());
+        parsedJson = new JSONObject(sb.toString());
 
-        JSONObject weatherObj = (JSONObject)parsedJson.getJSONArray("weather").get(0);
-        description = weatherObj.getString("description");
-        description = description.toUpperCase();
+        getWeatherData();
+        getTemperatureData();
 
-        JSONObject mainObj = parsedJson.getJSONObject("main");
-        currentTemp = round((mainObj.getDouble("temp")),1);
-        minTemp = round((mainObj.getDouble("temp_min")),1);
-        maxTemp = round((mainObj.getDouble("temp_max")),1);
     }
 
     private static double round(double value, int precision) {
         int scale = (int) Math.pow(10, precision);
         return (double) Math.round(value * scale) / scale;
+    }
+
+    private void getWeatherData() {
+        JSONObject weatherObj = (JSONObject)parsedJson.getJSONArray("weather").get(0);
+        description = weatherObj.getString("description");
+        description = description.toUpperCase();
+        mainDescription = weatherObj.getString("main");
+    }
+
+    private void getTemperatureData() {
+        JSONObject mainObj = parsedJson.getJSONObject("main");
+        currentTemp = round((mainObj.getDouble("temp")),1);
+        minTemp = round((mainObj.getDouble("temp_min")),1);
+        maxTemp = round((mainObj.getDouble("temp_max")),1);
     }
 
     public double getCurrentTemp() {
@@ -70,6 +82,10 @@ public class Weather {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getMainDescription() {
+        return mainDescription;
     }
 
 
