@@ -32,7 +32,7 @@ public class TodoList extends Observable implements Iterable<Todo> {
 
     public int getIndex(Todo t) throws OutOfBoundListIndexException {
         if (list.contains(t)) {
-           return list.indexOf(t);
+            return list.indexOf(t);
         } else {
             throw new OutOfBoundListIndexException();
         }
