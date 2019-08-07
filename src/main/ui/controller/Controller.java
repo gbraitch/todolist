@@ -208,10 +208,11 @@ public class Controller implements Observer {
         // Initialize weather info
         initWeather();
         initCheckBoxes();
+        listOfTodos.setExpanded(true);
+        listOfTodos.depthProperty().set(1);
     }
 
     private void initCheckBoxes() {
-        // Get booleanproperty reference for each 2do which give us a bidirectional relationship with status
         listOfTodos.setCellFactory(new Callback<ListView<Todo>, ListCell<Todo>>() {
             @Override
             public ListCell<Todo> call(ListView<Todo> param) {
@@ -219,29 +220,34 @@ public class Controller implements Observer {
                     JFXCheckBox checkBox = new JFXCheckBox(); {
                         setGraphic(checkBox);
                     }
+
                     @Override
                     protected void updateItem(Todo item, boolean empty) {
                         super.updateItem(item, empty);
-                        if (item == null || empty) {
-                            checkBox.setVisible(false);
-                            setText(null);
-                        } else {
-                            checkBox.setVisible(true);
-                            setText(item.toString());
-                            checkBox.setSelected(item.getStatus());
-                            checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
-                                @Override
-                                public void changed(ObservableValue ov,Boolean old_val, Boolean new_val) {
-                                    item.setStatus(new_val);
-                                }
-                            });
-                        }
+                        setText(initCheckBoxesHelper(item,empty,checkBox));
                     }
                 };
             }
         });
-        // attach a listener to each 2do's boolean property so if it is changed the list is updated
         attachStatusListeners();
+    }
+
+    private String initCheckBoxesHelper(Todo item, boolean empty, JFXCheckBox checkBox) {
+        if (item == null || empty) {
+            checkBox.setVisible(false);
+            return null;
+        } else {
+            checkBox.setVisible(true);
+            checkBox.setSelected(item.getStatus());
+            String save = item.toString();
+            checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                @Override
+                public void changed(ObservableValue ov, Boolean oldval, Boolean newval) {
+                    item.setStatus(newval);
+                }
+            });
+            return save;
+        }
     }
 
     private void attachStatusListeners() {

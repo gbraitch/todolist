@@ -58,16 +58,16 @@ public class EditTodoController {
         if (addTaskValidate()) {
             //try {
                 //int index = todoList.getIndex(todo);
-                todo.setName(descriptionText.getText());
-                todo.setDue(datePicker.getValue().toString());
-                todo.setStatus(statusSlider.isSelected());
+            todo.setName(descriptionText.getText());
+            todo.setDue(datePicker.getValue().toString());
+            todo.setStatus(statusSlider.isSelected());
 //                todoList.changeName(index, descriptionText.getText());
 //                todoList.changeDue(index, datePicker.getValue().toString());
 //                todoList.changeStatus(index, statusSlider.isSelected());
 //            } catch (OutOfBoundListIndexException e) {
 //                System.out.println("Error editing SuperTodo");
 //            } finally {
-                stage.close();
+            stage.close();
             //}
         }
     }

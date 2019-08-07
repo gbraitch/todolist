@@ -9,7 +9,7 @@ public abstract class Todo {
     protected String name;
     protected String due;
     protected String type;
-    protected  BooleanProperty status = new SimpleBooleanProperty();
+    protected BooleanProperty status = new SimpleBooleanProperty();
 
     public Todo(String name, String due, boolean status, String type) {
         this.name = name;
@@ -52,11 +52,15 @@ public abstract class Todo {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Todo todo = (Todo) o;
-        return name.equals(todo.name) && due.equals(todo.due) &&
-                type.equals(todo.type) && status.equals(todo.status);
+        return name.equals(todo.name) && due.equals(todo.due)
+                && type.equals(todo.type) && (status.get() == todo.status.get());
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Main extends Application {
         Stage stage = new Stage();
         stage.setTitle("To-Do List Application");
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(true);
 
         Controller controller = fxmlLoader.getController();
         todos = new TodoList(controller);
