@@ -1,8 +1,11 @@
 package ui.controller;
 
+import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.animation.FadeTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,11 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import model.*;
 import model.exception.OutOfBoundListIndexException;
@@ -155,6 +161,7 @@ public class Controller implements Observer {
             System.out.println("Error loading new window");
             e.printStackTrace();
         }
+        transferList();
     }
 
     private void openEditSuperWindow() {
@@ -200,6 +207,53 @@ public class Controller implements Observer {
         calculateProgress();
         // Initialize weather info
         initWeather();
+        initCheckBoxes();
+    }
+
+    private void initCheckBoxes() {
+        // Get booleanproperty reference for each 2do which give us a bidirectional relationship with status
+        listOfTodos.setCellFactory(new Callback<ListView<Todo>, ListCell<Todo>>() {
+            @Override
+            public ListCell<Todo> call(ListView<Todo> param) {
+                return new ListCell<Todo>() {
+                    JFXCheckBox checkBox = new JFXCheckBox(); {
+                        setGraphic(checkBox);
+                    }
+                    @Override
+                    protected void updateItem(Todo item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            checkBox.setVisible(false);
+                            setText(null);
+                        } else {
+                            checkBox.setVisible(true);
+                            setText(item.toString());
+                            checkBox.setSelected(item.getStatus());
+                            checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
+                                @Override
+                                public void changed(ObservableValue ov,Boolean old_val, Boolean new_val) {
+                                    item.setStatus(new_val);
+                                }
+                            });
+                        }
+                    }
+                };
+            }
+        });
+        // attach a listener to each 2do's boolean property so if it is changed the list is updated
+        attachStatusListeners();
+    }
+
+    private void attachStatusListeners() {
+        list.forEach(Todo -> Todo.getBooleanProperty().addListener((observable, wasSelected, isSelected) -> {
+            if (isSelected) {
+                transferList();
+            } else {
+                if (wasSelected) {
+                    transferList();
+                }
+            }
+        }));
     }
 
     private void initWeather() throws IOException {
@@ -211,6 +265,8 @@ public class Controller implements Observer {
         minTemp.setText("Min: " + weather.getMinTemp() + " °C");
         weatherDescription.setText(weather.getDescription());
         imageViewer.setImage(chooseWeatherImage(weather.getMainDescription()));
+        listOfTodos.setExpanded(true);
+        listOfTodos.depthProperty().set(1);
     }
 
     private Image chooseWeatherImage(String description) {
@@ -231,11 +287,11 @@ public class Controller implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         transferList();
-        listOfTodos.setItems(this.list);
     }
 
     public void transferList() {
         this.list.clear();
+        Label l;
         for (Todo t : todoList) {
             this.list.add(t);
             if (t.getType().equals("Super")) {
@@ -245,6 +301,8 @@ public class Controller implements Observer {
                 }
             }
         }
+        listOfTodos.setItems(this.list);
+        calculateProgress();
     }
 
 }

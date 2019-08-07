@@ -15,15 +15,19 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/TodoGUI.fxml"));
         Parent root = (Parent) fxmlLoader.load();
-        primaryStage.setTitle("To-Do List Application");
-        primaryStage.setScene(new Scene(root, 428, 735));
-        primaryStage.setResizable(false);
+        Scene scene = new Scene(root);
+        String css = this.getClass().getResource("/ui/assets/styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        Stage stage = new Stage();
+        stage.setTitle("To-Do List Application");
+        stage.setScene(scene);
+        stage.setResizable(false);
 
         Controller controller = fxmlLoader.getController();
         todos = new TodoList(controller);
         controller.init(todos);
 
-        primaryStage.show();
+        stage.show();
     }
 
     @Override

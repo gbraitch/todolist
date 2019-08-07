@@ -4,8 +4,8 @@
     "data": {
       "name": "CPSC 121 HWK",
       "due": "2019-08-16",
-      "status": false,
-      "type": "Reg"
+      "type": "Reg",
+      "status": false
     }
   },
   {
@@ -17,8 +17,8 @@
           "data": {
             "name": "ADD HASHMAP",
             "due": "2019-08-16",
-            "status": true,
-            "type": "Sub"
+            "type": "Sub",
+            "status": false
           }
         },
         {
@@ -26,15 +26,15 @@
           "data": {
             "name": "ADD GUI",
             "due": "2019-08-16",
-            "status": true,
-            "type": "Sub"
+            "type": "Sub",
+            "status": false
           }
         }
       ],
-      "name": "CPSC 210 PROJECT",
+      "name": "CPSC 210",
       "due": "2019-08-16",
-      "status": true,
-      "type": "Super"
+      "type": "Super",
+      "status": false
     }
   },
   {
@@ -42,8 +42,8 @@
     "data": {
       "name": "REGISTER FOR CLASSES",
       "due": "2019-08-16",
-      "status": true,
-      "type": "Reg"
+      "type": "Reg",
+      "status": false
     }
   },
   {
@@ -51,8 +51,8 @@
     "data": {
       "name": "CPSC 210 MIDTERM",
       "due": "2019-08-16",
-      "status": true,
-      "type": "Reg"
+      "type": "Reg",
+      "status": false
     }
   },
   {
@@ -64,8 +64,8 @@
           "data": {
             "name": "FIRST HALF OF COURSE",
             "due": "2019-08-16",
-            "status": false,
-            "type": "Sub"
+            "type": "Sub",
+            "status": true
           }
         },
         {
@@ -73,15 +73,24 @@
           "data": {
             "name": "SECOND HALF OF COURSE",
             "due": "2019-08-16",
-            "status": false,
-            "type": "Sub"
+            "type": "Sub",
+            "status": false
           }
         }
       ],
       "name": "CPSC 210 FINAL",
       "due": "2019-08-16",
-      "status": false,
-      "type": "Super"
+      "type": "Super",
+      "status": true
+    }
+  },
+  {
+    "type": "model.RegTodo",
+    "data": {
+      "name": "EDITING SUBTODO",
+      "due": "2019-08-15",
+      "type": "Reg",
+      "status": false
     }
   }
 ]

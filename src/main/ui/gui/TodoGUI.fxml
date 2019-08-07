@@ -11,14 +11,14 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="440.0" style="-fx-background-color: #d32f2f;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.Controller">
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="749.0" prefWidth="491.0" style="-fx-background-color: #36353c;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.Controller">
    <children>
       <AnchorPane layoutY="86.0" prefHeight="616.0" prefWidth="437.0" style="-fx-background-color: #d32f2f;">
          <children>
-            <AnchorPane prefHeight="651.0" prefWidth="437.0" style="-fx-background-color: #d32f2f;">
+            <AnchorPane prefHeight="651.0" prefWidth="437.0" style="-fx-background-color: #36353c;">
                <children>
-                  <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#9a0007" height="179.0" layoutX="6.0" layoutY="-11.0" stroke="#9a0007" strokeType="INSIDE" width="425.0" />
-                  <JFXListView fx:id="listOfTodos" layoutX="6.0" layoutY="184.0" prefHeight="467.0" prefWidth="425.0">
+                  <Rectangle arcHeight="15.0" arcWidth="15.0" fill="#2d2a27" height="179.0" layoutX="6.0" layoutY="-11.0" stroke="#2d2a27" strokeType="INSIDE" width="476.0" />
+                  <JFXListView fx:id="listOfTodos" layoutX="6.0" layoutY="184.0" prefHeight="467.0" prefWidth="476.0" style="-fx-background-color: #36353c;">
                      <contextMenu>
                         <ContextMenu>
                           <items>
@@ -28,17 +28,17 @@
                           </items>
                         </ContextMenu>
                      </contextMenu></JFXListView>
-                  <JFXButton buttonType="RAISED" layoutX="370.0" layoutY="566.0" onAction="#showNewItemDialog" prefHeight="53.0" prefWidth="53.0" style="-fx-background-color: #424242; -fx-background-radius: 30;" text="+" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="415.0" layoutY="569.0" onAction="#showNewItemDialog" prefHeight="53.0" prefWidth="53.0" ripplerFill="#ebebeb" style="-fx-background-color: #424242; -fx-background-radius: 30;" text="+" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font></JFXButton>
-                  <JFXProgressBar fx:id="progressBar" layoutX="6.0" layoutY="637.0" prefHeight="13.0" prefWidth="424.0" progress="0.0" />
-                  <Label fx:id="errorLabel" layoutX="12.0" layoutY="117.0" prefHeight="17.0" prefWidth="414.0">
+                  <JFXProgressBar fx:id="progressBar" layoutX="6.0" layoutY="644.0" prefHeight="6.0" prefWidth="476.0" progress="0.0" />
+                  <Label fx:id="errorLabel" layoutX="8.0" layoutY="168.0" prefHeight="17.0" prefWidth="414.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="currentTemp" layoutX="109.0" layoutY="46.0" prefHeight="53.0" prefWidth="114.0" textFill="#ffeaea">
+                  <Label fx:id="currentTemp" layoutX="109.0" layoutY="46.0" prefHeight="53.0" prefWidth="226.0" textFill="#ffeaea">
                      <font>
                         <Font size="36.0" />
                      </font>
@@ -68,7 +68,7 @@
             <Font name="Consolas" size="36.0" />
          </font>
       </Label>
-      <Label fx:id="currentDate" layoutX="309.0" layoutY="27.0" prefHeight="17.0" prefWidth="97.0" textFill="WHITE">
+      <Label fx:id="currentDate" layoutX="337.0" layoutY="30.0" prefHeight="23.0" prefWidth="132.0" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>

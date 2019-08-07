@@ -11,7 +11,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.Todo;
 import model.TodoList;
-import model.exception.OutOfBoundListIndexException;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -57,16 +56,19 @@ public class EditTodoController {
     void saveChanges(ActionEvent event) {
         Stage stage = (Stage) saveButton.getScene().getWindow();
         if (addTaskValidate()) {
-            try {
-                int index = todoList.getIndex(todo);
-                todoList.changeName(index, descriptionText.getText());
-                todoList.changeDue(index, datePicker.getValue().toString());
-                todoList.changeStatus(index, statusSlider.isSelected());
-            } catch (OutOfBoundListIndexException e) {
-                System.out.println("Error editing SuperTodo");
-            } finally {
+            //try {
+                //int index = todoList.getIndex(todo);
+                todo.setName(descriptionText.getText());
+                todo.setDue(datePicker.getValue().toString());
+                todo.setStatus(statusSlider.isSelected());
+//                todoList.changeName(index, descriptionText.getText());
+//                todoList.changeDue(index, datePicker.getValue().toString());
+//                todoList.changeStatus(index, statusSlider.isSelected());
+//            } catch (OutOfBoundListIndexException e) {
+//                System.out.println("Error editing SuperTodo");
+//            } finally {
                 stage.close();
-            }
+            //}
         }
     }
 

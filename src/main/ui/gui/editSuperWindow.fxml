@@ -13,20 +13,20 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <JFXTextField fx:id="descriptionText" focusColor="#ff6659" layoutX="47.0" layoutY="107.0" prefHeight="43.0" prefWidth="501.0" />
-            <JFXDatePicker fx:id="datePicker" defaultColor="#ff6659" layoutX="47.0" layoutY="179.0" prefHeight="27.0" prefWidth="246.0" />
-            <JFXButton fx:id="saveButton" layoutX="51.0" layoutY="314.0" onAction="#saveChanges" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #424242;" text="Save" textFill="WHITE">
+            <JFXTextField fx:id="descriptionText" focusColor="#36353c" layoutX="47.0" layoutY="107.0" prefHeight="43.0" prefWidth="501.0" />
+            <JFXDatePicker fx:id="datePicker" defaultColor="#36353c" layoutX="47.0" layoutY="179.0" prefHeight="27.0" prefWidth="246.0" />
+            <JFXButton fx:id="saveButton" layoutX="51.0" layoutY="314.0" onAction="#saveChanges" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #5f95f0;" text="Save" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="cancelButton" layoutX="373.0" layoutY="314.0" onAction="#exitWindow" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #424242;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancelButton" layoutX="373.0" layoutY="314.0" onAction="#exitWindow" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #5f95f0;" text="Cancel" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <BorderPane prefHeight="18.0" prefWidth="600.0" style="-fx-background-color: #9a0007;" />
-            <AnchorPane layoutY="18.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #d32f2f;">
+            <BorderPane prefHeight="18.0" prefWidth="600.0" style="-fx-background-color: #2d2a27;" />
+            <AnchorPane layoutY="18.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #36353c;">
                <children>
                   <Label layoutX="14.0" layoutY="7.0" text="Edit Super Todo" textFill="WHITE">
                      <font>
@@ -36,8 +36,8 @@
                </children>
             </AnchorPane>
             <Label fx:id="errorLabel" layoutX="47.0" layoutY="278.0" prefHeight="17.0" prefWidth="479.0" />
-            <JFXToggleButton fx:id="statusSlider" layoutX="47.0" layoutY="220.0" text="Finished?" />
-            <JFXButton fx:id="addSubTodo" layoutX="373.0" layoutY="206.0" onAction="#addNewSubTodo" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #424242;" text="Add SubTodo" textFill="WHITE">
+            <JFXToggleButton fx:id="statusSlider" layoutX="47.0" layoutY="220.0" text="Finished?" toggleColor="#5f95f0" toggleLineColor="#5f95f0" />
+            <JFXButton fx:id="addSubTodo" layoutX="373.0" layoutY="206.0" onAction="#addNewSubTodo" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #5f95f0;" text="Add SubTodo" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>

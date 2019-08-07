@@ -6,6 +6,7 @@ import com.google.gson.stream.JsonReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Todo;
+import org.hildan.fxgson.FxGson;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -25,7 +26,7 @@ public class SaveLoad {
         GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
         gsonBuilder.registerTypeAdapter(Todo.class, new InterfaceAdapter<Todo>());
 
-        return gsonBuilder.create();
+        return FxGson.addFxSupport(gsonBuilder).create();
     }
 
     public void save(ObservableList<Todo> list, String fileName) {
