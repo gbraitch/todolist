@@ -119,6 +119,8 @@ public class TodoListTest {
             fail();
         }
         testaddSuperTodoandSubTodo2(t1);
+        todo.save("saveTest.json");
+        todo.load("saveTest.json");
     }
 
 
