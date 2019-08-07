@@ -1,17 +1,20 @@
 package model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+
 import java.util.Objects;
 
 public abstract class Todo {
     protected String name;
     protected String due;
-    protected boolean status;
     protected String type;
+    protected  BooleanProperty status = new SimpleBooleanProperty();
 
     public Todo(String name, String due, boolean status, String type) {
         this.name = name;
         this.due = due;
-        this.status = status;
+        this.status.set(status);
         this.type = type;
     }
 
@@ -24,11 +27,11 @@ public abstract class Todo {
     }
 
     public boolean getStatus() {
-        return status;
+        return this.status.get();
     }
 
     public void setStatus(boolean i) {
-        this.status = i;
+        this.status.set(i);
     }
 
     public void setName(String newName) {
@@ -43,29 +46,29 @@ public abstract class Todo {
         return this.type;
     }
 
+    public BooleanProperty getBooleanProperty() {
+        return status;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof Todo)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Todo todo = (Todo) o;
-        return status == todo.status && name.equals(todo.name)
-                && due.equals(todo.due) && type.equals(todo.type);
+        return name.equals(todo.name) && due.equals(todo.due) &&
+                type.equals(todo.type) && status.equals(todo.status);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, due, status, type);
+        return Objects.hash(name, due, type, status);
     }
 
     @Override
     public String toString() {
         String[] dateArray = due.toString().split("-");
         String status;
-        if (this.status) {
+        if (this.status.get()) {
             status = "Finished";
         } else {
             status = "Incomplete";

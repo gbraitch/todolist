@@ -59,7 +59,7 @@ public class TodoList extends Observable implements Iterable<Todo> {
         notifyObservers(list);
     }
 
-    public void addRegTodo(RegTodo rt) {
+    public void addRegTodo(Todo rt) {
         list.add(rt);
         setChanged();
         notifyObservers(list);
