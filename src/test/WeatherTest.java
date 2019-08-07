@@ -13,6 +13,7 @@ public class WeatherTest {
         try {
             weather = new Weather();
         } catch (IOException e) {
+            e.printStackTrace();
             fail();
         }
         assertTrue(weather.getCurrentTemp() > 0);
