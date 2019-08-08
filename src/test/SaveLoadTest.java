@@ -104,7 +104,7 @@ public class SaveLoadTest {
     public void testInvalidLoadFile() {
         td = new TodoList();
         td.addRegTodo(new RegTodo("RegTodoName", "08-16-2019"));
-        td.save("out");
+        td.save("out..exe");
         TodoList td2 = new TodoList();
         td2.load("out2");
         assertEquals(td2.getSize(),0);
