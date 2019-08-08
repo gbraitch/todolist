@@ -1,4 +1,4 @@
-package model;
+package ui.api;
 
 import org.json.JSONObject;
 

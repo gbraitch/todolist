@@ -25,6 +25,7 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 import model.*;
 import model.exception.OutOfBoundListIndexException;
+import ui.api.Weather;
 
 import java.io.IOException;
 import java.net.URL;

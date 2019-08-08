@@ -5,7 +5,7 @@
       "name": "CPSC 121 HWK",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": false
+      "status": true
     }
   },
   {
@@ -18,7 +18,7 @@
             "name": "ADD HASHMAP",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": false
+            "status": true
           }
         },
         {
@@ -27,14 +27,14 @@
             "name": "ADD GUI",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": false
+            "status": true
           }
         }
       ],
       "name": "CPSC 210",
       "due": "2019-08-16",
       "type": "Super",
-      "status": false
+      "status": true
     }
   },
   {
@@ -43,7 +43,7 @@
       "name": "REGISTER FOR CLASSES",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": false
+      "status": true
     }
   },
   {
@@ -65,7 +65,7 @@
             "name": "FIRST HALF OF COURSE",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": true
+            "status": false
           }
         },
         {
@@ -74,14 +74,14 @@
             "name": "SECOND HALF OF COURSE",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": true
+            "status": false
           }
         }
       ],
       "name": "CPSC 210 FINAL",
       "due": "2019-08-16",
       "type": "Super",
-      "status": true
+      "status": false
     }
   },
   {
@@ -89,15 +89,6 @@
     "data": {
       "name": "EDITING SUBTODO",
       "due": "2019-08-15",
-      "type": "Reg",
-      "status": false
-    }
-  },
-  {
-    "type": "model.RegTodo",
-    "data": {
-      "name": "h",
-      "due": "2019-08-07",
       "type": "Reg",
       "status": false
     }
