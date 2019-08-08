@@ -77,8 +77,14 @@ public abstract class Todo {
         } else {
             status = "Incomplete";
         }
+        String namer = this.name;
+        while (namer.length() < 21) {
+            namer = namer + " ";
+        }
+        String date = dateArray[1] + "/" + dateArray[2] + "/"
+                + dateArray[0];
+        return String.format("%-22s %20s", namer, date);
 
-        return name + " -- " + dateArray[2] + "/" + dateArray[1] + "/"
-                + dateArray[0] + " -- " + status;
+
     }
 }

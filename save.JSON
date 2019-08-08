@@ -52,7 +52,7 @@
       "name": "CPSC 210 MIDTERM",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": false
+      "status": true
     }
   },
   {
@@ -74,7 +74,7 @@
             "name": "SECOND HALF OF COURSE",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": false
+            "status": true
           }
         }
       ],
@@ -89,6 +89,15 @@
     "data": {
       "name": "EDITING SUBTODO",
       "due": "2019-08-15",
+      "type": "Reg",
+      "status": false
+    }
+  },
+  {
+    "type": "model.RegTodo",
+    "data": {
+      "name": "h",
+      "due": "2019-08-07",
       "type": "Reg",
       "status": false
     }

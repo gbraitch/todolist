@@ -173,7 +173,15 @@ public class TodoListTest {
 
     @Test
     public void testLoad() throws OutOfBoundListIndexException {
-        todo.load("loadTest.JSON");
+        TodoList tdlist = new TodoList();
+        tdlist.addRegTodo(new RegTodo("CPSC 210", "08-16-2019", true));
+        tdlist.addRegTodo(new RegTodo("CPSC 121 URGENT", "08-16-2019"));
+        tdlist.addRegTodo(new RegTodo("CPSC310", "08-16-2019", true));
+        tdlist.addRegTodo(new RegTodo("CPSC 221 ONLY TWO THINGS", "08-16-2019"));
+        tdlist.addRegTodo(new RegTodo("FINISH LAUNDRY", "08-16-2019", true));
+
+        tdlist.save("saveTest.JSON");
+        todo.load("saveTest.JSON");
 
         assertEquals(todo.getTodoName(0), "CPSC 210");
         assertEquals(todo.getTodoDue(0), "08-16-2019");

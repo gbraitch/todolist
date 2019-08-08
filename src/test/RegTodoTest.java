@@ -16,6 +16,7 @@ public class RegTodoTest {
     public void testOneTodo() {
         assertEquals("CPSC 210 HWK", todo.getName());
         assertEquals("08-15-2019", todo.getDue());
+        assertFalse(todo.getBooleanProperty().get());
         assertFalse(todo.getStatus());
     }
 

@@ -1,29 +1,27 @@
 .list-cell:selected {
     -fx-background-color: #2d2a27;
-} 
+}  
 
 .list-cell {
     -fx-background-insets: 0.0;
     -fx-padding: 3px;
     -fx-background:  #36353c;
     -fx-background-color: transparent, -fx-background ;
-    -fx-font-size:15.0;
+    -fx-font-size:17.0;
     
-}
-
-/* .list-cell:hover {
-     -fx-background-color: #1bd79c;
-} */
-
-#listOfTodos {
-    -fx-padding: 3px ;
-    -fx-background-insets: 0;
-    -fx-cell-vertical-margin: 10.0;
-    -fx-vertical-gap: 10;
-}
+} 
 
 .jfx-check-box {
     -jfx-checked-color: #5f95f0;
     -jfx-unchecked-color: BLACK;
+}
+
+
+.jfx-progress-bar > .bar {
+    -fx-background-color: #5f95f0;
+}
+
+.jfx-progress-bar > .secondary-bar {
+    -fx-background-color:  #36353c;
 }
 

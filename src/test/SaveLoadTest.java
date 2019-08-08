@@ -55,7 +55,16 @@ public class SaveLoadTest {
     @Test
     public void loadTodoListWith5Items() throws IOException {
 
-        loadTodo = loadList.load("loadTest.JSON");
+        TodoList tdlist = new TodoList();
+        tdlist.addRegTodo(new RegTodo("CPSC 210", "08-16-2019", true));
+        tdlist.addRegTodo(new RegTodo("CPSC 121 URGENT", "08-16-2019"));
+        tdlist.addRegTodo(new RegTodo("CPSC310", "08-16-2019", true));
+        tdlist.addRegTodo(new RegTodo("CPSC 221 ONLY TWO THINGS", "08-16-2019"));
+        tdlist.addRegTodo(new RegTodo("FINISH LAUNDRY", "08-16-2019", true));
+
+        tdlist.save("saveTest.json");
+
+        loadTodo = loadList.load("saveTest.JSON");
 
         assertEquals(loadTodo.get(0).getName(), "CPSC 210");
         assertEquals(loadTodo.get(0).getDue(), "08-16-2019");

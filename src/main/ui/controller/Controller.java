@@ -75,7 +75,6 @@ public class Controller implements Observer {
     @FXML
     private ImageView imageViewer;
 
-
     @FXML
     void deleteTodo(ActionEvent event) {
         if (listOfTodos.getSelectionModel().isEmpty()) {
@@ -208,8 +207,6 @@ public class Controller implements Observer {
         // Initialize weather info
         initWeather();
         initCheckBoxes();
-        listOfTodos.setExpanded(true);
-        listOfTodos.depthProperty().set(1);
     }
 
     private void initCheckBoxes() {
