@@ -29,6 +29,8 @@ public class RegTodoTest {
     @Test
     public void testChangeDue() {
         todo.setDue("08-15-2019");
+        assertFalse(todo.equals(new RegTodo("CPSC 210 HWK", "08-15-2019", true)));
+        assertTrue(todo.equals(new RegTodo("CPSC 210 HWK", "08-15-2019", false)));
         assertEquals(todo.getDue(), "08-15-2019");
         assertTrue(todo.equals(new RegTodo("CPSC 210 HWK", "08-15-2019")));
         assertTrue(todo.equals(todo));
