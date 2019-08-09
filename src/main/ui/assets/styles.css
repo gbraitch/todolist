@@ -1,16 +1,21 @@
+
 .list-cell:selected {
     -fx-background-color: #2d2a27;
-}  
+}
 
 .list-cell {
-    -fx-background-insets: 0.0;
-    -fx-padding: 3px;
+    -fx-font-size: 18.0;
+    -fx-padding: 10px ;
     -fx-background:  #36353c;
     -fx-background-color: transparent, -fx-background ;
-    -fx-font-size:17.0;
-    
-} 
+    -fx-background-insets: 0px, 4px ;
+}
 
+.list-cell:empty {
+    -fx-padding: 10px ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
+}
 .jfx-check-box {
     -jfx-checked-color: #5f95f0;
     -jfx-unchecked-color: BLACK;
@@ -25,3 +30,15 @@
     -fx-background-color:  #36353c;
 }
 
+.jfx-decorator {
+    -fx-decorator-color:#36353c;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 4 4 4;
+}

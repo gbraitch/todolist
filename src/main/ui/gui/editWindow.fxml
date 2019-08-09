@@ -26,9 +26,9 @@
                </font>
             </JFXButton>
             <BorderPane prefHeight="18.0" prefWidth="600.0" style="-fx-background-color: #2d2a27;" />
-            <AnchorPane layoutY="18.0" prefHeight="52.0" prefWidth="600.0" style="-fx-background-color: #36353c;">
+            <AnchorPane layoutY="-1.0" prefHeight="27.0" prefWidth="600.0" style="-fx-background-color: #36353c;">
                <children>
-                  <Label layoutX="14.0" layoutY="7.0" text="Edit Regular Todo" textFill="WHITE">
+                  <Label layoutX="8.0" layoutY="-3.0" text="Edit Regular Todo" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>

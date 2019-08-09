@@ -32,7 +32,7 @@ public class InterfaceAdapter<T>
         return context.deserialize(data, actualType);
     }
 
-    public Type typeForName(final JsonElement typeElem) {
+    private Type typeForName(final JsonElement typeElem) {
         try {
             return Class.forName(typeElem.getAsString());
         } catch (ClassNotFoundException e) {

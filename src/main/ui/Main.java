@@ -1,5 +1,6 @@
 package ui;
 
+import com.jfoenix.controls.JFXDecorator;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,11 +16,17 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gui/TodoGUI.fxml"));
         Parent root = (Parent) fxmlLoader.load();
-        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
+        JFXDecorator decorator = new JFXDecorator(stage, root);
+        decorator.setCustomMaximize(true);
+
+        Scene scene = new Scene(decorator);
+
         String css = this.getClass().getResource("/ui/assets/styles.css").toExternalForm();
         scene.getStylesheets().add(css);
-        Stage stage = new Stage();
-        stage.setTitle("To-Do List Application");
+
+        stage.setTitle("Todo List");
         stage.setScene(scene);
         stage.setResizable(true);
 

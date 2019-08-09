@@ -92,7 +92,7 @@ public class TodoListTest {
     }
 
     @Test
-    public void testaddSuperTodoandSubTodo()  {
+    public void testaddSuperTodoandSubTodo() throws IOException {
         SuperTodo temp = new SuperTodo("SuperTodo1", "Wed");
         todo.addSuperTodo(temp);
         try {
@@ -172,7 +172,7 @@ public class TodoListTest {
     }
 
     @Test
-    public void testLoad() throws OutOfBoundListIndexException {
+    public void testLoad() throws OutOfBoundListIndexException, IOException {
         TodoList tdlist = new TodoList();
         tdlist.addRegTodo(new RegTodo("CPSC 210", "08-16-2019", true));
         tdlist.addRegTodo(new RegTodo("CPSC 121 URGENT", "08-16-2019"));
@@ -212,7 +212,7 @@ public class TodoListTest {
     }
 
     @Test
-    public void testSaveLoadWithDefaultFilePath() {
+    public void testSaveLoadWithDefaultFilePath() throws IOException {
         TodoList todoOriginal = new TodoList();
         todoOriginal.load(null);
         todoOriginal.save(null);

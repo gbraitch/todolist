@@ -59,8 +59,9 @@ public abstract class Todo {
             return false;
         }
         Todo todo = (Todo) o;
-        return name.equals(todo.name) && due.equals(todo.due) && type.equals(todo.type)
-                && (status.get() == todo.status.get());
+        boolean equals = (name.equals(todo.name) && due.equals(todo.due) && type.equals(todo.type)
+                && (status.get() == todo.status.get()));
+        return equals;
     }
 
     @Override
@@ -71,12 +72,6 @@ public abstract class Todo {
     @Override
     public String toString() {
         String[] dateArray = due.toString().split("-");
-        String status;
-        if (this.status.get()) {
-            status = "Finished";
-        } else {
-            status = "Incomplete";
-        }
         String namer = this.name;
         while (namer.length() < 21) {
             namer = namer + " ";

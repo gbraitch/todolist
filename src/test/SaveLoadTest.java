@@ -28,7 +28,7 @@ public class SaveLoadTest {
 
 
     @Test
-    public void saveTodoListWith3Items() {
+    public void saveTodoListWith3Items() throws IOException {
         saveTodo = FXCollections.observableArrayList();
         saveTodo.add(new RegTodo("CPSC 210", "08-16-2019"));
         saveTodo.add(new RegTodo("CPSC 221", "08-16-2019"));
@@ -89,7 +89,7 @@ public class SaveLoadTest {
     }
 
     @Test
-    public void testLoadableInterface() throws TooLargeListIndexException, NegativeListIndexException {
+    public void testLoadableInterface() throws TooLargeListIndexException, NegativeListIndexException, IOException {
         td = new TodoList();
         td.addRegTodo(new RegTodo("CPSC 210", "08-16-2019"));
         td.changeStatus(0,true);
@@ -101,10 +101,9 @@ public class SaveLoadTest {
     }
 
     @Test
-    public void testInvalidLoadFile() {
+    public void testInvalidLoadFile() throws IOException {
         td = new TodoList();
         td.addRegTodo(new RegTodo("RegTodoName", "08-16-2019"));
-        td.save("out..exe");
         TodoList td2 = new TodoList();
         td2.load("out2");
         assertEquals(td2.getSize(),0);

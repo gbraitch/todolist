@@ -1,9 +1,7 @@
 package ui.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXToggleButton;
+import com.jfoenix.controls.*;
+import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +14,8 @@ import javafx.stage.Stage;
 import model.Todo;
 import model.TodoList;
 import model.exception.OutOfBoundListIndexException;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -63,11 +63,15 @@ public class EditSuperController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/addSubWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
+            JFXDecorator decorator = new JFXDecorator(stage, root1);
+            decorator.setCustomMaximize(true);
             AddSubTodoController controller = fxmlLoader.getController();
             controller.setTodoList(todoList, superTodo);
             stage.initOwner(mainAnchorPane.getScene().getWindow());
-            stage.setTitle("Add SubTodo");
-            stage.setScene(new Scene(root1));
+            Scene scene = new Scene(decorator);
+            String css = this.getClass().getResource("/ui/assets/subWindowsStyle.css").toExternalForm();
+            scene.getStylesheets().add(css);
+            stage.setScene(scene);
             stage.showAndWait();
         } catch (Exception e) {
             System.out.println("Error loading new window");
@@ -117,6 +121,21 @@ public class EditSuperController {
         datePicker.setValue(local_date(this.superTodo.getDue()));
         descriptionText.setText(this.superTodo.getName());
         statusSlider.setSelected(this.superTodo.getStatus());
+        addValidator();
+    }
+
+    private void addValidator() {
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage("Input Required");
+        FontIcon warnIcon = new FontIcon(FontAwesomeSolid.EXCLAMATION_TRIANGLE);
+        warnIcon.getStyleClass().add("error");
+        validator.setIcon(warnIcon);
+        descriptionText.getValidators().add(validator);
+        descriptionText.focusedProperty().addListener((o, oldVal, newVal) -> {
+            if (!newVal) {
+                descriptionText.validate();
+            }
+        });
     }
 
     private void printError(String text) {

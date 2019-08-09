@@ -8,6 +8,7 @@ import model.exception.TooLargeListIndexException;
 import ui.controller.Controller;
 import util.SaveLoad;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -164,7 +165,7 @@ public class TodoList extends Observable implements Iterable<Todo> {
         return i;
     }
 
-    public void save(String fileName) {
+    public void save(String fileName) throws IOException {
         String arg;
         if (fileName == null) {
             arg = FILE_PATH;

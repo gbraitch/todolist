@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.validation.RequiredFieldValidator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,6 +13,8 @@ import javafx.stage.Stage;
 import model.RegTodo;
 import model.SuperTodo;
 import model.TodoList;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -88,6 +91,21 @@ public class AddTodoController {
 
     public void setTodoList(TodoList todos) {
         this.todos = todos;
+        addValidator();
+    }
+
+    private void addValidator() {
+        RequiredFieldValidator validator = new RequiredFieldValidator();
+        validator.setMessage("Input Required");
+        FontIcon warnIcon = new FontIcon(FontAwesomeSolid.EXCLAMATION_TRIANGLE);
+        warnIcon.getStyleClass().add("error");
+        validator.setIcon(warnIcon);
+        descriptionText.getValidators().add(validator);
+        descriptionText.focusedProperty().addListener((o, oldVal, newVal) -> {
+            if (!newVal) {
+                descriptionText.validate();
+            }
+        });
     }
 
     @FXML

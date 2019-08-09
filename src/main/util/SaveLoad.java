@@ -29,13 +29,11 @@ public class SaveLoad {
         return FxGson.addFxSupport(gsonBuilder).create();
     }
 
-    public void save(ObservableList<Todo> list, String fileName) {
+    public void save(ObservableList<Todo> list, String fileName) throws IOException {
         try (FileWriter jsonWriter = new FileWriter(fileName)) {
             String json = gson.toJson(list.toArray(), Todo[].class);
             jsonWriter.write(json);
             System.out.println("Write operation SUCCESS");
-        } catch (IOException e) {
-            System.out.println("Write operation FAIL");
         }
     }
 
