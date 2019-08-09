@@ -59,8 +59,8 @@ public abstract class Todo {
             return false;
         }
         Todo todo = (Todo) o;
-        return name.equals(todo.name) && due.equals(todo.due) &&
-                status.get() == todo.status.get();
+        return (status.get() == todo.getStatus())
+                & name.equals(todo.name) & due.equals(todo.due);
     }
 
     @Override
