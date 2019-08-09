@@ -18,6 +18,9 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -116,7 +119,6 @@ public class Controller implements Observer {
         initCheckBoxes();
     }
 
-
     private void initCheckBoxes() {
         listOfTodos.setCellFactory(new Callback<ListView<Todo>, ListCell<Todo>>() {
             @Override
@@ -129,7 +131,7 @@ public class Controller implements Observer {
                     @Override
                     protected void updateItem(Todo item, boolean empty) {
                         super.updateItem(item, empty);
-                        setText(initCheckBoxesHelper(item,empty,checkBox));
+                        setGraphic(checkBoxesHelper(item,empty,checkBox));
                     }
                 };
             }
@@ -137,22 +139,37 @@ public class Controller implements Observer {
         attachStatusListeners();
     }
 
-    private String initCheckBoxesHelper(Todo item, boolean empty, JFXCheckBox checkBox) {
+    private HBox checkBoxesHelper(Todo item, boolean empty, JFXCheckBox checkBox) {
         if (item == null || empty) {
             checkBox.setVisible(false);
             return null;
         } else {
             checkBox.setVisible(true);
             checkBox.setSelected(item.getStatus());
-            String save = item.toString();
             checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 @Override
                 public void changed(ObservableValue ov, Boolean oldval, Boolean newval) {
                     item.setStatus(newval);
                 }
             });
-            return save;
+            return displayData(item, checkBox);
         }
+    }
+
+    private HBox displayData(Todo item, JFXCheckBox checkBox) {
+        HBox hbox = new HBox();
+        Pane pane = new Pane();
+        Label label1;
+        if (item.getType().equals("Sub")) {
+            label1 = new Label("      ");
+        } else {
+            label1 = new Label("");
+        }
+        Label label2 = new Label(item.getName());
+        Label label3 = new Label(item.getDue());
+        hbox.getChildren().addAll(label1, checkBox, label2, pane, label3);
+        HBox.setHgrow(pane, Priority.ALWAYS);
+        return hbox;
     }
 
     private void attachStatusListeners() {

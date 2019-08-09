@@ -24,7 +24,7 @@ public class SaveLoad {
     // Helper method to create a Gson instance that serializes abstract classes.
     private static Gson setupGson() {
         GsonBuilder gsonBuilder = new GsonBuilder().setPrettyPrinting();
-        gsonBuilder.registerTypeAdapter(Todo.class, new InterfaceAdapter<Todo>());
+        gsonBuilder.registerTypeAdapter(Todo.class, new util.InterfaceAdapter<Todo>());
 
         return FxGson.addFxSupport(gsonBuilder).create();
     }

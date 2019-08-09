@@ -5,7 +5,7 @@
       "name": "CPSC 121 HWK",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": false
+      "status": true
     }
   },
   {
@@ -18,7 +18,7 @@
             "name": "Add hashmap",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": false
+            "status": true
           }
         },
         {
@@ -27,14 +27,14 @@
             "name": "Add GUI",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": false
+            "status": true
           }
         }
       ],
-      "name": "CPSC 210",
-      "due": "2019-08-16",
+      "name": "CPSC",
+      "due": "2019-08-22",
       "type": "Super",
-      "status": false
+      "status": true
     }
   },
   {
