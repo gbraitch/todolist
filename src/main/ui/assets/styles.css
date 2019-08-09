@@ -5,7 +5,7 @@
 
 .list-cell {
     -fx-font-size: 18.0;
-    -fx-padding: 10px ;
+    -fx-padding: 14px ;
     -fx-background:  #36353c;
     -fx-background-color: transparent, -fx-background ;
     -fx-background-insets: 0px, 4px ;
@@ -42,3 +42,12 @@
     -fx-border-color: -fx-decorator-color;
     -fx-border-width: 0 4 4 4;
 }
+
+.animated-option-button {
+    -fx-pref-width: 40px;
+    -fx-background-color: #44B449;
+    -fx-background-radius: 30px;
+    -fx-pref-height: 40px;
+    -fx-text-fill: white;
+}
+

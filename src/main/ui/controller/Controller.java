@@ -1,9 +1,6 @@
 package ui.controller;
 
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXDecorator;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXProgressBar;
+import com.jfoenix.controls.*;
 import javafx.animation.FadeTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -29,11 +27,16 @@ import model.SuperTodo;
 import model.Todo;
 import model.TodoList;
 import model.exception.OutOfBoundListIndexException;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 import ui.api.Weather;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -60,6 +63,9 @@ public class Controller implements Observer {
     private JFXProgressBar progressBar;
 
     @FXML
+    private JFXButton addButton;
+
+    @FXML
     private Label errorLabel;
 
     @FXML
@@ -80,6 +86,9 @@ public class Controller implements Observer {
     @FXML
     private ImageView imageViewer;
 
+    @FXML
+    private JFXNodesList nodeList;
+
     //-----------------------------------//
     //-----------Initialization----------//
     //-----------------------------------//
@@ -88,6 +97,12 @@ public class Controller implements Observer {
     void initialize() {
         listOfTodos.setExpanded(true);
         listOfTodos.depthProperty().set(1);
+
+        FontIcon fontIcon = new FontIcon(FontAwesomeSolid.PLUS);
+        ColorAdjust blackout = new ColorAdjust();
+        blackout.setBrightness(1.0);
+        fontIcon.setEffect(blackout);
+        addButton.setGraphic(fontIcon);
     }
 
     public void init(TodoList todos) throws IOException {
@@ -100,6 +115,7 @@ public class Controller implements Observer {
         initWeather();
         initCheckBoxes();
     }
+
 
     private void initCheckBoxes() {
         listOfTodos.setCellFactory(new Callback<ListView<Todo>, ListCell<Todo>>() {
@@ -154,7 +170,11 @@ public class Controller implements Observer {
     private void initWeather() throws IOException {
         weather = new Weather();
 
-        currentDate.setText(LocalDate.now().toString());
+        SimpleDateFormat st = new SimpleDateFormat("EEEEEEE MMM d");
+        LocalDate localDate = LocalDate.now();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        currentDate.setText(st.format(date));
+
         currentTemp.setText(weather.getCurrentTemp() + "°C");
         maxTemp.setText("Max: " + weather.getMaxTemp() + " °C");
         minTemp.setText("Min: " + weather.getMinTemp() + " °C");

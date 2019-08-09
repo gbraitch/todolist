@@ -5,7 +5,7 @@
       "name": "CPSC 121 HWK",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": true
+      "status": false
     }
   },
   {
@@ -18,7 +18,7 @@
             "name": "Add hashmap",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": true
+            "status": false
           }
         },
         {
@@ -27,7 +27,7 @@
             "name": "Add GUI",
             "due": "2019-08-16",
             "type": "Sub",
-            "status": true
+            "status": false
           }
         }
       ],
@@ -43,7 +43,7 @@
       "name": "Register for classes",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": true
+      "status": false
     }
   },
   {
@@ -52,7 +52,7 @@
       "name": "CPSC 210 MIDTERM",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": true
+      "status": false
     }
   },
   {
