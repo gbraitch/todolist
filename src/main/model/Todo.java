@@ -59,9 +59,8 @@ public abstract class Todo {
             return false;
         }
         Todo todo = (Todo) o;
-        boolean one = name.equals(todo.name) && due.equals(todo.due);
-        boolean two = status.get() == todo.status.get();
-        return type.equals(todo.type) && one && two;
+        return name.equals(todo.name) && due.equals(todo.due) &&
+                status.get() == todo.status.get();
     }
 
     @Override
@@ -71,7 +70,6 @@ public abstract class Todo {
 
     @Override
     public String toString() {
-        System.out.println(String.format("%-25s%25s", this.name, this.due));
         return String.format("%-25s%25s", this.name, this.due);
     }
 }
