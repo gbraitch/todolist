@@ -31,7 +31,7 @@
           }
         }
       ],
-      "name": "CPSC",
+      "name": "CPSC 210 Project",
       "due": "2019-08-22",
       "type": "Super",
       "status": true
@@ -52,7 +52,7 @@
       "name": "CPSC 210 MIDTERM",
       "due": "2019-08-16",
       "type": "Reg",
-      "status": false
+      "status": true
     }
   },
   {

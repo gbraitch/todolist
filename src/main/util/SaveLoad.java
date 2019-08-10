@@ -33,7 +33,7 @@ public class SaveLoad {
         try (FileWriter jsonWriter = new FileWriter(fileName)) {
             String json = gson.toJson(list.toArray(), Todo[].class);
             jsonWriter.write(json);
-            System.out.println("Write operation SUCCESS");
+            System.out.println("Write operation SUCCESS!");
         }
     }
 
@@ -44,9 +44,9 @@ public class SaveLoad {
             JsonReader jsonReader = new JsonReader(r);
             Todo[] todoArray = gson.fromJson(jsonReader, Todo[].class);
             todos.addAll(Arrays.asList(todoArray));
-            System.out.println("Read operation SUCCESS");
+            System.out.println("Read operation SUCCESS!");
         } catch (IOException e) {
-            System.out.println("Read operation FAIL");
+            System.out.println("Read operation FAIL!");
         }
 
         return todos;
