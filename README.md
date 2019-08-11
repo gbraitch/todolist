@@ -11,5 +11,5 @@ java -jar todolist.jar
 
 ## Demo Gifs
 
-![](https://gph.is/g/ZkbPpQd)
-![](https://gph.is/g/aXp0wPV)  
+![](https://media.giphy.com/media/gjI8hfKT4H9QZFJihX/giphy.gif)
+![](https://media.giphy.com/media/ftSw8VOf0iJjUH9vwB/giphy.gif)  
