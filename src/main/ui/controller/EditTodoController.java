@@ -90,9 +90,9 @@ public class EditTodoController {
     public void setTodoList(TodoList todoList, Todo todo) {
         this.todoList = todoList;
         this.todo = todo;
-        datePicker.setValue(local_date(todo.getDue()));
-        descriptionText.setText(todo.getName());
-        statusSlider.setSelected(todo.getStatus());
+        datePicker.setValue(local_date(this.todo.getDue()));
+        descriptionText.setText(this.todo.getName());
+        statusSlider.setSelected(this.todo.getStatus());
         addValidator();
     }
 

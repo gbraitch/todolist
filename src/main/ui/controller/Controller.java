@@ -276,10 +276,11 @@ public class Controller implements Observer {
 
     private void openEditWindow() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/editWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/gui/editWindow.fxml"));
             Parent root1 = fxmlLoader.load();
             Stage stage = new Stage();
             JFXDecorator decorator = new JFXDecorator(stage, root1);
+            decorator.setCustomMaximize(true);
             EditTodoController controller = fxmlLoader.getController();
             controller.setTodoList(todoList, listOfTodos.getSelectionModel().getSelectedItem());
             stage.initOwner(mainAnchorPane.getScene().getWindow());
@@ -289,7 +290,7 @@ public class Controller implements Observer {
             stage.setScene(scene);
             stage.showAndWait();
         } catch (Exception e) {
-            System.out.println("Error loading new window");
+            System.out.println("Error loading new window!");
             e.printStackTrace();
         }
         updateList();
@@ -311,7 +312,7 @@ public class Controller implements Observer {
             stage.setScene(scene);
             stage.showAndWait();
         } catch (Exception e) {
-            System.out.println("Error loading new window");
+            System.out.println("Error loading new window!");
             e.printStackTrace();
         }
     }

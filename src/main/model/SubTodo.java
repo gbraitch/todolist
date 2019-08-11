@@ -23,13 +23,6 @@ public class SubTodo extends Todo {
     }
 
     @Override
-    public void setStatus(boolean i) {
-        super.setStatus(i);
-        System.out.println(head.completedSubTodos() + " out of " + head.getSubList().size()
-                + " sub todos are completed");
-    }
-
-    @Override
     public String toString() {
         return super.toString();
     }
