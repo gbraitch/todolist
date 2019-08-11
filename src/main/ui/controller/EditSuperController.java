@@ -60,7 +60,7 @@ public class EditSuperController {
     @FXML
     void addNewSubTodo(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../gui/addSubWindow.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui/gui/addSubWindow.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             JFXDecorator decorator = new JFXDecorator(stage, root1);

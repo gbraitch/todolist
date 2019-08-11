@@ -112,6 +112,7 @@ public class Controller implements Observer {
         this.todoList = todos;
         // Load previous data
         todos.load(null);
+        listOfTodos.setEditable(true);
         // Initialize progress bar
         calculateProgress();
         // Initialize weather info
@@ -350,7 +351,6 @@ public class Controller implements Observer {
             }
         }
         listOfTodos.setItems(this.list);
-
         calculateProgress();
     }
 
