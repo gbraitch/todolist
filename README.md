@@ -11,11 +11,15 @@ java -jar todolist.jar
 
 ## Demo Gifs
 
-<details><summary>Editing a Todo</summary>
+<details>
+  <summary>Editing a Todo</summary>
+  
 ![Edit Todos with error warnings](https://media.giphy.com/media/gjI8hfKT4H9QZFJihX/giphy.gif)
 </details>
 
-<details><summary>Editing a Todo</summary>
+<details>
+  <summary>Editing a Todo</summary>
+
 ![Adding a new SuperTodo, which allows for subtasks](https://media.giphy.com/media/ftSw8VOf0iJjUH9vwB/giphy.gif)  
 </details>
 
