@@ -1,3 +1,14 @@
 *.class
 
 workspace.xml
+
+#intellij specific
+.idea/
+*.iml
+*.ipr
+*.iws
+#windows Junk
+*.ini
+[Tt]humbs.db
+*.DS_Store
+out
