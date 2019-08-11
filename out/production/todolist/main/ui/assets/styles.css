@@ -1,0 +1,54 @@
+.list-cell {
+    -fx-font-size: 17.0;
+    -fx-padding: 14px ;
+    -fx-background:  #36353c;
+    -fx-background-color: transparent, -fx-background ;
+    -fx-background-insets: 0px, 4px ;
+}
+
+.list-cell:empty {
+    -fx-padding: 10px ;
+    -fx-background-color: transparent ;
+    -fx-background-insets: 0 ;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #2d2a27;
+}
+
+.jfx-check-box {
+    -jfx-checked-color: #5f95f0;
+    -jfx-unchecked-color: BLACK;
+}
+
+
+.jfx-progress-bar > .bar {
+    -fx-background-color: #5f95f0;
+}
+
+.jfx-progress-bar > .secondary-bar {
+    -fx-background-color:  #36353c;
+}
+
+.jfx-decorator {
+    -fx-decorator-color:#36353c;
+}
+
+.jfx-decorator .jfx-decorator-buttons-container {
+    -fx-background-color: -fx-decorator-color;
+}
+
+.jfx-decorator .resize-border {
+    -fx-border-color: -fx-decorator-color;
+    -fx-border-width: 0 4 4 4;
+}
+
+.animated-option-button {
+    -fx-pref-width: 40px;
+    -fx-background-color: #44B449;
+    -fx-background-radius: 30px;
+    -fx-pref-height: 40px;
+    -fx-text-fill: white;
+}
+
+

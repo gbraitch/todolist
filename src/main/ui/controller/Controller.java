@@ -32,7 +32,7 @@ import model.TodoList;
 import model.exception.OutOfBoundListIndexException;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 import org.kordamp.ikonli.javafx.FontIcon;
-import ui.api.Weather;
+import model.Weather;
 
 import java.io.IOException;
 import java.net.URL;

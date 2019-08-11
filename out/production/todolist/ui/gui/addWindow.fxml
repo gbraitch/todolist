@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.AddTodoController">
+   <children>
+      <JFXTextField fx:id="descriptionText" focusColor="#36353c" layoutX="49.0" layoutY="100.0" prefHeight="43.0" prefWidth="503.0" promptText="Write the description of your new to-do task here ..." />
+      <JFXDatePicker fx:id="datePicker" defaultColor="#36353c" layoutX="47.0" layoutY="179.0" prefHeight="27.0" prefWidth="246.0" promptText="Choose date ..." />
+      <JFXCheckBox fx:id="superTodoCheckBox" checkedColor="#5f95f0" layoutX="45.0" layoutY="248.0" text="SuperTodo" />
+      <JFXButton fx:id="addTodo" layoutX="51.0" layoutY="314.0" onAction="#addNewTodo" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #5f95f0;" text="Add" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="cancelButton" layoutX="373.0" layoutY="314.0" onAction="#exitWindow" prefHeight="43.0" prefWidth="153.0" style="-fx-background-color: #5f95f0;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+      <BorderPane prefHeight="18.0" prefWidth="600.0" style="-fx-background-color: #2d2a27;" />
+      <AnchorPane layoutY="-1.0" prefHeight="43.0" prefWidth="600.0" style="-fx-background-color: #36353c;">
+         <children>
+            <Label layoutX="14.0" layoutY="7.0" text="Add new Todo" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="errorLabel" layoutX="47.0" layoutY="278.0" prefHeight="17.0" prefWidth="479.0" />
+   </children>
+</AnchorPane>
