@@ -15,19 +15,9 @@ To run the program, clone/download the project and execute the following command
 java -jar todolist.jar
 ```
 
-## Demo Gifs
+## Demo Gif
 
-<details>
-  <summary>Editing a Todo</summary>
-  
-![Edit Todos with error warnings](https://media.giphy.com/media/gjI8hfKT4H9QZFJihX/giphy.gif)
-</details>
-
-<details>
-  <summary>Editing a Todo</summary>
-
-![Adding a new SuperTodo, which allows for subtasks](https://media.giphy.com/media/ftSw8VOf0iJjUH9vwB/giphy.gif)  
-</details>
+![](demo/demo.gif)  
 
 
 
